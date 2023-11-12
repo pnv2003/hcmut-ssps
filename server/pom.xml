@@ -17,10 +17,10 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -56,6 +56,26 @@
 						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
 					</image>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+					<id>copy-resources</id>
+					<phase>validate</phase>
+					<goals>
+						<goal>copy-resources</goal>
+					</goals>
+					<configuration>
+						<outputDirectory>${basedir}/target/classes/static/</outputDirectory>
+						<resources>
+						<resource>
+							<directory>${basedir}/../client/build</directory>
+						</resource>
+						</resources>
+					</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
