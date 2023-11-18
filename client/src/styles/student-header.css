@@ -1,0 +1,12 @@
+.student-header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 5rem;
+}
+
+.student-header .navbar {
+    flex: 1;
+}

@@ -8,11 +8,7 @@ export default async function submitForm(data) {
             body: JSON.stringify(data)        
         });
 
-        if (response.ok) {
-            console.log('Form submitted!');
-        } else {
-            console.error('Failed to submit!');
-        }
+        return response;
     } catch(error) {
         console.error('Error submitting form:', error);
     }

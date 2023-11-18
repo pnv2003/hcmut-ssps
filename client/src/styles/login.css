@@ -1,6 +1,6 @@
-body {
+/* body {
     background-color: #EEEEEE;
-}
+} */
 
 .ssoLoginPage {
     height: 100vh;
@@ -48,11 +48,10 @@ body {
     color: white;
 }
 
-.ssoLoginHeader .logo {
-    width: 5rem;
-}
-
 .ssoLoginFooter {
     text-align: center;
 }
 
+.error {
+    color: red;
+}

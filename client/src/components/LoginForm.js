@@ -10,20 +10,32 @@ export default function LoginForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (submitForm({
+
+        let errors = 0;
+        if (username.length <= 0) {
+            setUsernameError("Please enter an username");
+            errors++;
+        }
+
+        if (password.length <= 0) {
+            setPasswordError("Please enter a password");
+            errors++;
+        }
+
+        if (errors) {
+            return;
+        }
+
+        submitForm({
             username: username,
             password: password
-        })) {
-
-        }
-    }
-
-    function valid() {
-        if (username.length <= 0) {
-            
-        }
-
-        return (username.length > 0 && password.length > 0);
+        }).then((response) => {
+            if (response.ok) {
+                // ...
+            } else {
+                // ...
+            }
+        });
     }
 
     return (

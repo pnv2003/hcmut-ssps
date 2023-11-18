@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import LoginPage from './pages/LoginPage';
+import StudentHomePage from './pages/StudentHomePage';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
     //   </header>
     // </div>
     
-    <LoginPage />
+    <StudentHomePage />
   );
 }
 

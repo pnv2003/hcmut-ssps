@@ -1,0 +1,10 @@
+.title .site-title {
+    font-family: Finger Paint, Verdana, Geneva, Tahoma, sans-serif;
+    color: #0D99FF;
+    font-size: 3rem;
+    max-width: 35rem;
+}
+
+.title .site-title span {
+    font-size: 1rem;
+}
