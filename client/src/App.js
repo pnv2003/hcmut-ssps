@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Login from './login/Login';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -20,7 +20,8 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <Login />
+    
+    <LoginPage />
   );
 }
 

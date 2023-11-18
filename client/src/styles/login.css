@@ -1,0 +1,58 @@
+body {
+    background-color: #EEEEEE;
+}
+
+.ssoLoginPage {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.ssoLogin {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.ssoLoginForm {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ssoLoginForm .field {
+    width: 80%;
+    max-width: 350px;
+    display: flex; 
+    flex-direction: column;
+}
+
+.ssoLoginForm .btn {
+    width: 80%;
+    max-width: 350px;
+    padding-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 1rem;
+}
+
+.ssoLoginHeader {
+    display: flex;
+    background-color: #210F7A;
+}
+
+.ssoLoginHeader h1 {
+    color: white;
+}
+
+.ssoLoginHeader .logo {
+    width: 5rem;
+}
+
+.ssoLoginFooter {
+    text-align: center;
+}
+

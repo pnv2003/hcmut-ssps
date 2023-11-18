@@ -1,26 +1,35 @@
 import React, { useState } from "react";
-import submitForm from "./submit";
+import "./../styles/login.css";
+import submitForm from "../helpers/submit";
 
-export default function Login() {
+export default function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
     function handleSubmit(e) {
         e.preventDefault();
-        submitForm({
+        if (submitForm({
             username: username,
             password: password
-        });
+        })) {
+
+        }
     }
 
     function valid() {
+        if (username.length <= 0) {
+            
+        }
+
         return (username.length > 0 && password.length > 0);
     }
 
     return (
-        <div className="Login">
-            <form onSubmit={handleSubmit}>
-                <div>
+        <main className="ssoLogin">
+            <form onSubmit={handleSubmit} className="ssoLoginForm">
+                <div className="field">
                     <label for="username">Username</label>
                     <input 
                         type="text" 
@@ -31,8 +40,9 @@ export default function Login() {
                             setUsername(e.target.value);
                         }}
                     />
+                    <small className="error">{usernameError}</small>
                 </div>
-                <div>
+                <div className="field">
                     <label for="pwd">Password</label>
                     <input 
                         type="password" 
@@ -43,15 +53,13 @@ export default function Login() {
                             setPassword(e.target.value);
                         }}
                     />
+                    <small className="error">{passwordError}</small>
                 </div>
-                <div>
-                    <button 
-                        type="submit"
-                        disabled={!valid()}
-                    >Submit</button>
-                    <button type="reset">Clear</button>
+                <div className="btn">
+                    <input type="submit" value="Submit"/>
+                    <input type="reset" value="Clear"/>
                 </div>
             </form>
-        </div>
+        </main>
     );
 }
