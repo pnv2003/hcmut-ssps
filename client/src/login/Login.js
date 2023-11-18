@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import submitForm from "./submit";
 
 export default function Login() {
     const [username, setUsername] = useState('');
@@ -6,6 +7,10 @@ export default function Login() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        submitForm({
+            username: username,
+            password: password
+        });
     }
 
     function valid() {
@@ -14,7 +19,7 @@ export default function Login() {
 
     return (
         <div className="Login">
-            <form action="" method="post" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label for="username">Username</label>
                     <input 
