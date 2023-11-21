@@ -1,0 +1,13 @@
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info .social-media {
+    display: flex;
+    gap: 2rem;
+}
+
+.contact-info .social-media a:is(:link, :visited, :focus) {
+    color: black;
+}

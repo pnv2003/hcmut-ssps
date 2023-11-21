@@ -4,7 +4,7 @@ import LogoSSPS from "./LogoSSPS";
 import "../styles/header.css";
 import StaticNavBar from "./StaticNavBar";
 
-export default function GuestHeader() {
+export default function Header() {
 
     const items = [
         { text: "Trang chủ", link: "#"}, 

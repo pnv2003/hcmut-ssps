@@ -1,9 +1,9 @@
 import React from "react";
-import "./../styles/simple-footer.css";
+import "./../styles/copyright.css";
 
-export default function SimpleFooter() {
+export default function Copyright() {
     return (
-        <footer className="simple-footer">
+        <footer className="copyright">
             <p>2023 © SSPS - Trường Đại học Bách khoa, Đại học Quốc gia TP.HCM</p>
         </footer>
     );

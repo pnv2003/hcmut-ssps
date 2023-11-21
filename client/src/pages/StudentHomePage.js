@@ -1,6 +1,6 @@
 import Button from "../components/Button";
 import Poster from "../components/Poster";
-import SimpleFooter from "../components/SimpleFooter";
+import Copyright from "../components/Copyright";
 import StudentHeader from "../components/StudentHeader";
 import Title from "../components/Title";
 import "./../styles/student-homepage.css";
@@ -25,7 +25,6 @@ export default function StudentHomePage(props) {
                 </div>
                 <Poster src={PrinterComic} alt="Printer Comic Poster" />
             </main>
-            {/* <SimpleFooter /> */}
         </div>
     );
 }
