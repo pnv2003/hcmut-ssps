@@ -1,4 +1,4 @@
-.student-header {
+.header {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
@@ -7,10 +7,10 @@
     height: 5rem;
 }
 
-.student-header .navbar {
+.header .navbar {
     flex: 1;
 }
 
-.student-header .navbutton {
+.header .navbutton {
     margin: 3rem;
 }

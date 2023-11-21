@@ -1,9 +1,19 @@
-button {
+.navbutton:link,
+.navbutton:visited,
+.navbutton:focus {
     background-color: #0D99FF;
     padding: 1rem;
-    padding-bottom: 2rem;
     max-width: 10rem;
     border: 2px solid white;
     border-radius: 10px;
     color: white;
+    text-align: center;
+}
+
+.navbutton:hover {
+    background-color: orange;
+}
+
+.navbutton:active {
+    background-color: red;
 }

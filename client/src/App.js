@@ -1,7 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import StudentHomePage from './pages/StudentHomePage';
+import FileUploadPage from './pages/FileUploadPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
@@ -21,8 +24,11 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    
-    <StudentHomePage />
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/file' element={<FileUploadPage />} />
+    </Routes>
   );
 }
 

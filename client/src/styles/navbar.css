@@ -9,3 +9,10 @@
     font-size: 1.2rem;
 }
 
+.navbar.static a:link,
+.navbar.static a:visited,
+.navbar.static a:focus {
+    text-decoration: none;
+    color: black;
+}
+
