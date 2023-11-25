@@ -30,11 +30,7 @@ export default function LoginForm() {
             username: username,
             password: password
         }).then((response) => {
-            if (response.ok) {
-                // ...
-            } else {
-                // ...
-            }
+            console.log(response);
         });
     }
 
