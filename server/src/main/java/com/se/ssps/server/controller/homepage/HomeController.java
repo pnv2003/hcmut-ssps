@@ -1,5 +1,10 @@
 package com.se.ssps.server.controller.homepage;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.security.auth.login.LoginException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.se.ssps.server.entity.user.User;
+import com.se.ssps.server.response.LoginResponse;
 import com.se.ssps.server.service.user.UserService;
 
 @RestController
@@ -19,7 +25,7 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    @GetMapping("")
+    @GetMapping("/index")
     public String homePage(){
         return "This is homepage";
     }
@@ -30,13 +36,22 @@ public class HomeController {
     }
 
     @PostMapping("/login")
-    public String login_proccess(@RequestBody User user) {
+    public LoginResponse login_proccess(@RequestBody User user) throws LoginException{
+        LoginResponse loginResponse = new LoginResponse();
         User findUser = userService.findUser(user.getUsername());
         if (findUser != null) {
-            if (findUser.getPassword().equals(user.getPassword()) && findUser.getIsAdmin().equals(true)) return "welcome_Admin";
-            if (findUser.getPassword().equals(user.getPassword()) && findUser.getIsAdmin().equals(false)) return "welcome_Student";
-            return "wrong password";
+            if (findUser.getPassword().equals(user.getPassword()) ) {
+                loginResponse.setUser(findUser);
+                loginResponse.setCorrectPass(true);
+                return loginResponse;
+            }
+            loginResponse.setUser(findUser);
+            loginResponse.setCorrectPass(false);
+            return loginResponse;
         }
-        return "Login_failed";
+        return null;
     }
+
+
+   
 }
