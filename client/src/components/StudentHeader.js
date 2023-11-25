@@ -1,6 +1,6 @@
 import LogoHCMUT from "./LogoHCMUT";
 import LogoSSPS from "./LogoSSPS";
-import NavBar from "./NavBar";
+import NavBar from "./Navbar";
 import ProfileIcon from "./ProfileIcon";
 import "./../styles/student-header.css";
 

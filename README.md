@@ -3,6 +3,7 @@
 # React Installation
 
 ```bash
+cd client
 npm install react-router-dom
 npm i --save @fortawesome/fontawesome-svg-core
 npm install --save @fortawesome/free-solid-svg-icons
