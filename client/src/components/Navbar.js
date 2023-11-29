@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 import "./../styles/navbar.css";
+import { nanoid } from "nanoid";
 
 export default function NavBar(props) {
 
@@ -13,11 +14,10 @@ export default function NavBar(props) {
     );
 
     const navbarItems = props.items.map(item => 
-        <li>
+        <li key={`item-${nanoid()}`}>
             <NavLink 
                 to={item.link} 
                 style={activeStyle}
-                state={{ auth: item.auth }}
             > 
                 {item.text}
             </NavLink>
