@@ -40,7 +40,7 @@ export default function Footer() {
                 <div className="register-email">
                     <h2>Đăng ký nhận thông tin</h2>
                     <form action="" method="post">
-                        <label for="reg-email">Nhập email</label>
+                        <label htmlFor="reg-email">Nhập email</label>
                         <input type="email" name="reg-email" id="reg-email" />
                         <input type="submit" value="->" />
                     </form>

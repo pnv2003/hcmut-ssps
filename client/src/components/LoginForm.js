@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import "./../styles/login.css";
 import submitForm from "../helpers/submit";
+import { useAuth } from "../contexts/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [formError, setFormError] = useState('');
     const [usernameError, setUsernameError] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const { login } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const fromPage = location.state?.from?.pathname || "/";
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -23,6 +30,7 @@ export default function LoginForm() {
         }
 
         if (errors) {
+            setFormError('Oops! An error occurred.');
             return;
         }
 
@@ -31,14 +39,36 @@ export default function LoginForm() {
             password: password
         }).then((response) => {
             console.log(response);
+            const json = response.json();
+            console.log(json);
+
+            json.then((data) => {
+                console.log(data);
+                if (data.user === null) {
+                    // TODO: user pass false case
+                    setUsernameError('Username does not exist');
+                } else {
+                    if (!data.correctPass) {
+                        setPasswordError('Password does not match');
+                    } else {
+                        // login success
+                        login(data.user);
+                        navigate(
+                            fromPage,
+                            { replace: true }
+                        );
+                    }
+                }
+            });
         });
     }
 
     return (
         <main className="ssoLogin">
+            <p className="error">{formError}</p>
             <form onSubmit={handleSubmit} className="ssoLoginForm">
                 <div className="field">
-                    <label for="username">Username</label>
+                    <label htmlFor="username">Username</label>
                     <input 
                         type="text" 
                         name="username" 
@@ -51,7 +81,7 @@ export default function LoginForm() {
                     <small className="error">{usernameError}</small>
                 </div>
                 <div className="field">
-                    <label for="pwd">Password</label>
+                    <label htmlFor="pwd">Password</label>
                     <input 
                         type="password" 
                         name="password" 

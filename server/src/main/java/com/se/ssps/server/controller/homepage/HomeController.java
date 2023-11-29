@@ -49,7 +49,7 @@ public class HomeController {
             loginResponse.setCorrectPass(false);
             return loginResponse;
         }
-        return null;
+        return loginResponse;
     }
 
 

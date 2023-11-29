@@ -1,5 +1,3 @@
-import { useLocation } from "react-router-dom";
-import StudentHomePage from "./StudentHomePage";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Title from "../components/Title";
@@ -14,14 +12,30 @@ import { faListCheck, faPrint } from "@fortawesome/free-solid-svg-icons";
 import ContactInfo from "../components/ContactInfo";
 import Footer from "../components/Footer";
 import Copyright from "../components/Copyright";
-
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 export default function HomePage() {
-    const location = useLocation();
-
-    if (location.state !== null && location.state.auth) {
-        return <StudentHomePage />
-    }
-
+    const navigate = useNavigate();
+    const { auth } = useAuth();
+    
+    useEffect(() => {
+        if (Object.hasOwn(auth, 'user') && auth.user !== null) {
+            if (auth.user.isAdmin) {
+                navigate(
+                    '/admin',
+                    { replace: true } 
+                )
+            } else {
+                navigate(
+                    '/student',
+                    { replace: true }
+                )
+            }
+            return;
+        }
+    });
+    
     return (
         <div className="homepage">
             <Header />

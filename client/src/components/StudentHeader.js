@@ -4,13 +4,13 @@ import NavBar from "./Navbar";
 import ProfileIcon from "./ProfileIcon";
 import "./../styles/student-header.css";
 
-export default function StudentHeader() {
+export default function StudentHeader(props) {
 
     const items = [
-        { text: "Trang chủ", link: "/", auth: true}, 
-        { text: "In tài liệu", link: "/file", auth: true},
-        { text: "Mua trang in", link: "/buy", auth: true},
-        { text: "Lịch sử in", link: "/log", auth: true}
+        { text: "Trang chủ", link: "/"}, 
+        { text: "In tài liệu", link: "/file"},
+        { text: "Mua trang in", link: "/buy"},
+        { text: "Lịch sử in", link: "/log"}
     ];
 
     return (

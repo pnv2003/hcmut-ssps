@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "ServerApplication",
+            "request": "launch",
+            "mainClass": "com.se.ssps.server.ServerApplication",
+            "projectName": "server"
+        },
+        {
             "type": "msedge",
             "request": "launch",
             "name": "Launch Edge against localhost",
