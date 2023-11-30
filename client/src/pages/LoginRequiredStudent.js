@@ -4,27 +4,32 @@ import { useEffect, useRef } from "react";
 
 export default function LoginRequiredStudent() {
     console.log('Studying or not?');
-    const { auth, setAuth } = useAuth();
+    const { auth, setAuth, getUser } = useAuth();
     const location = useLocation();
 
-    const currentUser = JSON.parse(sessionStorage.getItem('user'));
-    const loggedInAsStudent = useRef(false);
+    // const currentUser = JSON.parse(sessionStorage.getItem('user'));
+    // const loggedInAsStudent = useRef(false);
     
-    useEffect(() => {
-        console.log("Check session effect!!!!!!!!!!!!!");
-        if (currentUser?.isAdmin) {
-            console.log("Yo, now go studying");
-            setAuth({user: currentUser});
-            loggedInAsStudent.current = true;
-        }
-    }, []);
+    // useEffect(() => {
+    //     console.log("Check session effect!!!!!!!!!!!!!");
+    //     if (currentUser?.isAdmin) {
+    //         console.log("Yo, now go studying");
+    //         setAuth({user: currentUser});
+    //         loggedInAsStudent.current = true;
+    //     }
+    // }, []);
 
-    if (!auth?.user?.isAdmin || loggedInAsStudent.current) {
+    // if (!auth?.user?.isAdmin || loggedInAsStudent.current) {
+    //     return <Outlet />
+    // }
+
+    const user = getUser();
+    if (!user?.isAdmin) {
         return <Outlet />
     }
     return (
         <Navigate 
-        to="/login"
+        to="/forbidden"
         state={{
             from: location
         }}

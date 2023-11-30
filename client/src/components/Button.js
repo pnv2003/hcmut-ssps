@@ -1,22 +1,20 @@
 import React from "react";
 import "./../styles/button.css";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Button(props) {
+    const navigate = useNavigate();
 
-    const buttonStyle = (isActive) => (
-        {
-            color: "white",
-            textDecoration: "none"
-        }  
-    );
+    function handleClick() {
+        navigate(
+            props.link,
+            { replace: (props.replace === true) } 
+        );
+    }
 
     return (
-        <NavLink className="navbutton"
-            to={props.link}
-            style={buttonStyle}
-            state={{ auth: props.auth }}>
-                {props.text}
-        </NavLink>
+        <div onClick={handleClick} className="navbutton">
+            {props.text}
+        </div>
     );
 }

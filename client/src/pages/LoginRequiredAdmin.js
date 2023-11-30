@@ -4,28 +4,33 @@ import { useEffect, useRef } from "react";
 
 export default function LoginRequiredAdmin() {
     console.log("You're admin no?");
-    const { auth, setAuth } = useAuth();
+    const { auth, setAuth, getUser } = useAuth();
     const location = useLocation();
 
-    const currentUser = JSON.parse(sessionStorage.getItem('user'));
-    const loggedInAsAdmin = useRef(false);
+    // const currentUser = JSON.parse(sessionStorage.getItem('user'));
+    // const loggedInAsAdmin = useRef(false);
     
-    useEffect(() => {
-        console.log("Check session effect!!!!!!!!!!!!!");
-        if (currentUser?.isAdmin) {
-            console.log("Yooooooo Assssminnnnn");
-            setAuth({user: currentUser});
-            loggedInAsAdmin.current = true;
-        }
-    }, []);
+    // useEffect(() => {
+    //     console.log("Check session effect!!!!!!!!!!!!!");
+    //     if (currentUser?.isAdmin) {
+    //         console.log("Yooooooo Assssminnnnn");
+    //         setAuth({user: currentUser});
+    //         loggedInAsAdmin.current = true;
+    //     }
+    // }, []);
 
-    if (auth?.user?.isAdmin || loggedInAsAdmin.current) {
+    // if (auth?.user?.isAdmin || loggedInAsAdmin.current) {
+    //     return <Outlet />
+    // }
+
+    const user = getUser();
+    if (user?.isAdmin) {
         return <Outlet />
     }
     console.log("Gotta login as assmin bruh");
     return (
         <Navigate 
-            to="/login"
+            to="/forbidden"
             state={{
                 from: location
             }}

@@ -20,6 +20,7 @@ import PaymentLog from './pages/admin/PaymentLog';
 import PrinterAdd from './pages/admin/PrinterAdd';
 import LoginRequiredAdmin from './pages/LoginRequiredAdmin';
 import LoginRequiredStudent from './pages/LoginRequiredStudent';
+import AccessDenied from './pages/AccessDenied';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/forbidden' element={<AccessDenied />} />
 
         <Route element={<LoginRequired />}>
           <Route element={<LoginRequiredStudent />}>

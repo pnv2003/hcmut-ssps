@@ -17,6 +17,8 @@ export default function LoginForm() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setUsernameError('');
+        setPasswordError('');
 
         let errors = 0;
         if (username.length <= 0) {

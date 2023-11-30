@@ -6,7 +6,20 @@ export default function PrinterAdd(props) {
             buildings: [
                 {
                     building: 'A3',
-                    rooms: [ 101, 102, 103 ]
+                    rooms: [ 
+                        {
+                            room: 101,
+                            printer: 'ABC'
+                        }, 
+                        {
+                            room: 102,
+                            printer: 'DEF'
+                        }, 
+                        {
+                            room: 103,
+                            printer: 'GHI'
+                        } 
+                    ]
                 },
                 {
                     building: 'B3',
