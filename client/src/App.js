@@ -18,6 +18,8 @@ import Statistics from './pages/admin/Statistics';
 import PrintingLogAll from './pages/admin/PrintingLogAll';
 import PaymentLog from './pages/admin/PaymentLog';
 import PrinterAdd from './pages/admin/PrinterAdd';
+import LoginRequiredAdmin from './pages/LoginRequiredAdmin';
+import LoginRequiredStudent from './pages/LoginRequiredStudent';
 
 function App() {
   return (
@@ -27,21 +29,25 @@ function App() {
         <Route path='/login' element={<Login />} />
 
         <Route element={<LoginRequired />}>
-          <Route path='/student' element={<StudentHome />} />
-          <Route path='/student/print' element={<PrintDoc />} />
-          <Route path='/student/buy' element={<BuyPage />} />
-          <Route path='/student/log' element={<PrintingLog />} />
-
-          <Route path='/admin' element={<Dashboard />} />
-          <Route path='/admin/printer/info' element={<PrinterInfo />} />
-          <Route path='/admin/printer/status' element={<PrinterStatus />} />
-          <Route path='/admin/printer/add' element={<PrinterAdd />} />
-          <Route path='/admin/config/pgalloc' element={<ConfigPageAllocation />} />
-          <Route path='/admin/config/file' element={<ConfigFile />} />
-          <Route path='/admin/config/location' element={<ConfigLocation />} />
-          <Route path='/admin/log/print' element={<PrintingLogAll />} />
-          <Route path='/admin/log/pay' element={<PaymentLog />} />
-          <Route path='/admin/stat' element={<Statistics />} />
+          <Route element={<LoginRequiredStudent />}>
+            <Route path='/student' element={<StudentHome />} />
+            <Route path='/student/print' element={<PrintDoc />} />
+            <Route path='/student/buy' element={<BuyPage />} />
+            <Route path='/student/log' element={<PrintingLog />} />
+          </Route>
+        
+          <Route element={<LoginRequiredAdmin />}>
+            <Route path='/admin' element={<Dashboard />} />
+            <Route path='/admin/printer/info' element={<PrinterInfo />} />
+            <Route path='/admin/printer/status' element={<PrinterStatus />} />
+            <Route path='/admin/printer/add' element={<PrinterAdd />} />
+            <Route path='/admin/config/pgalloc' element={<ConfigPageAllocation />} />
+            <Route path='/admin/config/file' element={<ConfigFile />} />
+            <Route path='/admin/config/location' element={<ConfigLocation />} />
+            <Route path='/admin/log/print' element={<PrintingLogAll />} />
+            <Route path='/admin/log/pay' element={<PaymentLog />} />
+            <Route path='/admin/stat' element={<Statistics />} />
+          </Route>
         </Route>
       </Routes>
     

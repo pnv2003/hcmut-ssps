@@ -43,7 +43,8 @@ export default function LoginForm() {
             console.log(json);
 
             json.then((data) => {
-                console.log(data);
+                console.log(typeof data);
+                console.log(typeof data.user);
                 if (data.user === null) {
                     // TODO: user pass false case
                     setUsernameError('Username does not exist');

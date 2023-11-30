@@ -14,19 +14,36 @@ import Footer from "../components/Footer";
 import Copyright from "../components/Copyright";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 export default function HomePage() {
     const navigate = useNavigate();
-    const { auth } = useAuth();
+    const { auth, setAuth } = useAuth();
+    
+    const currentUser = JSON.parse(sessionStorage.getItem('user'));
+    const loggedIn = useRef(false);
     
     useEffect(() => {
+        console.log("Check session effect at 127.0.0.1!");
+        if (currentUser) {
+            console.log("Update auth!!!");
+            setAuth({user: currentUser});
+            loggedIn.current = true;
+        }
+    }, []);
+
+    useEffect(() => {
+        console.log("User logged in?");
         if (Object.hasOwn(auth, 'user') && auth.user !== null) {
             if (auth.user.isAdmin) {
+                console.log(typeof auth.user);
+                console.log("Assminnnn");
                 navigate(
                     '/admin',
                     { replace: true } 
                 )
             } else {
+                console.log(typeof auth.user);
+                console.log("Studentttt");
                 navigate(
                     '/student',
                     { replace: true }
