@@ -1,4 +1,4 @@
-package com.se.ssps.server.response;
+package com.se.ssps.server.entity.response;
 
 import com.se.ssps.server.entity.user.User;
 
@@ -15,4 +15,10 @@ import lombok.Setter;
 public class LoginResponse {
     private User user;
     private boolean isCorrectPass;
+
+    // public void setUser(User user){
+    //     this.user = user;
+    // }
+
+
 }

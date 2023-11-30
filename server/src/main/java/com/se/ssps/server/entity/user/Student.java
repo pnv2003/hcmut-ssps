@@ -1,5 +1,11 @@
 package com.se.ssps.server.entity.user;
 
+import java.util.List;
+
+import com.se.ssps.server.entity.File;
+import com.se.ssps.server.entity.PaymentLog;
+import com.se.ssps.server.entity.PrintingLog;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,16 +23,23 @@ public class Student {
     private User user;
 
     @Column(name = "mssv", nullable = false, unique = true)
-    private Long MSSV;
+    private Long mssv;
 
     @Column
     private Long balance;
 
     public Student(Long mSSV, Long balance) {
-        MSSV = mSSV;
+        this.mssv = mSSV;
         this.balance = balance;
     }
 
-    
+    @OneToMany(mappedBy = "student")
+    private List<PrintingLog> printingLogs;
+
+    @OneToMany(mappedBy = "student")
+    private List<File> files;
+
+    @OneToMany(mappedBy = "student")
+    private List<PaymentLog> paymentLogs;
     
 }
