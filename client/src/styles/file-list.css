@@ -1,0 +1,22 @@
+.file-list {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.file-list .file-item {
+    display: flex;
+    align-items: center;
+}
+
+.file-list .file-item .file-detail {
+    flex: 1;
+}
+
+.file-list .file-item .file-detail .success {
+    color: #4BD396;
+}
+
+.file-list .file-item .file-detail .failed {
+    color: #F5707A;
+}

@@ -2,6 +2,7 @@ import Button from "./Button";
 import LogoHCMUT from "./LogoHCMUT";
 import LogoSSPS from "./LogoSSPS";
 import "../styles/header.css";
+import NavBar from "./Navbar";
 import StaticNavBar from "./StaticNavBar";
 
 export default function Header() {
@@ -17,7 +18,7 @@ export default function Header() {
         <header className="header">
             <LogoHCMUT />
             <LogoSSPS />
-            <StaticNavBar items={items} />
+            <NavBar items={items} static={true} />
             <Button text="Đăng nhập" link="/login" />
         </header>
     );

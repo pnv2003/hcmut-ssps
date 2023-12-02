@@ -7,8 +7,6 @@
 
 .student-homepage main {
     flex: 1;
-    display: flex;
-    align-items: center;
     gap: 2rem;
     background-color: white;
     padding: 0 1rem;
@@ -21,4 +19,27 @@
 
 .student-homepage main .poster {
     width: 30rem;
+}
+
+@media screen and (max-width: 999px) {
+    .student-homepage main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .student-homepage .poster {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .student-homepage main {
+        display: flex;
+        align-items: center;
+    }
+
+    .student-homepage .student-header {
+        height: 5rem;
+    }
 }

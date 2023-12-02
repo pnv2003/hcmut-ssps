@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./../styles/login.css";
-import submitForm from "../helpers/submit";
 import { useAuth } from "../contexts/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import sendRequest from "../helpers/request";
 
 export default function LoginForm() {
     const [username, setUsername] = useState('');
@@ -36,10 +36,14 @@ export default function LoginForm() {
             return;
         }
 
-        submitForm({
-            username: username,
-            password: password
-        }).then((response) => {
+        sendRequest(
+            'POST',
+            'http://localhost:8080/login',
+            {
+                username: username,
+                password: password
+            }
+        ).then((response) => {
             console.log(response);
             const json = response.json();
             console.log(json);

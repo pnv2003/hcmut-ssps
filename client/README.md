@@ -11,3 +11,11 @@
 ## Contexts
 
 - AuthContext
+
+## Colors
+
+- `#0D99FF`: blue
+- `#4BD396`: green
+- `#F5707A`: red
+- `#FFD966`: yellow
+- `#CCCCCC`: grey

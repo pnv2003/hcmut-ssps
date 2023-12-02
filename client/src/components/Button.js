@@ -6,10 +6,16 @@ export default function Button(props) {
     const navigate = useNavigate();
 
     function handleClick() {
-        navigate(
-            props.link,
-            { replace: (props.replace === true) } 
-        );
+        if (props.action) {
+            props.action();
+        }
+
+        if (props.link !== '#') {
+            navigate(
+                props.link,
+                { replace: (props.replace === true) } 
+            );
+        }
     }
 
     return (

@@ -1,13 +1,14 @@
 import Button from "../../components/Button";
 import Poster from "../../components/Poster";
-import Copyright from "../../components/Copyright";
 import StudentHeader from "../../components/StudentHeader";
 import Title from "../../components/Title";
 import "./../../styles/student-homepage.css";
 import PrinterComic from "./../../assets/img/Printer-Comic.png";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function StudentHome() {
-    const user = {firstName: 'Son'};
+    const { getUser } = useAuth();
+    const user = getUser();
 
     return (
         <div className="student-homepage">
@@ -16,9 +17,8 @@ export default function StudentHome() {
                 <div className="student-homepage-left">
                     <Title smallText={"Welcome, " + user.firstName + "!"}/>
                     <Button 
-                        text={"In tài liệu ngay"}  
-                        // TODO
-                        link={"#"}
+                        text="In tài liệu ngay"
+                        link="/student/print"
                     />
                 </div>
                 <Poster src={PrinterComic} alt="Printer Comic Poster" />

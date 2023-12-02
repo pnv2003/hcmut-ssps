@@ -21,11 +21,14 @@ import PrinterAdd from './pages/admin/PrinterAdd';
 import LoginRequiredAdmin from './pages/LoginRequiredAdmin';
 import LoginRequiredStudent from './pages/LoginRequiredStudent';
 import AccessDenied from './pages/AccessDenied';
+import Test from './pages/Test';
+import PrintRequestSent from './pages/student/PrintRequestSent';
 
 function App() {
   return (
     
       <Routes>
+        <Route path='/test' element={<Test />}/> 
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forbidden' element={<AccessDenied />} />
@@ -34,6 +37,7 @@ function App() {
           <Route element={<LoginRequiredStudent />}>
             <Route path='/student' element={<StudentHome />} />
             <Route path='/student/print' element={<PrintDoc />} />
+            <Route path='/studet/success' element={<PrintRequestSent />} />
             <Route path='/student/buy' element={<BuyPage />} />
             <Route path='/student/log' element={<PrintingLog />} />
           </Route>

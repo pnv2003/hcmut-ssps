@@ -1,0 +1,18 @@
+.file-upload {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.file-upload .file-types {
+    display: flex;
+}
+
+.file-upload .file-types span {
+    background-color: lightgrey;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 0.5rem;
+}

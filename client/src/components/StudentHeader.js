@@ -3,22 +3,30 @@ import LogoSSPS from "./LogoSSPS";
 import NavBar from "./Navbar";
 import ProfileIcon from "./ProfileIcon";
 import "./../styles/student-header.css";
+import Button from "./Button";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function StudentHeader(props) {
+    const { logout } = useAuth();
 
     const items = [
-        { text: "Trang chủ", link: "/"}, 
-        { text: "In tài liệu", link: "/file"},
-        { text: "Mua trang in", link: "/buy"},
-        { text: "Lịch sử in", link: "/log"}
+        { text: "Trang chủ", link: "/student"}, 
+        { text: "In tài liệu", link: "/student/print"},
+        { text: "Mua trang in", link: "/student/buy"},
+        { text: "Lịch sử in", link: "/student/log"}
     ];
 
     return (
         <header className="student-header">
-            <LogoHCMUT />
-            <LogoSSPS />
-            <NavBar items={items} />
-            <ProfileIcon />
+            <div className="logo">
+                <LogoHCMUT />
+                <LogoSSPS />
+            </div>
+            <NavBar items={items} static={false} />
+            <div className="user">
+                <ProfileIcon />
+                <Button text="Logout" link="/" action={logout}/>
+            </div>   
         </header>
     );
 }
