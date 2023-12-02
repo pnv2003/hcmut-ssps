@@ -18,11 +18,16 @@ public class PaymentLog {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
     
-    private int numOfPage;
+    private int numOfPages;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    // @Column(columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime payDate;
+
+    private String paymentMethod;
+
+    private Integer unitPrice;
 }

@@ -5,9 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.se.ssps.server.entity.Config;
+import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
+import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.configuration.Building;
 import com.se.ssps.server.entity.configuration.Campus;
+import com.se.ssps.server.entity.configuration.MaxFileSize;
+import com.se.ssps.server.entity.configuration.PageAllocation;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.service.user.AdminService;
 
@@ -18,6 +23,21 @@ import com.se.ssps.server.service.user.AdminService;
 public class AdminViewController {
     @Autowired
     AdminService adminService;
+
+    @GetMapping("/config")
+    public Config configStat(){
+        return adminService.getAllConfig();
+    }
+
+    @PostMapping("/file-size")
+    public void setMaxFileSize(@RequestParam double maxFileSize){
+        adminService.setMaxFileSize(maxFileSize);
+    }
+
+    @PostMapping("/unit-price")
+    public void setPageUnitPrice(@RequestParam Integer pageUnitPrice){
+        adminService.setPagePrice(pageUnitPrice);
+    }
 
 
     @GetMapping("/index")
@@ -112,7 +132,34 @@ public class AdminViewController {
     public boolean deleteRoom(@RequestParam Integer id){
         return adminService.deleteRoom(id);
     }
-    
-    //Hiện thị thông tin một cấu hình
+//=====================================================================================
+//=====================================================================================
+    //Hiện thị thông tin danh sách lịch sử in
+    @GetMapping("/printing-logs")
+    public List<PrintingLog> listOfPritntingLogs(){
+        return adminService.findAllPrintingLogs();
+    }
+    //Hiện thị thông tin danh sách lịch sử mua
+    @GetMapping("/payment-logs")
+    public List<PaymentLog> listOfPaymentLogs(){
+        return adminService.findAllPaymentLog();
+    }
+//=====================================================================================
+//=====================================================================================
+    //Hiện thị thao tác đối với cấp phát trang in
+    @GetMapping("/page-allocation")
+    public List<PageAllocation> listOfPageAllocations(){
+        return adminService.findAllPageAllocations();
+    }
+
+    @PostMapping("/page-allocation")
+    public void addPageAllocation(@RequestBody PageAllocation newAllocation){
+        adminService.addPageAllocation(newAllocation);
+    }
+
+    @DeleteMapping("/page-allocation")
+    public boolean deleteAllocation(@RequestParam Integer id){
+        return adminService.deletePageAllocation(id);
+    }
 
 }

@@ -2,7 +2,8 @@ package com.se.ssps.server.entity.user;
 
 import java.util.List;
 
-import com.se.ssps.server.entity.File;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.se.ssps.server.entity.File;
 import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.PrintingLog;
 
@@ -18,28 +19,33 @@ import lombok.Setter;
 @Setter
 public class Student {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @Column(name = "mssv", nullable = false, unique = true)
     private Long mssv;
 
     @Column
-    private Long balance;
+    private Integer balance;
 
-    public Student(Long mSSV, Long balance) {
+    public Student(Long mSSV, Integer balance) {
         this.mssv = mSSV;
         this.balance = balance;
     }
 
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<PrintingLog> printingLogs;
 
-    @OneToMany(mappedBy = "student")
-    private List<File> files;
+    // @OneToMany(mappedBy = "student")
+    // private List<File> files;
 
     @OneToMany(mappedBy = "student")
+    @JsonIgnore
     private List<PaymentLog> paymentLogs;
     
 }

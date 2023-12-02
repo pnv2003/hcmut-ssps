@@ -1,31 +1,31 @@
-package com.se.ssps.server.entity;
+// package com.se.ssps.server.entity;
 
-import com.se.ssps.server.entity.user.Student;
+// import com.se.ssps.server.entity.user.Student;
 
-import jakarta.persistence.*;
-import lombok.*;
+// import jakarta.persistence.*;
+// import lombok.*;
 
-@Entity
-@Table
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class File {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+// @Entity
+// @Table
+// @Getter
+// @Setter
+// @NoArgsConstructor
+// @AllArgsConstructor
+// public class File {
+//     @Id
+//     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//     private int id;
 
-    private String fileName;
+//     private String fileName;
 
-    private int size;
+//     private double size;
 
-    private boolean isDel;
+//     // private boolean isDel;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
-    private Student student;
+//     @ManyToOne
+//     @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+//     private Student student;
     
-    @OneToOne(mappedBy = "file")
-    private PrintingLog printingLog;
-}
+//     @OneToOne(mappedBy = "file")
+//     private PrintingLog printingLog;
+// }

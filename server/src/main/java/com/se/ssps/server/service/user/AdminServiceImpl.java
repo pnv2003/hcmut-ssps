@@ -6,17 +6,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.se.ssps.server.entity.Config;
+import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
+import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.configuration.Building;
 import com.se.ssps.server.entity.configuration.Campus;
+import com.se.ssps.server.entity.configuration.FileType;
+import com.se.ssps.server.entity.configuration.MaxFileSize;
+import com.se.ssps.server.entity.configuration.PageAllocation;
+import com.se.ssps.server.entity.configuration.PageUnitPrice;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.repository.BuildingRepository;
 import com.se.ssps.server.repository.CampusRepository;
+import com.se.ssps.server.repository.FileTypeRepository;
+import com.se.ssps.server.repository.PageAllocationRepository;
+import com.se.ssps.server.repository.PaymentLogRepository;
 import com.se.ssps.server.repository.PrinterRepository;
+import com.se.ssps.server.repository.PrintingLogRepository;
 import com.se.ssps.server.repository.RoomRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService{
+    //Khai báo các repository
+    @Autowired
+    MaxFileSize maxFileSize ;
+
+    @Autowired
+    PageUnitPrice pageUnitPrice;
+
     @Autowired
     PrinterRepository printerRepository;
 
@@ -28,6 +46,19 @@ public class AdminServiceImpl implements AdminService{
 
     @Autowired
     CampusRepository campusRepository;
+
+    @Autowired
+    PrintingLogRepository printingLogRepository;
+
+    @Autowired
+    PaymentLogRepository paymentLogRepository;
+
+    @Autowired
+    PageAllocationRepository pageAllocationRepository;
+
+    @Autowired
+    FileTypeRepository fileTypeRepository;
+//=====================================================================================    
 //=====================================================================================
 //Thao tác đối với máy in
     @Override
@@ -70,6 +101,8 @@ public class AdminServiceImpl implements AdminService{
         printerRepository.updateRoom(newPrinter.getRoom(), id);
     }
 //=====================================================================================
+//=====================================================================================
+    //Thao tác đối với cấu hình vị trí
     @Override
     public List<Campus> findAllCampus() {
         return campusRepository.findAll();
@@ -96,7 +129,7 @@ public class AdminServiceImpl implements AdminService{
         return false;
     }
     
-//=====================================================================================
+    //=====================================================================================
     @Override
     public List<Building> findAllBuilding() {
         return buildingRepository.findAll();
@@ -130,7 +163,7 @@ public class AdminServiceImpl implements AdminService{
         }
         return false;
     }
-//=====================================================================================
+    //=====================================================================================
     @Override
     public List<Room> findAllRoom() {
         return roomRepository.findAll();
@@ -160,8 +193,94 @@ public class AdminServiceImpl implements AdminService{
         return false;
 	}
 //=====================================================================================
+//=====================================================================================
+    // thao tác đối với xem thông tin lịch sử
+    @Override
+    public List<PrintingLog> findAllPrintingLogs() {
+        return printingLogRepository.findAll();
+    }
 
-    
+    // @Override
+    // public boolean addPrintingLog(PrintingLog newPrintingLog) {
+    //     // TODO Auto-generated method stub
+        
+    //     throw new UnsupportedOperationException("Unimplemented method 'addPrintingLog'");
+    // }
+//=====================================================================================
+    @Override
+    public List<PaymentLog> findAllPaymentLog() {
+       return paymentLogRepository.findAll();
+    }
+
+   
+
+    // @Override
+    // public boolean addPaymentLog(PaymentLog paymentLog) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'addPaymentLog'");
+    // }
+//=====================================================================================
+//=====================================================================================
+    //Thao tác đối với cấp phát trang
+    @Override
+    public List<PageAllocation> findAllPageAllocations() {
+        pageAllocationRepository.updatePageAllocationStatus();
+        return pageAllocationRepository.findAll();
+    }
+
+    @Override
+    public void addPageAllocation(PageAllocation newPageAllocation) {
+        pageAllocationRepository.save(newPageAllocation);
+
+    }
+
+    @Override
+    public boolean deletePageAllocation(Integer id) {
+        if(pageAllocationRepository.findAllocationById(id).getStatus() == true) return false;
+        pageAllocationRepository.delete(pageAllocationRepository.findAllocationById(id));
+        return true;
+    }
+//=====================================================================================
+//=====================================================================================
+
+    @Override
+    public List<FileType> findAllType() {
+        return fileTypeRepository.findAll();
+    }
+
+    @Override
+    public void addType(FileType fileType) {
+        fileTypeRepository.save(fileType);
+    }
+
+    @Override
+    public void deleteType(Integer fileTypeId) {
+        fileTypeRepository.delete(fileTypeRepository.findTypeById(fileTypeId));
+    }
+//=====================================================================================
+//=====================================================================================
+
+
+    @Override
+    public Config getAllConfig() {
+        Config returnConfig = new Config();
+        returnConfig.setFileTypeList(findAllType());
+        returnConfig.setMaxFileSize(maxFileSize);
+        returnConfig.setPageUnitPrice(pageUnitPrice);
+        return returnConfig;
+    }
+
+	@Override
+	public void setMaxFileSize(double maxFileSize) {
+		this.maxFileSize = new MaxFileSize(maxFileSize);
+ 	}
+
+	@Override
+	public void setPagePrice(Integer pagePrice) {
+		this.pageUnitPrice = new PageUnitPrice(pagePrice);
+	}
+
+
 
     
     

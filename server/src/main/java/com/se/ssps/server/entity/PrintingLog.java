@@ -17,29 +17,39 @@ public class PrintingLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    private String fileName;
+
+    private double size;
+
+    private Integer numOfPages;
 
     private int numOfCopies;
 
     private boolean isHori;
 
-    @Enumerated(EnumType.STRING)
-    private PageType pageType;
+    private boolean isDoubleSided;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    @Enumerated(EnumType.STRING)
+    private PageSize pageSize;
+
+    // @Column(columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime startDate;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    // @Column(columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime endDate;
 
-    @OneToOne
-    @JoinColumn(name = "file_id",referencedColumnName = "id")
-    private File file;
+    // @OneToOne
+    // @JoinColumn(name = "file_id",referencedColumnName = "id")
+    // private File file;
 
     @ManyToOne
     @JoinColumn(name = "printer_id",referencedColumnName = "id")
     private Printer printer;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "student_id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 }

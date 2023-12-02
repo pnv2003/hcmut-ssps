@@ -3,7 +3,7 @@ package com.se.ssps.server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.se.ssps.server.service.user.StudentService"})
 public class ServerApplication {
 
 	public static void main(String[] args) {

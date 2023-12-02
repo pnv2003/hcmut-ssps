@@ -16,20 +16,26 @@ public class PageAllocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String semester;
+    private Integer semester;
 
     private Integer year;
 
+    @Temporal(TemporalType.DATE)
     private LocalDate allocatedDate;
 
     private Integer numOfPage;
 
     private boolean status;
 
-    public PageAllocation(String semester, Integer year, Integer numOfPage, boolean status){
+    public PageAllocation(Integer semester, Integer year, Integer numOfPage, boolean status){
         this.semester = semester;
         this.numOfPage = numOfPage;
         this.year = year;
         this.status = status;
     }
+
+    public boolean getStatus() {
+        return this.status;
+    }
+
 }
