@@ -1,25 +1,19 @@
-package com.se.ssps.server.controller.homepage;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.se.ssps.server.controller;
 
 import javax.security.auth.login.LoginException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
+// import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.se.ssps.server.entity.response.LoginResponse;
 import com.se.ssps.server.entity.user.User;
-import com.se.ssps.server.response.LoginResponse;
 import com.se.ssps.server.service.user.UserService;
 
 @RestController
-@CrossOrigin
 public class HomeController {
 
     @Autowired
@@ -42,6 +36,7 @@ public class HomeController {
         if (findUser != null) {
             if (findUser.getPassword().equals(user.getPassword()) ) {
                 loginResponse.setUser(findUser);
+                System.out.println(loginResponse.getUser().getUsername());
                 loginResponse.setCorrectPass(true);
                 return loginResponse;
             }
@@ -51,7 +46,5 @@ public class HomeController {
         }
         return loginResponse;
     }
-
-
    
 }
