@@ -1,0 +1,65 @@
+.table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid #000000;
+    border-radius: 10px;
+}
+
+.table tbody td {
+    text-align: center;
+}
+
+.table tr {
+    padding: 1rem;
+}
+
+.table thead {
+    border-bottom: 1px solid black;
+    color: white;
+}
+
+.table td,
+.table th {
+    padding: 1rem;
+}
+
+.table .action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.table .action-button > * {
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.table .action-button .view {
+    background-color: #3AC9D6;
+}
+
+.table .action-button .edit {
+    background-color: #0D99FF;
+}
+
+.table .action-button .delete {
+    background-color: #F5707A;
+}
+
+
+
+/* ZZZZZ */
+tbody tr:nth-child(odd) {
+    background-color: #DDEEFF;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #FFFFFF;
+}
+
+table {
+    background-color: #0D99FF;
+}

@@ -4,7 +4,7 @@ import "../styles/icon-card.css";
 export default function IconCard(props) {
     return (
         <div className="icon-card">
-            {props.icon}
+            <span>{props.icon}</span>
             <p className="title">
                 {props.title}
             </p>

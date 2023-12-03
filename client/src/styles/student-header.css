@@ -9,24 +9,3 @@
     display: flex;
     align-items: center;
 }
-
-.student-header .user {
-    display: flex;
-    align-items: center;
-}
-
-@media screen and (max-width: 999px) {
-    .student-header {
-        flex-direction: column;
-    }
-
-    .student-header .navbar {
-        order: 1;
-    }
-}
-
-@media screen and (min-width: 1000px) {
-    .student-header .navbar {
-        flex: 1;
-    }   
-}

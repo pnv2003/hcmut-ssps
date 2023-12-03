@@ -19,3 +19,4 @@
 - `#F5707A`: red
 - `#FFD966`: yellow
 - `#CCCCCC`: grey
+- `#3AC9D6`: blue green

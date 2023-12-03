@@ -19,8 +19,8 @@ export default function Button(props) {
     }
 
     return (
-        <div onClick={handleClick} className="navbutton">
+        <a href="#" onClick={handleClick} className="navbutton">
             {props.text}
-        </div>
+        </a>
     );
 }

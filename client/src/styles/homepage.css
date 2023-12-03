@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3rem;
 }
 
 .homepage article {
@@ -45,6 +46,7 @@
     background-image: url("../assets/img/printer-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100vw;
 }
 
 .homepage .about-us h2 {
@@ -83,6 +85,10 @@
     width: 15rem;
 }
 
+.homepage .services .icon-card span {
+    font-size: 5rem;
+}
+
 /*************/
 
 .homepage .contact {
@@ -93,4 +99,23 @@
 
 .homepage .contact .poster {
     width: 25rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .homepage-main-left {
+        align-items: center;
+    }
+
+    .homepage .poster {
+        display: none;
+    }
+
+    .homepage .services .cards {
+        flex-direction: column;
+        margin-bottom: 10rem;
+    }
+
+    .homepage .services {
+        height: 60rem;
+    }
 }

@@ -60,7 +60,7 @@ export default function BuyPage() {
     }
 
     const bankForm = (
-        <>
+        <div className="bank-form">
             <div>
                 <label htmlFor="card-number">Số thẻ</label>
                 <input type="text" name="card-number" id="card-number" 
@@ -85,7 +85,7 @@ export default function BuyPage() {
                         setCvv(e.target.value);
                     }}/>
             </div>
-        </>
+        </div>
     );
 
     return (

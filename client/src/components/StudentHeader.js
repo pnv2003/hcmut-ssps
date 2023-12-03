@@ -22,11 +22,13 @@ export default function StudentHeader(props) {
                 <LogoHCMUT />
                 <LogoSSPS />
             </div>
-            <NavBar items={items} static={false} />
-            <div className="user">
+            <NavBar 
+                items={items} 
+                static={false} 
+            >
                 <ProfileIcon />
                 <Button text="Logout" link="/" action={logout}/>
-            </div>   
+            </NavBar>
         </header>
     );
 }

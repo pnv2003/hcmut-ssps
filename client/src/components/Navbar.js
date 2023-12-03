@@ -17,7 +17,7 @@ export default function NavBar(props) {
     );
 
     const navbarItems = props.items.map(item => 
-        // <li key={`item-${nanoid()}`}>
+        <li key={`item-${nanoid()}`}>
             <NavLink 
                 to={item.link} 
                 style={activeStyle}
@@ -26,30 +26,42 @@ export default function NavBar(props) {
             > 
                 {item.text}
             </NavLink>
-        // </li>
+        </li>
     );
 
     const staticNavbarItems = props.items.map(item => 
+        <li key={`item-${nanoid()}`}>
             <a href={item.link} className="nav-item" key={`link-${nanoid()}`}>{item.text}</a>
+        </li>
     );
 
     function handleClick() {
-        let x = document.querySelector('#navbar');
-        if (x.className === "navbar") {
-            x.className += " responsive";
-        } else {
-            x.className = "navbar";
-        }
+        let menu = document.querySelector('.menu');
+        menu.classList.toggle('opened');
     }
 
     return (
-        <nav className={props.static ? "navbar static" : "navbar"} id="navbar">
-            {/* <ul> */}
-                {props.static ? staticNavbarItems : navbarItems}
-                <a href="#" className="icon" onClick={handleClick}>
-                    <FontAwesomeIcon icon={faBars} size='1x' color="black" />
-                </a>
-            {/* </ul> */}
-        </nav>
+        <>
+            <nav className={props.static ? "navbar static" : "navbar"} id="navbar">
+                <ul>
+                    {props.static ? staticNavbarItems : navbarItems}
+                </ul>
+                <div className="action">
+                    {props.children}
+                </div>
+                <div className="toggle" onClick={handleClick}>
+                    <FontAwesomeIcon icon={faBars} size='1x' color="black"/>
+                </div>
+            </nav>
+            <div className="menu">
+                <ul>
+                    {props.static ? staticNavbarItems : navbarItems}
+                </ul>
+                <div className="action">
+                    {props.children}
+                </div>
+            </div>
+        </>
+        
     );
 }

@@ -1,50 +1,13 @@
-export default function PrinterAdd(props) {
-    // test data 
-    const campuses = [
-        {
-            campus: 1,
-            buildings: [
-                {
-                    building: 'A3',
-                    rooms: [ 
-                        {
-                            room: 101,
-                            printer: 'ABC'
-                        }, 
-                        {
-                            room: 102,
-                            printer: 'DEF'
-                        }, 
-                        {
-                            room: 103,
-                            printer: 'GHI'
-                        } 
-                    ]
-                },
-                {
-                    building: 'B3',
-                    rooms: [ 313, 314, 315 ]
-                }
-            ]
-        },
-        { 
-            campus: 2,
-            buildings: [
-                {
-                    building: 'H6',
-                    rooms: [ 111, 112, 113, 114 ]
-                },
-                {
-                    building: 'H3',
-                    rooms: [ 501, 502, 503, 504 ]
-                }
-            ]
-        }
-    ]
+import React from "react";
+import { useLocation } from "react-router-dom";
+
+export default function PrinterEdit() {
+    const location = useLocation();
+    const printerId = location.state.id;
 
     return (
-        <main className="printer-add">
-            <h1>Thêm máy in mới</h1>
+        <main className="printer-edit">
+            <h1>Chỉnh sửa máy in {printerId} right now? </h1>
             <form method="post">
                 <div className="field">
                     <label htmlFor="id">Mã số (ID)</label>
@@ -81,5 +44,5 @@ export default function PrinterAdd(props) {
                 </div>
             </form>
         </main>
-    )
+    );
 }

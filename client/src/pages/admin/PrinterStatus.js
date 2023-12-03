@@ -1,5 +1,16 @@
+import AdminHeader from "../../components/AdminHeader";
+import VerticalNavbar from "../../components/VerticalNavbar";
+
 export default function PrinterStatus() {
     return (
-        <h1>Printer Crashed</h1>
+        <div className="printer-status">
+            <AdminHeader />
+            <main>
+                <VerticalNavbar />
+                <article>
+                    <h1>This is a printer status</h1>
+                </article>
+            </main>
+        </div>
     );
 }

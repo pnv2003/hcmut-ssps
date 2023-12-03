@@ -1,0 +1,18 @@
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+}
+
+.admin-header .action {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.admin-header .action p {
+    font-size: 1rem;
+}

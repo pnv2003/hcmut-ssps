@@ -86,17 +86,17 @@ export default function HomePage() {
                     <h2>Dịch vụ</h2>
                     <div className="cards">
                         <IconCard 
-                            icon={<FontAwesomeIcon icon={faFaceSmile} size="6x" color="#0D99FF"/>}
+                            icon={<FontAwesomeIcon icon={faFaceSmile} color="#0D99FF"/>}
                             title="Tư vấn nhiệt tình"
                             description="Bạn sẽ được tư vấn, hướng dẫn nhiệt tình bởi chúng tôi"
                         />
                         <IconCard 
-                            icon={<FontAwesomeIcon icon={faPrint} size="6x" color="#0D99FF"/>}
+                            icon={<FontAwesomeIcon icon={faPrint} color="#0D99FF"/>}
                             title="In tài liệu"
                             description="Cung cấp dịch vụ in ấn tài liệu với đa dạng các kiểu tài liệu phổ biến"
                         />
                         <IconCard 
-                            icon={<FontAwesomeIcon icon={faListCheck} size="6x" color="#0D99FF"/>}
+                            icon={<FontAwesomeIcon icon={faListCheck} color="#0D99FF"/>}
                             title="Nhiều tùy chọn"
                             description="Cung cấp nhiều tùy chọn in ấn cho từng tập tin"
                         />

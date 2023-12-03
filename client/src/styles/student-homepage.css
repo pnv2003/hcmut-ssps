@@ -28,6 +28,10 @@
         align-items: center;
     }
 
+    .student-homepage-left {
+        align-items: center;
+    }
+
     .student-homepage .poster {
         display: none;
     }

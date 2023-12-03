@@ -21,14 +21,17 @@ import PrinterAdd from './pages/admin/PrinterAdd';
 import LoginRequiredAdmin from './pages/LoginRequiredAdmin';
 import LoginRequiredStudent from './pages/LoginRequiredStudent';
 import AccessDenied from './pages/AccessDenied';
-import Test from './pages/Test';
 import PrintRequestSent from './pages/student/PrintRequestSent';
+import PrinterRoute from './pages/admin/PrinterRoute';
+import ConfigRoute from './pages/admin/ConfigRoute';
+import PrinterDetails from './pages/admin/PrinterDetails';
+import PrinterEdit from './pages/admin/PrinterEdit';
 
 function App() {
   return (
     
       <Routes>
-        <Route path='/test' element={<Test />}/> 
+        {/* <Route path='/test' element={<Test />}/>  */}
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forbidden' element={<AccessDenied />} />
@@ -44,9 +47,13 @@ function App() {
         
           <Route element={<LoginRequiredAdmin />}>
             <Route path='/admin' element={<Dashboard />} />
+            <Route path='/admin/printer' element={<PrinterRoute />} />
             <Route path='/admin/printer/info' element={<PrinterInfo />} />
             <Route path='/admin/printer/status' element={<PrinterStatus />} />
             <Route path='/admin/printer/add' element={<PrinterAdd />} />
+            <Route path='/admin/printer/details/' element={<PrinterDetails />}/>
+            <Route path='/admin/printer/edit/' element={<PrinterEdit />} />
+            <Route path='/admin/config' element={<ConfigRoute />} />
             <Route path='/admin/config/pgalloc' element={<ConfigPageAllocation />} />
             <Route path='/admin/config/file' element={<ConfigFile />} />
             <Route path='/admin/config/location' element={<ConfigLocation />} />

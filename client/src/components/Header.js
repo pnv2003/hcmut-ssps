@@ -3,9 +3,10 @@ import LogoHCMUT from "./LogoHCMUT";
 import LogoSSPS from "./LogoSSPS";
 import "../styles/header.css";
 import NavBar from "./Navbar";
-import StaticNavBar from "./StaticNavBar";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+    const navigate = useNavigate();
 
     const items = [
         { text: "Trang chủ", link: "#"}, 
@@ -14,12 +15,23 @@ export default function Header() {
         { text: "Liên hệ", link: "#contact"}
     ];
 
+    function handleLogoClick() {
+        navigate('/');
+    }
+
     return (
         <header className="header">
-            <LogoHCMUT />
-            <LogoSSPS />
-            <NavBar items={items} static={true} />
-            <Button text="Đăng nhập" link="/login" />
+            <div className="logo" onClick={handleLogoClick}>
+                <LogoHCMUT />
+                <LogoSSPS />
+            </div>
+            <NavBar 
+                items={items}
+                static={true}
+            >
+                <Button text="Đăng nhập" link="/login" />
+            </NavBar>
+            
         </header>
     );
 }
