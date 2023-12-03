@@ -11,7 +11,8 @@ import com.se.ssps.server.entity.Printer;
 import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.configuration.Building;
 import com.se.ssps.server.entity.configuration.Campus;
-import com.se.ssps.server.entity.configuration.MaxFileSize;
+import com.se.ssps.server.entity.configuration.FileType;
+// import com.se.ssps.server.entity.configuration.MaxFileSize;
 import com.se.ssps.server.entity.configuration.PageAllocation;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.service.user.AdminService;
@@ -29,16 +30,25 @@ public class AdminViewController {
     }
 
     @PostMapping("/file-size")
-    public void setMaxFileSize(@RequestParam double maxFileSize){
+    public void setMaxFileSize(@RequestParam(name = "size") double maxFileSize){
         adminService.setMaxFileSize(maxFileSize);
     }
 
     @PostMapping("/unit-price")
-    public void setPageUnitPrice(@RequestParam Integer pageUnitPrice){
+    public void setPageUnitPrice(@RequestParam(name = "price") Integer pageUnitPrice){
         adminService.setPagePrice(pageUnitPrice);
     }
 
-
+    @PostMapping("/file-type")
+    public void addFileType(@RequestBody FileType newFileType){
+        adminService.addType(newFileType);
+    }
+    
+    @DeleteMapping("/file-type")
+    public void deleteFileType(@RequestParam Integer id){
+        adminService.deleteType(id);
+    }
+    
     @GetMapping("/index")
     public String adminHome(){
         return "this is admin homepage";
@@ -53,7 +63,7 @@ public class AdminViewController {
 
     //Thêm một máy in mới
     @PostMapping("/printer")
-    public boolean addPrinter(@RequestParam Integer room_id, @RequestBody Printer newPrinter){
+    public boolean addPrinter(@RequestParam(name = "printer-id") Integer room_id, @RequestBody Printer newPrinter){
         return adminService.addPrinter(room_id, newPrinter);
     }
 
@@ -108,7 +118,7 @@ public class AdminViewController {
     }
 
     @PostMapping("/building")
-    public boolean addBuilding(@RequestParam Integer campus_id, @RequestBody Building building){
+    public boolean addBuilding(@RequestParam(name = "campus-id") Integer campus_id, @RequestBody Building building){
         return adminService.addBuilding(campus_id, building);
     }
     
@@ -123,7 +133,7 @@ public class AdminViewController {
     }
 
     @PostMapping("/room")
-    public boolean addRoom(@RequestParam Integer building_id, @RequestBody Room room){
+    public boolean addRoom(@RequestParam(name = "building-id") Integer building_id, @RequestBody Room room){
         return adminService.addRoom(building_id, room);
     }
 
@@ -133,32 +143,33 @@ public class AdminViewController {
     }
 //=====================================================================================
 //=====================================================================================
-    //Hiện thị thông tin danh sách lịch sử in
-//     @GetMapping("/printing-logs")
-//     public List<PrintingLog> listOfPritntingLogs(){
-//         return adminService.findAllPrintingLogs();
-//     }
-//     //Hiện thị thông tin danh sách lịch sử mua
-//     @GetMapping("/payment-logs")
-//     public List<PaymentLog> listOfPaymentLogs(){
-//         return adminService.findAllPaymentLog();
-//     }
-// //=====================================================================================
-// //=====================================================================================
-//     //Hiện thị thao tác đối với cấp phát trang in
-//     @GetMapping("/page-allocation")
-//     public List<PageAllocation> listOfPageAllocations(){
-//         return adminService.findAllPageAllocations();
-//     }
+    // Hiện thị thông tin danh sách lịch sử in
+    @GetMapping("/printing-logs")
+    public List<PrintingLog> listOfPritntingLogs(){
+        return adminService.findAllPrintingLogs();
+    }
+    //Hiện thị thông tin danh sách lịch sử mua
+    @GetMapping("/payment-logs")
+    public List<PaymentLog> listOfPaymentLogs(){
+        return adminService.findAllPaymentLog();
+    }
+//=====================================================================================
+//=====================================================================================
+    //Hiện thị thao tác đối với cấp phát trang in
+    @GetMapping("/page-allocation")
+    public List<PageAllocation> listOfPageAllocations(){
+        return adminService.findAllPageAllocations();
+    }
 
-//     @PostMapping("/page-allocation")
-//     public void addPageAllocation(@RequestBody PageAllocation newAllocation){
-//         adminService.addPageAllocation(newAllocation);
-//     }
+    @PostMapping("/page-allocation")
+    public void addPageAllocation(@RequestBody PageAllocation newAllocation){
+        adminService.addPageAllocation(newAllocation);
+    }
 
-//     @DeleteMapping("/page-allocation")
-//     public boolean deleteAllocation(@RequestParam Integer id){
-//         return adminService.deletePageAllocation(id);
-//     }
+    @DeleteMapping("/page-allocation")
+    public boolean deleteAllocation(@RequestParam Integer id){
+        return adminService.deletePageAllocation(id);
+    }
+
 
 }

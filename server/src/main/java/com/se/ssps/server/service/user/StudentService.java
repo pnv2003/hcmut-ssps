@@ -18,6 +18,7 @@ public interface StudentService {
     public void addPrintingLog(List<PrintingLog> printingLog, Integer printerID, Integer id);
 
     public List<PrintingLog> listOfPrintingLogs(Integer id);
+
 //==============================================================================================
 //==============================================================================================
     //Thao tác mua trang in

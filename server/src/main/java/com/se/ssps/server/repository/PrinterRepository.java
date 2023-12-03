@@ -35,10 +35,7 @@ public interface PrinterRepository extends JpaRepository<Printer,Integer>{
     @Query("UPDATE Printer p set p.firm = ?1 where p.id = ?2")
     public void updateFirm(String newFirm, Integer id);
     
-    @Transactional
-    @Modifying
-    @Query("UPDATE Printer p set p.squarePrinting = ?1 where p.id = ?2")
-    public void updateSquarePrinting(Integer newSquarePrinting, Integer id);
+    
 
     @Transactional
     @Modifying

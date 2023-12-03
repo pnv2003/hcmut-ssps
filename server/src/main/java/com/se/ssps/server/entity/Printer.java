@@ -29,8 +29,6 @@ public class Printer {
 
     private String firm;
 
-    private Integer squarePrinting;
-
     private String description;
 
     private Integer efficiency;

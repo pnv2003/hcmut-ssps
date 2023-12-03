@@ -11,7 +11,7 @@ import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.configuration.Building;
 import com.se.ssps.server.entity.configuration.Campus;
 import com.se.ssps.server.entity.configuration.FileType;
-import com.se.ssps.server.entity.configuration.MaxFileSize;
+// import com.se.ssps.server.entity.configuration.MaxFileSize;
 import com.se.ssps.server.entity.configuration.PageAllocation;
 import com.se.ssps.server.entity.configuration.Room;
 

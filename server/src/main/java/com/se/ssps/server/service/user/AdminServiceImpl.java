@@ -97,7 +97,6 @@ public class AdminServiceImpl implements AdminService{
         printerRepository.updateInkAmount(newPrinter.getInkAmount(), id);
         printerRepository.updateName(newPrinter.getPrinterName(), id);
         printerRepository.updatePageAmount(newPrinter.getPageAmount(), id);
-        printerRepository.updateSquarePrinting(newPrinter.getSquarePrinting(), id);
         printerRepository.updateRoom(newPrinter.getRoom(), id);
     }
 //=====================================================================================
