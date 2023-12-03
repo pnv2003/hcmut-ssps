@@ -1,4 +1,4 @@
-package com.se.ssps.server.controller.admin;
+package com.se.ssps.server.controller;
 
 import java.util.List;
 
@@ -18,7 +18,6 @@ import com.se.ssps.server.service.user.AdminService;
 
 
 @RestController
-@CrossOrigin
 @RequestMapping("/admin")
 public class AdminViewController {
     @Autowired
@@ -135,31 +134,31 @@ public class AdminViewController {
 //=====================================================================================
 //=====================================================================================
     //Hiện thị thông tin danh sách lịch sử in
-    @GetMapping("/printing-logs")
-    public List<PrintingLog> listOfPritntingLogs(){
-        return adminService.findAllPrintingLogs();
-    }
-    //Hiện thị thông tin danh sách lịch sử mua
-    @GetMapping("/payment-logs")
-    public List<PaymentLog> listOfPaymentLogs(){
-        return adminService.findAllPaymentLog();
-    }
-//=====================================================================================
-//=====================================================================================
-    //Hiện thị thao tác đối với cấp phát trang in
-    @GetMapping("/page-allocation")
-    public List<PageAllocation> listOfPageAllocations(){
-        return adminService.findAllPageAllocations();
-    }
+//     @GetMapping("/printing-logs")
+//     public List<PrintingLog> listOfPritntingLogs(){
+//         return adminService.findAllPrintingLogs();
+//     }
+//     //Hiện thị thông tin danh sách lịch sử mua
+//     @GetMapping("/payment-logs")
+//     public List<PaymentLog> listOfPaymentLogs(){
+//         return adminService.findAllPaymentLog();
+//     }
+// //=====================================================================================
+// //=====================================================================================
+//     //Hiện thị thao tác đối với cấp phát trang in
+//     @GetMapping("/page-allocation")
+//     public List<PageAllocation> listOfPageAllocations(){
+//         return adminService.findAllPageAllocations();
+//     }
 
-    @PostMapping("/page-allocation")
-    public void addPageAllocation(@RequestBody PageAllocation newAllocation){
-        adminService.addPageAllocation(newAllocation);
-    }
+//     @PostMapping("/page-allocation")
+//     public void addPageAllocation(@RequestBody PageAllocation newAllocation){
+//         adminService.addPageAllocation(newAllocation);
+//     }
 
-    @DeleteMapping("/page-allocation")
-    public boolean deleteAllocation(@RequestParam Integer id){
-        return adminService.deletePageAllocation(id);
-    }
+//     @DeleteMapping("/page-allocation")
+//     public boolean deleteAllocation(@RequestParam Integer id){
+//         return adminService.deletePageAllocation(id);
+//     }
 
 }

@@ -1,4 +1,4 @@
-package com.se.ssps.server.controller.student;
+package com.se.ssps.server.controller;
 
 import java.util.List;
 
@@ -20,7 +20,6 @@ import com.se.ssps.server.service.user.StudentService;
 
 @RequestMapping("/student/{id}")
 @RestController
-@CrossOrigin
 public class StudentController {
     @Autowired
     StudentService studentService;

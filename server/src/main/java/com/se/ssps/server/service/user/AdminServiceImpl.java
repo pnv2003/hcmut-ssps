@@ -29,10 +29,10 @@ import com.se.ssps.server.repository.RoomRepository;
 @Service
 public class AdminServiceImpl implements AdminService{
     //Khai báo các repository
-    @Autowired
+    //@Autowired
     MaxFileSize maxFileSize ;
 
-    @Autowired
+    //@Autowired
     PageUnitPrice pageUnitPrice;
 
     @Autowired

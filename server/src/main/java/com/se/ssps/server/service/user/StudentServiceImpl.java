@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 // import com.se.ssps.server.entity.File;
 import com.se.ssps.server.entity.PaymentLog;
@@ -13,7 +14,7 @@ import com.se.ssps.server.repository.PaymentLogRepository;
 import com.se.ssps.server.repository.PrinterRepository;
 import com.se.ssps.server.repository.PrintingLogRepository;
 import com.se.ssps.server.repository.StudentRepository;
-
+@Service
 public class StudentServiceImpl implements StudentService{
 
     @Autowired

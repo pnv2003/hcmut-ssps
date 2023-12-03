@@ -1,4 +1,4 @@
-package com.se.ssps.server.controller.homepage;
+package com.se.ssps.server.controller;
 
 import javax.security.auth.login.LoginException;
 
@@ -14,7 +14,6 @@ import com.se.ssps.server.entity.user.User;
 import com.se.ssps.server.service.user.UserService;
 
 @RestController
-@CrossOrigin
 public class HomeController {
 
     @Autowired
@@ -47,7 +46,5 @@ public class HomeController {
         }
         return loginResponse;
     }
-
-
    
 }
