@@ -60,11 +60,12 @@ export default function HomePage() {
                 <article className="homepage-main" id="home">
                     <div className="homepage-main-left">
                         <Title smallText={"Những bản in chất lượng khai phá nên những ý tưởng thiên tài"}/>
-                        <Button
-                            text={"Khám phá ngay"}  
+                        <Button 
                             // TODO
                             link={"#"}
-                        />
+                        >
+                            Khám phá ngay
+                        </Button>
                     </div>
                     <Poster src={OfficePrinter} alt="Office Printer Poster" />
                 </article>   

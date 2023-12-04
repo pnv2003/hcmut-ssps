@@ -12,7 +12,9 @@ export default function AccessDenied() {
             <p>You don't have permissions to access this resource. Please use another account.</p>
             <div className="control">
                 {/* <Button text="Go Back" link={fromPage} replace={true} /> */}
-                <Button text="Home" link="/" replace={true} />
+                <Button link="/" replace={true}>
+                    Home
+                </Button>
             </div>
         </main>
     );

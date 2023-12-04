@@ -17,9 +17,10 @@ export default function StudentHome() {
                 <div className="student-homepage-left">
                     <Title smallText={"Welcome, " + user.firstName + "!"}/>
                     <Button 
-                        text="In tài liệu ngay"
                         link="/student/print"
-                    />
+                    >
+                        In tài liệu ngay
+                    </Button>
                 </div>
                 <Poster src={PrinterComic} alt="Printer Comic Poster" />
             </main>

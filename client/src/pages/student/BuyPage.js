@@ -11,7 +11,7 @@ export default function BuyPage() {
     const unitPrice = 0;
     sendRequest(
         'GET',
-        'http://localhost:8080/config',
+        '/config',
         ''
     ).then((response) => {
         console.log(response);
@@ -49,7 +49,7 @@ export default function BuyPage() {
     function sendPaymentRequest() {
         sendRequest(
             'POST',
-            'http://localhost:8080/buy-pages',
+            '/buy-pages',
             {
                 studentId: getUser(),
                 numOfPages: 100,
