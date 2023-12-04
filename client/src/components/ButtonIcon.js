@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import "./../styles/button.css";
+import "./../styles/button-icon.css";
 
-export default function Button(props) {
+export default function ButtonIcon(props) {
 
     function handleClick() {
-        console.log("Do not call me");
+        // default click behavior
     }
 
     return (
@@ -13,8 +12,8 @@ export default function Button(props) {
             to={props.link || "#"}
             state={props.state || undefined}
             replace={props.replace || false}
+            className={"button-icon " + props.className}
             onClick={props.action || handleClick}
-            className={"navbutton " + props.className}
         >
             {props.children}
         </Link>

@@ -9,6 +9,27 @@
     border-radius: 10px;
     color: white;
     text-align: center;
+    text-decoration: none;
+}
+
+.navbutton.view {
+    background-color: #3AC9D6;
+}
+
+.navbutton.success {
+    background-color: #4BD396;
+}
+
+.navbutton.warning {
+    background-color: #FFD966;
+}
+
+.navbutton.neutral {
+    background-color: #CCCCCC;
+}
+
+.navbutton.delete {
+    background-color: #F5707A;
 }
 
 .navbutton:hover {
