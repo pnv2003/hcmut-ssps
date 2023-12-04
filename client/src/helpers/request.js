@@ -14,9 +14,11 @@
 //     }
 // };
 
-export default async function sendRequest(method, url, data) {
+export default async function sendRequest(method, path, data) {
     try {
-        const response = await fetch (url, {
+        const host = 'http://localhost:8080';
+
+        const response = await fetch (host + path, {
             method: method,
             headers: {
                 'Content-Type': 'application/json'
