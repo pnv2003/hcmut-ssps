@@ -1,6 +1,7 @@
 package com.se.ssps.server.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -108,10 +109,8 @@ public class AdminController {
     }
 
     @DeleteMapping("/campus")
-    @ResponseBody
-    public boolean deleteCampus(@RequestParam Integer id){
-        boolean accepted = adminService.deleteCampus(id);
-        return accepted;
+    public Map<String, Boolean> deleteCampus(@RequestParam Integer id){
+        return adminService.deleteCampus(id);
     }
 
     //Thao tác đối với tòa
