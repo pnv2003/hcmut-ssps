@@ -5,6 +5,8 @@ import { nanoid } from "nanoid";
 import getOptions from "../helpers/option";
 
 export default function LocationBuildingAdd(props) {
+    // console.log(JSON.stringify(props.campuses) + ' <- got campuses');
+
     const campusOptions = getOptions(
         props.campuses.map((campus) => {
             return {
@@ -15,7 +17,9 @@ export default function LocationBuildingAdd(props) {
     );
 
     const [building, setBuilding] = useState('');
-    const [inCampus, setInCampus] = useState(props.campuses[0].id);
+    const [inCampus, setInCampus] = useState(0);
+
+    console.log(inCampus + ' <- inCampus init');
 
     function handleAddBuilding() {
         props.addBuilding({
@@ -42,6 +46,7 @@ export default function LocationBuildingAdd(props) {
                     value={inCampus}
                     onChange={(e) => {
                         setInCampus(e.target.value);
+                        console.log(inCampus + ' <- inCampus now');
                     }}>
                     {campusOptions}
                 </select>

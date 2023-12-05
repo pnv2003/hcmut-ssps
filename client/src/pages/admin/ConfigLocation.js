@@ -8,7 +8,6 @@ import LocationBuildingAdd from "../../components/LocationBuildingAdd";
 import LocationBuildingList from "../../components/LocationBuildingList";
 
 export default function ConfigLocation() {
-    const navigate = useNavigate();
     const [campuses, setCampuses] = useState([]);
     const [buildings, setBuildings] = useState([]);
     const [rooms, setRooms] = useState([]);
@@ -16,9 +15,13 @@ export default function ConfigLocation() {
     useEffect(() => {
         sendGetRequest('/admin/campus')
             .then((response) => {
+                console.log(response + ' <- response here');
+
                 if (response.ok) {
                     const json = response.json();
                     json.then((data) => {
+                        console.log(JSON.stringify(data) + '<- data ');
+
                         const initialCampuses = data.map((campus) => {
                             return {
                                 id: campus.id,
@@ -40,7 +43,8 @@ export default function ConfigLocation() {
                         const initialBuildings = data.map((building) => {
                             return {
                                 id: building.id,
-                                name: building.buildingName
+                                name: building.buildingName,
+                                inCampus: building.campus.id
                             }
                         });
                         setBuildings(initialBuildings);
@@ -56,12 +60,19 @@ export default function ConfigLocation() {
             'POST',
             '/admin/campus',
             {
-                // id: newCampus.id,
+                id: newCampus.id,
                 campusName: newCampus.name
             }
         ).then((response) => {
             if (response.ok) {
-                window.location.reload();
+                const json = response.json();
+                json.then((data) => {
+                    const addedCampus = {
+                        id: data.id,
+                        name: data.campusName
+                    };
+                    setCampuses([...campuses, addedCampus]);
+                });
             } else {
                 window.alert('Request failed: Cannot add campus');
             }
@@ -91,15 +102,26 @@ export default function ConfigLocation() {
     }
 
     function addBuilding(newBuilding) {
+        console.log(JSON.stringify(newBuilding) + ' <- newBuilding');
         sendRequest(
             'POST',
-            '/admin/building?id=' + newBuilding.inCampus,
+            '/admin/building?campus-id=' + newBuilding.inCampus,
             {
+                id: newBuilding.id,
                 buildingName: newBuilding.name
             }
         ).then((response) => {
             if (response.ok) {
-                window.location.reload();
+                const json = response.json();
+                json.then((data) => {
+                    const addedBuilding = {
+                        id: data.id,
+                        name: data.buildingName,
+                        inCampus: data.campus.id
+                    };
+                    setBuildings([...buildings, addedBuilding]);
+                });
+                
             } else {
                 window.alert('Request failed: Cannot add building');
             }

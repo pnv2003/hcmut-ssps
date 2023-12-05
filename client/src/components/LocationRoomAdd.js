@@ -6,10 +6,11 @@ import { nanoid } from "nanoid";
 export default function LocationRoomAdd(props) {
     const [room, setRoom] = useState('');
 
+
     function handleAddRoom() {
         props.addRoom({
-            id: `room-${nanoid()}`,
-            name: room
+            // id: `room-${nanoid()}`,
+            name: room,
         });
     }
 

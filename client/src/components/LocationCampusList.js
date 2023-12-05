@@ -9,13 +9,14 @@ export default function LocationCampusList(props) {
         <table className="table">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Cơ sở</th>
                 </tr>
             </thead>
             <tbody>
                 {props.campuses.map((campus) => {
                     return (
-                        <tr>
+                        <tr key={campus.id}>
                             <td>{campus.id}</td>
                             <td>{campus.name}</td>
                             <td>
