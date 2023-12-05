@@ -16,24 +16,41 @@ export default function ConfigLocation() {
     useEffect(() => {
         sendGetRequest('/admin/campus')
             .then((response) => {
-            if (response.ok) {
-                const json = response.json();
-                json.then((data) => {
-                    const initialCampuses = data.map((campus) => {
-                        return {
-                            id: campus.id,
-                            name: campus.campusName
-                        };
+                if (response.ok) {
+                    const json = response.json();
+                    json.then((data) => {
+                        const initialCampuses = data.map((campus) => {
+                            return {
+                                id: campus.id,
+                                name: campus.campusName
+                            };
+                        });
+                        setCampuses(initialCampuses);
                     });
-                    setCampuses(initialCampuses);
-                });
-            } else {
-                console.error('Request failed: cannot get campus list' );
-            }
-        })
+                } else {
+                    window.alert('Request failed: cannot get campus list' );
+                }
+            });
+
+        sendGetRequest('/admin/building') 
+            .then((response) => {
+                if (response.ok) {
+                    const json = response.json();
+                    json.then((data) => {
+                        const initialBuildings = data.map((building) => {
+                            return {
+                                id: building.id,
+                                name: building.buildingName
+                            }
+                        });
+                        setBuildings(initialBuildings);
+                    });
+                } else {
+                    window.alert('Request failed: cannot get building list');
+                }
+            });
     }, []);
         
-
     function addCampus(newCampus) {
         sendRequest(
             'POST',
@@ -46,9 +63,9 @@ export default function ConfigLocation() {
             if (response.ok) {
                 window.location.reload();
             } else {
-                window.alert('REQUEST FAILED: cannot add campus');
+                window.alert('Request failed: Cannot add campus');
             }
-        })
+        });
     }
 
     function removeCampus(id) {
@@ -57,22 +74,58 @@ export default function ConfigLocation() {
             '/admin/campus?id=' + id,
             ''
         ).then((response) => {
-            console.log(JSON.stringify(response) + '<- response');
             if (response.ok) {
-                const remainingCampuses = campuses.filter((campus) => (id !== campus.id));
-                setCampuses(remainingCampuses);
+                const json = response.json();
+                json.then((data) => {
+                    if (data.accepted) {
+                        const remainingCampuses = campuses.filter((campus) => (id !== campus.id));
+                        setCampuses(remainingCampuses);
+                    } else {
+                        window.alert('Cannot delete this campus!');
+                    }
+                });
             } else {
-                window.alert('Cannot delete this item!');
+                window.alert('Request failed: Cannot delete this item!');
             }
         })
     }
 
     function addBuilding(newBuilding) {
-
+        sendRequest(
+            'POST',
+            '/admin/building?id=' + newBuilding.inCampus,
+            {
+                buildingName: newBuilding.name
+            }
+        ).then((response) => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                window.alert('Request failed: Cannot add building');
+            }
+        });
     }
 
     function removeBuilding(id) {
-
+        sendRequest(
+            'DELETE',
+            '/admin/building?id=' + id,
+            ''
+        ).then((response) => {
+            if (response.ok) {
+                const json = response.json();
+                json.then((data) => {
+                    if (data.accepted) {
+                        const remainingBuildings = buildings.filter((building) => (id !== building.id));
+                        setBuildings(remainingBuildings);
+                    } else {
+                        window.alert('Cannot delete this building!');
+                    }
+                });
+            } else {
+                window.alert('Request failed: Cannot delete this item!');
+            }
+        })
     }
 
     return (

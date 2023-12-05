@@ -11,8 +11,8 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface PrintingLogRepository extends JpaRepository<PrintingLog,Integer> {
-    @Transactional
-    @Modifying
-    @Query("UPDATE PrintingLog p set p.squarePrinting = ?1 where p.id = ?2")
-    public void updateSquarePrinting(double newSquarePrinting, Integer id);
+    // @Transactional
+    // @Modifying
+    // @Query("UPDATE PrintingLog p set p.squarePrinting = ?1 where p.id = ?2")
+    // public void updateSquarePrinting(double newSquarePrinting, Integer id);
 }

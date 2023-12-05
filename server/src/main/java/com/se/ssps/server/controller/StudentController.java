@@ -19,9 +19,9 @@ import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.user.Student;
 import com.se.ssps.server.service.user.StudentService;
 
-@CrossOrigin
 @RequestMapping("/student/{id}")
 @RestController
+@CrossOrigin
 public class StudentController {
     @Autowired
     StudentService studentService;

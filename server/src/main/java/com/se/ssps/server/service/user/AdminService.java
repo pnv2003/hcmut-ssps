@@ -1,6 +1,7 @@
 package com.se.ssps.server.service.user;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public interface AdminService {
 
     public boolean addCampus(Campus newCampus);
 
-    public boolean deleteCampus(Integer id);
+    public Map<String, Boolean> deleteCampus(Integer id);
 //================================================================================
 //Thao tác đối với tòa
     public List<Building> findAllBuilding();

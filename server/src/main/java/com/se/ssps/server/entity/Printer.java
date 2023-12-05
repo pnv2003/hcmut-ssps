@@ -38,9 +38,9 @@ public class Printer {
 
     @OneToOne
     @JoinColumn(name = "room_id", referencedColumnName = "id")
-    @JsonIgnore
     private Room room;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "printer")
     private List<PrintingLog> printingLogs;
 }

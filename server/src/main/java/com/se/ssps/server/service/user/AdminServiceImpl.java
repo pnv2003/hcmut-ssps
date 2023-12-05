@@ -1,7 +1,9 @@
 package com.se.ssps.server.service.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -118,14 +120,17 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public boolean deleteCampus(Integer id) {
+    public Map<String, Boolean> deleteCampus(Integer id) {
+        HashMap<String, Boolean> newMap = new HashMap<>();
         Campus findCampus = campusRepository.findCampusById(id);
         if (findCampus.getBuildings().isEmpty()){
             campusRepository.delete(findCampus);
-            return true;
+            newMap.put("accepted", true);
+            return newMap;
         }
         // findCampus.setDel(true);
-        return false;
+        newMap.put("accepted", false);
+            return newMap;
     }
     
     //=====================================================================================
@@ -279,8 +284,4 @@ public class AdminServiceImpl implements AdminService{
 		this.pageUnitPrice = new PageUnitPrice(pagePrice);
 	}
 
-
-
-    
-    
 }

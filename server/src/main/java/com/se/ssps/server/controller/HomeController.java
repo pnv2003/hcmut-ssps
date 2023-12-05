@@ -14,8 +14,8 @@ import com.se.ssps.server.entity.response.LoginResponse;
 import com.se.ssps.server.entity.user.User;
 import com.se.ssps.server.service.user.UserService;
 
-@CrossOrigin
 @RestController
+@CrossOrigin
 public class HomeController {
 
     @Autowired

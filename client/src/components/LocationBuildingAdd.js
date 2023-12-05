@@ -15,16 +15,18 @@ export default function LocationBuildingAdd(props) {
     );
 
     const [building, setBuilding] = useState('');
+    const [inCampus, setInCampus] = useState(props.campuses[0].id);
 
     function handleAddBuilding() {
         props.addBuilding({
-            id: `building-${nanoid()}`,
-            name: building
+            // id: `building-${nanoid()}`,
+            name: building,
+            inCampus: inCampus
         });
     }
 
     return (
-        <section className="location-form">
+        <section className="config-location-form">
             <h3>Thêm tòa</h3>
             <div className="field">
                 <label htmlFor="building">Tên</label>
@@ -35,8 +37,12 @@ export default function LocationBuildingAdd(props) {
                     }}/>
             </div>
             <div className="field">
-                <label htmlFor="building-campus">Cơ sở</label>
-                <select name="building-campus" id="building-campus">
+                <label htmlFor="building-in-campus">Cơ sở</label>
+                <select name="building-in-campus" id="building-in-campus"
+                    value={inCampus}
+                    onChange={(e) => {
+                        setInCampus(e.target.value);
+                    }}>
                     {campusOptions}
                 </select>
             </div>
