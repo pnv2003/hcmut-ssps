@@ -22,7 +22,7 @@ public interface AdminService {
 //Thao tác đối với máy in
     public List<Printer> findAllPrinter();
 
-    public boolean addPrinter(Integer room_id, Printer newPrinter);
+    public Printer addPrinter(Integer room_id, Printer newPrinter);
 
     public Printer findPrinterById(Integer id);
 
@@ -31,31 +31,31 @@ public interface AdminService {
     public void updatePrinter(Printer newPrinter, Integer id);
 //=====================================================================================
 //================================================================================
-//Thao tác đối với cơ sở
+//Thao tác đối với cơ sởx
     public List<Campus> findAllCampus();    
 
-    public boolean addCampus(Campus newCampus);
+    public Campus addCampus(Campus newCampus);
 
     public Map<String, Boolean> deleteCampus(Integer id);
 //================================================================================
 //Thao tác đối với tòa
     public List<Building> findAllBuilding();
 
-    public boolean addBuilding(Integer campus_id, Building newBuilding);
+    public Building addBuilding(Integer campus_id, Building newBuilding);
 
     public Map<String, Boolean> deleteBuilding(Integer id);
 //================================================================================
 //Thao tác đối với phòng
     public List<Room> findAllRoom();
 
-    public boolean addRoom(Integer building_id, Room newRoom);
+    public Room addRoom(Integer building_id, Room newRoom);
 
     public Map<String, Boolean> deleteRoom(Integer id);
 //=====================================================================================
     //Danh sách file được cho phép
     public List<FileType> findAllType();
 
-    public void addType(FileType fileType);
+    public FileType addType(FileType fileType);
 
     public void deleteType(Integer fileTypeId);
 //================================================================================
@@ -84,7 +84,7 @@ public interface AdminService {
     //Thao tác đối với thêm lịch cấp phát trang
     public List<PageAllocation> findAllPageAllocations();
 
-    public void addPageAllocation(PageAllocation newPageAllocation);
+    public PageAllocation addPageAllocation(PageAllocation newPageAllocation);
 
     public boolean deletePageAllocation(Integer id);
 //================================================================================
