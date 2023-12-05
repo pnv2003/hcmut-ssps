@@ -69,11 +69,10 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public boolean addPrinter(Integer room_id, Printer newPrinter) {
+    public Printer addPrinter(Integer room_id, Printer newPrinter) {
         newPrinter.setRoom(roomRepository.findRoomById(room_id));
         roomRepository.findRoomById(room_id).setPrinter(newPrinter);
-        printerRepository.save(newPrinter);
-        return true;
+        return printerRepository.save(newPrinter);
     }
 
     @Override
@@ -113,13 +112,12 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public boolean addCampus(Campus newCampus) {
+    public Campus addCampus(Campus newCampus) {
         ArrayList<Campus> campusCheckList = new ArrayList<Campus>(campusRepository.findAll());
         for(int i = 0 ; i < campusCheckList.size(); i++){
-            if (campusCheckList.get(i).equals(newCampus)) return false;
+            if (campusCheckList.get(i).equals(newCampus)) return null;
         }
-        campusRepository.save(newCampus);
-        return true;
+        return campusRepository.save(newCampus);
     }
 
     @Override
@@ -143,7 +141,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public boolean addBuilding(Integer campus_id, Building newBuilding) {
+    public Building addBuilding(Integer campus_id, Building newBuilding) {
         ArrayList<Campus> campusCheckList = new ArrayList<Campus>(campusRepository.findAll());
         for (int i = 0 ; i < campusCheckList.size() ; i ++){
             if (campusCheckList.get(i).getId().equals(campus_id)){
@@ -154,11 +152,10 @@ public class AdminServiceImpl implements AdminService{
                 // }
                 newBuilding.setCampus(campusCheckList.get(i));
                 campusCheckList.get(i).getBuildings().add(newBuilding);
-                buildingRepository.save(newBuilding);
-                return true;
+                return buildingRepository.save(newBuilding);
             }
         }
-        return false;   
+        return null;   
     }
 
      @Override
@@ -180,17 +177,16 @@ public class AdminServiceImpl implements AdminService{
     }
     
     @Override
-    public boolean addRoom(Integer building_id, Room newRoom) {
+    public Room addRoom(Integer building_id, Room newRoom) {
         ArrayList<Building> buildingCheckList = new ArrayList<Building>(buildingRepository.findAll());
         for (int i = 0 ; i < buildingCheckList.size(); i ++){
             if (buildingCheckList.get(i).getId().equals(building_id)){
                 newRoom.setBuilding(buildingCheckList.get(i));
                 buildingCheckList.get(i).getRooms().add(newRoom);
-                roomRepository.save(newRoom);
-                return true;
+                return roomRepository.save(newRoom);
             }
         }
-        return false;
+        return null;
     }
 
 	@Override
@@ -242,8 +238,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void addPageAllocation(PageAllocation newPageAllocation) {
-        pageAllocationRepository.save(newPageAllocation);
+    public PageAllocation addPageAllocation(PageAllocation newPageAllocation) {
+        return pageAllocationRepository.save(newPageAllocation);
 
     }
 
@@ -262,8 +258,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void addType(FileType fileType) {
-        fileTypeRepository.save(fileType);
+    public FileType addType(FileType fileType) {
+        return fileTypeRepository.save(fileType);
     }
 
     @Override

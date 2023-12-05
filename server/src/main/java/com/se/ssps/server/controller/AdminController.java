@@ -64,7 +64,7 @@ public class AdminController {
 
     //Thêm một máy in mới
     @PostMapping("/printer")
-    public boolean addPrinter(@RequestParam(name = "printer-id") Integer room_id, @RequestBody Printer newPrinter){
+    public Printer addPrinter(@RequestParam(name = "room-id") Integer room_id, @RequestBody Printer newPrinter){
         return adminService.addPrinter(room_id, newPrinter);
     }
 
@@ -102,7 +102,7 @@ public class AdminController {
     }
 
     @PostMapping("/campus")
-    public boolean addCampus(@RequestBody Campus newCampus){
+    public Campus addCampus(@RequestBody Campus newCampus){
         return adminService.addCampus(newCampus);
         
     }
@@ -119,7 +119,7 @@ public class AdminController {
     }
 
     @PostMapping("/building")
-    public boolean addBuilding(@RequestParam(name = "campus-id") Integer campus_id, @RequestBody Building building){
+    public Building addBuilding(@RequestParam(name = "campus-id") Integer campus_id, @RequestBody Building building){
         return adminService.addBuilding(campus_id, building);
     }
     
@@ -134,7 +134,7 @@ public class AdminController {
     }
 
     @PostMapping("/room")
-    public boolean addRoom(@RequestParam(name = "building-id") Integer building_id, @RequestBody Room room){
+    public Room addRoom(@RequestParam(name = "building-id") Integer building_id, @RequestBody Room room){
         return adminService.addRoom(building_id, room);
     }
 
