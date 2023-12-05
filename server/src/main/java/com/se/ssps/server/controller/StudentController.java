@@ -3,6 +3,7 @@ package com.se.ssps.server.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 // import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.user.Student;
 import com.se.ssps.server.service.user.StudentService;
 
+@CrossOrigin
 @RequestMapping("/student/{id}")
 @RestController
 public class StudentController {

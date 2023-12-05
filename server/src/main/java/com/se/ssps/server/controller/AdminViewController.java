@@ -17,7 +17,7 @@ import com.se.ssps.server.entity.configuration.PageAllocation;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.service.user.AdminService;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/admin")
 public class AdminViewController {
