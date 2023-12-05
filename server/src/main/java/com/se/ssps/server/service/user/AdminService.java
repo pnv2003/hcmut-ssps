@@ -26,7 +26,7 @@ public interface AdminService {
 
     public Printer findPrinterById(Integer id);
 
-    public boolean deletePrinter(Integer id);
+    public Map<String, Boolean> deletePrinter(Integer id);
 
     public void updatePrinter(Printer newPrinter, Integer id);
 //=====================================================================================
@@ -43,14 +43,14 @@ public interface AdminService {
 
     public boolean addBuilding(Integer campus_id, Building newBuilding);
 
-    public boolean deleteBuilding(Integer id);
+    public Map<String, Boolean> deleteBuilding(Integer id);
 //================================================================================
 //Thao tác đối với phòng
     public List<Room> findAllRoom();
 
     public boolean addRoom(Integer building_id, Room newRoom);
 
-    public boolean deleteRoom(Integer id);
+    public Map<String, Boolean> deleteRoom(Integer id);
 //=====================================================================================
     //Danh sách file được cho phép
     public List<FileType> findAllType();

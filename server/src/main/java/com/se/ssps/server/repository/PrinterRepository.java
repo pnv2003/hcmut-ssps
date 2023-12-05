@@ -53,4 +53,9 @@ public interface PrinterRepository extends JpaRepository<Printer,Integer>{
     @Query("UPDATE Printer p set p.room = ?1 where p.id = ?2")
     public void updateRoom(Room newRoom, Integer id);
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE Printer p set p.isDel = true where p.id = ?1")
+    public void deletePrinter(Integer id);
+
 }

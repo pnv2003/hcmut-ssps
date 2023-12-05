@@ -82,13 +82,16 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public boolean deletePrinter(Integer id) {
+    public Map<String, Boolean> deletePrinter(Integer id) {
+        HashMap<String, Boolean> newMap = new HashMap<>();
         Printer findPrinter = printerRepository.findPrinterById(id);
         if (findPrinter.getPrintingLogs().isEmpty()){
             printerRepository.delete(findPrinter);
-            return true;
+            newMap.put("accepted", true);
+            return newMap;
         }
-        return false;
+        newMap.put("accepted", false);
+        return newMap;
     }
 
     @Override
@@ -159,13 +162,16 @@ public class AdminServiceImpl implements AdminService{
     }
 
      @Override
-    public boolean deleteBuilding(Integer id) {
+    public Map<String, Boolean> deleteBuilding(Integer id) {
+        HashMap<String, Boolean> newMap = new HashMap<>();
         Building findBuilding = buildingRepository.findBuildingById(id);
         if (findBuilding.getRooms().isEmpty()) {
             buildingRepository.delete(findBuilding);
-            return true;
+            newMap.put("accepted", true);
+            return newMap;
         }
-        return false;
+        newMap.put("accepted", false);
+            return newMap;
     }
     //=====================================================================================
     @Override
@@ -188,13 +194,16 @@ public class AdminServiceImpl implements AdminService{
     }
 
 	@Override
-	public boolean deleteRoom(Integer id) {
+	public Map<String, Boolean> deleteRoom(Integer id) {
+        HashMap<String, Boolean> newMap = new HashMap<>();
         Room findRoom = roomRepository.findRoomById(id);
         if (findRoom.getPrinter() == null){
             roomRepository.delete(findRoom);
-            return true;
+            newMap.put("accepted", true);
+            return newMap;
         }
-        return false;
+        newMap.put("accepted", false);
+            return newMap;
 	}
 //=====================================================================================
 //=====================================================================================

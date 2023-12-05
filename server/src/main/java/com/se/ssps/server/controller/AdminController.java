@@ -71,7 +71,7 @@ public class AdminController {
 
     //Xóa một printer ra khỏi hệ thống***
     @DeleteMapping("/printer")
-    public boolean deletePrinter(@RequestParam Integer id){
+    public Map<String, Boolean> deletePrinter(@RequestParam Integer id){
         return adminService.deletePrinter(id);
     }
 
@@ -125,7 +125,7 @@ public class AdminController {
     }
     
     @DeleteMapping("/building")
-    public boolean deleteBuilding(@RequestParam Integer id){
+    public Map<String, Boolean> deleteBuilding(@RequestParam Integer id){
         return adminService.deleteBuilding(id);
     }
     //Thao tác đối với phòng
@@ -140,7 +140,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/room")
-    public boolean deleteRoom(@RequestParam Integer id){
+    public Map<String, Boolean> deleteRoom(@RequestParam Integer id){
         return adminService.deleteRoom(id);
     }
 //=====================================================================================
