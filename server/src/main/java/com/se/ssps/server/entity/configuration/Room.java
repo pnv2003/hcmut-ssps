@@ -1,6 +1,7 @@
 package com.se.ssps.server.entity.configuration;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.se.ssps.server.entity.Printer;
 
 import jakarta.persistence.*;
@@ -20,6 +21,7 @@ public class Room {
     private String roomName;
 
     @OneToOne(mappedBy = "room")
+    @JsonIgnore
     private Printer printer;
 
     @ManyToOne

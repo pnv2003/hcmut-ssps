@@ -1,5 +1,6 @@
 package com.se.ssps.server.service.user;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -91,5 +92,9 @@ public interface AdminService {
 //================================================================================
     public Config getAllConfig();
     
+    public Map<String, Integer> totalPages (LocalDate from, LocalDate to);
+
+    // public Map<>
+
 
 }

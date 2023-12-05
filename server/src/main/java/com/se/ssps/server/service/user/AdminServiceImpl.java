@@ -1,5 +1,6 @@
 package com.se.ssps.server.service.user;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -288,5 +289,20 @@ public class AdminServiceImpl implements AdminService{
 	public void setPagePrice(Integer pagePrice) {
 		this.pageUnitPrice = new PageUnitPrice(pagePrice);
 	}
+//=====================================================================================
+//=====================================================================================
+    private Integer pagesNum(Integer printerId, LocalDate from, LocalDate to){
+        return printingLogRepository.countPageNum(printerId, from, to);
+    }
+
+    @Override
+    public Map<String, Integer> totalPages(LocalDate from, LocalDate to) {
+        HashMap<String, Integer> newMap = new HashMap<>();
+        ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
+        for (int i = 0 ; i < printerList.size() ; i++){
+            newMap.put(printerList.get(i).getPrinterName(),pagesNum(printerList.get(i).getId(), from, to));
+        }
+        return newMap;
+    }
 
 }
