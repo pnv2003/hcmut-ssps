@@ -107,8 +107,10 @@ public class AdminViewController {
     }
 
     @DeleteMapping("/campus")
+    @ResponseBody
     public boolean deleteCampus(@RequestParam Integer id){
-        return adminService.deleteCampus(id);
+        boolean accepted = adminService.deleteCampus(id);
+        return accepted;
     }
 
     //Thao tác đối với tòa

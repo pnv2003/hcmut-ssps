@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import './../styles/vertical-navbar.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBatteryHalf, faChartSimple, faHouse, faPrint } from "@fortawesome/free-solid-svg-icons";
+import { faBatteryHalf, faChartSimple, faHouse, faLocationDot, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar, faClipboard, faFile } from "@fortawesome/free-regular-svg-icons";
 
 export default function VerticalNavbar(props) {
@@ -13,6 +13,7 @@ export default function VerticalNavbar(props) {
         { text: 'Trạng thái', link: '/admin/printer/status', icon: <FontAwesomeIcon icon={faBatteryHalf} />},
         { text: 'Cấp phát', link: '/admin/config/pgalloc', icon: <FontAwesomeIcon icon={faCalendar} /> },
         { text: 'Tài liệu', link: '/admin/config/file', icon: <FontAwesomeIcon icon={faFile} /> },
+        { text: 'Vị trí', link: '/admin/config/location', icon: <FontAwesomeIcon icon={faLocationDot} /> },
         { text: 'Thống kê', link: '/admin/stat', icon: <FontAwesomeIcon icon={faChartSimple} /> },
         { text: 'Lịch sử', link: '/admin/log', icon: <FontAwesomeIcon icon={faClipboard} /> }
     ]

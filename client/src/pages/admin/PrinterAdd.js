@@ -2,8 +2,22 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import "./../../styles/printer-add.css";
 import getOptions from "../../helpers/option";
+import sendRequest from "../../helpers/request";
 
 export default function PrinterAdd(props) {
+    // sendRequest(
+    //     'GET',
+    //     '/admin/campus',
+    //     ''
+    // ).then((response) => {
+    //     if (response.ok) {
+    //         const json = response.json();
+    //         json.then((data) => {
+    //             ...
+    //         });
+    //     }
+    // });
+
     // test data 
     const campuses = [
         { name: 'CS1 - Cơ sở Lý Thường Kiệt', value: 1 },
@@ -31,6 +45,23 @@ export default function PrinterAdd(props) {
     function handleSubmit() {
         // TODO
         // if success call: props.addPrinter()
+        sendRequest(
+            'POST',
+            '/admin/printer?id=' + location.room,
+            {
+                id: id,
+                brand: brand,
+                model: model,
+                campus: location.campus,
+                building: location.building,
+                room: location.room,
+                description: description
+            }
+        ).then((response) => {
+            if (response.ok) {
+                props.addPrinter();
+            }
+        });
     }
 
     return (

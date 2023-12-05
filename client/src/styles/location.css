@@ -1,4 +1,10 @@
-.file-type-add {
+.config-location {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.config-location-form {
     display: flex; 
     flex-direction: column;
     gap: 2rem;
@@ -8,12 +14,12 @@
     padding: 2rem;
 }
 
-.file-type-add .field {
+.config-location-form .field {
     display: flex;
     gap: 1rem;
 }
 
-.file-type-add h3 {
+.config-location-form h3 {
     border-bottom: 1px solid black;
     padding-bottom: 1rem;
     width: 100%;

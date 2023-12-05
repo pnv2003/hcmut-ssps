@@ -51,15 +51,18 @@ export default function PrinterInfo() {
     function handleDelete(e) {
         const printerId = e.currentTarget.parentNode.parentNode.className;
         if (window.confirm('Are you sure you want to delete this item?')) {
-            // sendRequest(
-            //     'DELETE',
-            //     '/admin/printer?id=' + printerId,
-            //     ''
-            // );
-               
-            // TODO: remove if success
-            const remainingPrinters = printers.filter((printer) => (printerId !== printer.id));
-            setPrinters(remainingPrinters);
+            sendRequest(
+                'DELETE',
+                '/admin/printer?id=' + printerId,
+                ''
+            ).then((response) => {
+                if (response.ok) {
+                    const remainingPrinters = printers.filter((printer) => (printerId !== printer.id));
+                    setPrinters(remainingPrinters);
+                } else {
+                    console.error('REQUEST FAILED-: cannot remove the printer');
+                }
+            });
         }
     }
 
@@ -120,7 +123,7 @@ export default function PrinterInfo() {
                 <h1>Printer List here</h1>
 
                 <div className="util">
-                    <Filter columns={headers} handleFilter={handleSearch}}/>
+                    {/* <Filter columns={headers} handleFilter={handleSearch}}/> */}
                     <SearchBar handleSearch={handleSearch} />
                     <Button
                         link={'/admin/printer/add'}

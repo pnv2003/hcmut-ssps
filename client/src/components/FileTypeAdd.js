@@ -39,8 +39,8 @@ export default function FileTypeAdd(props) {
                 <select name="type" id="type" 
                     value={type}
                     onChange={(e) => {
-                    setType(e.target.value);
-                }}>
+                        setType(e.target.value);
+                    }}>
                     {getOptions(fileTypeTypes)}
                 </select>
             </div>
