@@ -19,8 +19,9 @@ import com.se.ssps.server.service.user.AdminService;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/admin")
-public class AdminViewController {
+public class AdminController {
     @Autowired
     AdminService adminService;
 
@@ -63,7 +64,7 @@ public class AdminViewController {
 
     //Thêm một máy in mới
     @PostMapping("/printer")
-    public boolean addPrinter(@RequestParam(name = "printer-id") Integer room_id, @RequestBody Printer newPrinter){
+    public boolean addPrinter(@RequestParam(name = "room-id") Integer room_id, @RequestBody Printer newPrinter){
         return adminService.addPrinter(room_id, newPrinter);
     }
 
@@ -107,8 +108,10 @@ public class AdminViewController {
     }
 
     @DeleteMapping("/campus")
+    @ResponseBody
     public boolean deleteCampus(@RequestParam Integer id){
-        return adminService.deleteCampus(id);
+        boolean accepted = adminService.deleteCampus(id);
+        return accepted;
     }
 
     //Thao tác đối với tòa
