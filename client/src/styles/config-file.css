@@ -1,0 +1,15 @@
+.config-file {
+    display: flex;
+    gap: 2rem;
+}
+
+.config-file .table {
+    align-self: flex-start;
+}
+
+.config-file .config {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}

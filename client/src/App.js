@@ -26,6 +26,8 @@ import PrinterRoute from './pages/admin/PrinterRoute';
 import ConfigRoute from './pages/admin/ConfigRoute';
 import PrinterDetails from './pages/admin/PrinterDetails';
 import PrinterEdit from './pages/admin/PrinterEdit';
+import AdminRoute from './pages/admin/AdminRoute';
+import StudentRoute from './pages/student/StudentRoute';
 
 function App() {
   return (
@@ -38,15 +40,17 @@ function App() {
 
         <Route element={<LoginRequired />}>
           <Route element={<LoginRequiredStudent />}>
-            <Route path='/student' element={<StudentHome />} />
+            <Route path='/student/' element={<StudentRoute />} />
+            <Route path='/student/home' element={<StudentHome />} />
             <Route path='/student/print' element={<PrintDoc />} />
-            <Route path='/studet/success' element={<PrintRequestSent />} />
+            <Route path='/student/success' element={<PrintRequestSent />} />
             <Route path='/student/buy' element={<BuyPage />} />
             <Route path='/student/log' element={<PrintingLog />} />
           </Route>
         
           <Route element={<LoginRequiredAdmin />}>
-            <Route path='/admin' element={<Dashboard />} />
+            <Route path='/admin' element={<AdminRoute />} />
+            <Route path='/admin/dashboard' element={<Dashboard />} />
             <Route path='/admin/printer' element={<PrinterRoute />} />
             <Route path='/admin/printer/info' element={<PrinterInfo />} />
             <Route path='/admin/printer/status' element={<PrinterStatus />} />

@@ -1,4 +1,16 @@
 .printer-info {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+}
+
+.printer-info .util {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.printer-info .search-bar,
+.printer-info .filter {
+    flex: 1;
 }

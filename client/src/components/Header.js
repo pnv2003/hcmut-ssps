@@ -29,7 +29,9 @@ export default function Header() {
                 items={items}
                 static={true}
             >
-                <Button text="Đăng nhập" link="/login" />
+                <Button link="/login">
+                    Đăng nhập
+                </Button>
             </NavBar>
             
         </header>

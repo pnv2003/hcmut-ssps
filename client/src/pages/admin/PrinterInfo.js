@@ -4,7 +4,6 @@ import { faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-
 import './../../styles/printer-info.css';
 import './../../styles/table.css';
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
 import sendRequest from "../../helpers/request";
 import { useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
@@ -15,23 +14,25 @@ import ButtonIcon from "../../components/ButtonIcon";
 
 export default function PrinterInfo() {
     const headers = [
-        { name: 'ID', class: 'id'},
-        { name: 'Hãng', class: 'brand'},
-        { name: 'Mẫu mã', class: 'model'},
-        { name: 'Mô tả', class: 'description'},
-        { name: 'Cơ sở', class: 'campus'},
-        { name: 'Tòa', class: 'building'},
-        { name: 'Phòng', class: 'room'},
-        { name: 'Hành động', class: 'action'}
+        { name: 'ID', value: 'id'},
+        { name: 'Hãng', value: 'brand'},
+        { name: 'Mẫu mã', value: 'model'},
+        { name: 'Mô tả', value: 'description'},
+        { name: 'Cơ sở', value: 'campus'},
+        { name: 'Tòa', value: 'building'},
+        { name: 'Phòng', value: 'room'},
+        { name: 'Hành động', value: 'action'}
     ];
 
-    const [printers, setPrinters] = useState([
+    const initialPrinters = [
         {id: 'CMG1', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
-        {id: 'CMG2', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
+        {id: 'CMG2', brand: 'Canon', model: 'AXIOS', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
         {id: 'CMG3', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
         {id: 'CMG4', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
         {id: 'CMG5', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 }
-    ]);
+    ];
+
+    const [printers, setPrinters] = useState(initialPrinters);
 
     // function addPrinter(newPrinter) {
     //     setPrinters([...printers, newPrinter]);
@@ -62,6 +63,21 @@ export default function PrinterInfo() {
         }
     }
 
+    function handleSearch(input) {
+        const filteredPrinters = initialPrinters.filter((printer) => {
+            return (
+                printer.id.toLowerCase().includes(input) ||
+                printer.brand.toLowerCase().includes(input) ||
+                printer.model.toLowerCase().includes(input) ||
+                printer.description.toLowerCase().includes(input) ||
+                printer.campus.toString().toLowerCase().includes(input) ||
+                printer.building.toLowerCase().includes(input) ||
+                printer.room.toString().toLowerCase().includes(input)
+            )
+        });
+        setPrinters(filteredPrinters);
+    }
+
     const tableRows = printers.map((printer) => {
         return (
             <tr className={printer.id} key={`row-${nanoid()}`}>
@@ -73,13 +89,13 @@ export default function PrinterInfo() {
                 <td>{printer.building}</td>
                 <td>{printer.room}</td>
                 <td className="action-button">
-                    <ButtonIcon
+                    {/* <ButtonIcon
                         link={'/admin/printer/details'}
                         state={{printer: printer}}
                         className="view"
                     >
                         <FontAwesomeIcon icon={faEye} color="#fff" />
-                    </ButtonIcon>
+                    </ButtonIcon> */}
                     <ButtonIcon
                         link={'/admin/printer/edit'}
                         state={{printer: printer}}
@@ -104,8 +120,8 @@ export default function PrinterInfo() {
                 <h1>Printer List here</h1>
 
                 <div className="util">
-                    <Filter />
-                    <SearchBar />
+                    <Filter columns={headers} handleFilter={handleSearch}}/>
+                    <SearchBar handleSearch={handleSearch} />
                     <Button
                         link={'/admin/printer/add'}
                         className="add"
@@ -119,7 +135,7 @@ export default function PrinterInfo() {
                     <thead>
                         <tr>
                             { headers.map((header) =>
-                                <th className={header.class} key={header.class}>{header.name}</th>
+                                <th className={header.value} key={header.value}>{header.name}</th>
                             )}
                         </tr>
                     </thead>

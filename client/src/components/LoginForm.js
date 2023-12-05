@@ -38,7 +38,7 @@ export default function LoginForm() {
 
         sendRequest(
             'POST',
-            'http://localhost:8080/login',
+            '/login',
             {
                 username: username,
                 password: password

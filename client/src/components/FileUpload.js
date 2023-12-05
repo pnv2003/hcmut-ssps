@@ -1,7 +1,5 @@
 import { nanoid } from "nanoid";
 import "./../styles/file-upload.css";
-import Button from "./Button";
-import { useState } from "react";
 import sendRequest from "../helpers/request";
 // import Dropzone from "react-dropzone-uploader";
 
@@ -9,7 +7,7 @@ export default function FileUpload(props) {
     const maxFileSize = 
         sendRequest(
             'GET',
-            'http://localhost:8080/config',
+            '/config',
             ''
         );
 

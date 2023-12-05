@@ -29,27 +29,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-size: 1.2rem;
 }
-
-.table .action-button > * {
-    padding: 0.5rem;
-    border-radius: 10px;
-}
-
-.table .action-button .view {
-    background-color: #3AC9D6;
-}
-
-.table .action-button .edit {
-    background-color: #0D99FF;
-}
-
-.table .action-button .delete {
-    background-color: #F5707A;
-}
-
-
 
 /* ZZZZZ */
 tbody tr:nth-child(odd) {

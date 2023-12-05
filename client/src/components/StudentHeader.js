@@ -27,7 +27,9 @@ export default function StudentHeader(props) {
                 static={false} 
             >
                 <ProfileIcon />
-                <Button text="Logout" link="/" action={logout}/>
+                <Button link="/" action={logout}>
+                    Đăng xuất
+                </Button>
             </NavBar>
         </header>
     );
