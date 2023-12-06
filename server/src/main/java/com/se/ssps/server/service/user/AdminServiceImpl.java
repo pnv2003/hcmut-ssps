@@ -1,6 +1,7 @@
 package com.se.ssps.server.service.user;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.se.ssps.server.entity.Config;
+import com.se.ssps.server.entity.PageSize;
 import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
 import com.se.ssps.server.entity.PrintingLog;
@@ -24,6 +26,7 @@ import com.se.ssps.server.repository.BuildingRepository;
 import com.se.ssps.server.repository.CampusRepository;
 import com.se.ssps.server.repository.FileTypeRepository;
 import com.se.ssps.server.repository.PageAllocationRepository;
+import com.se.ssps.server.repository.PageUnitRepo;
 import com.se.ssps.server.repository.PaymentLogRepository;
 import com.se.ssps.server.repository.PrinterRepository;
 import com.se.ssps.server.repository.PrintingLogRepository;
@@ -35,8 +38,8 @@ public class AdminServiceImpl implements AdminService{
     //@Autowired
     MaxFileSize maxFileSize ;
 
-    //@Autowired
-    PageUnitPrice pageUnitPrice;
+    @Autowired
+    PageUnitRepo pageUnitPriceRepo;
 
     @Autowired
     PrinterRepository printerRepository;
@@ -276,7 +279,7 @@ public class AdminServiceImpl implements AdminService{
         Config returnConfig = new Config();
         returnConfig.setFileTypeList(findAllType());
         returnConfig.setMaxFileSize(maxFileSize);
-        returnConfig.setPageUnitPrice(pageUnitPrice);
+        returnConfig.setPageUnitPrice(pageUnitPriceRepo.getValue());
         return returnConfig;
     }
 
@@ -286,21 +289,75 @@ public class AdminServiceImpl implements AdminService{
  	}
 
 	@Override
-	public void setPagePrice(Integer pagePrice) {
+	public void setPagePrice(Integer pagePrice) {  
 		this.pageUnitPrice = new PageUnitPrice(pagePrice);
 	}
 //=====================================================================================
 //=====================================================================================
     private Integer pagesNum(Integer printerId, LocalDate from, LocalDate to){
-        return printingLogRepository.countPageNum(printerId, from, to);
+        return printingLogRepository.sumPageNum(printerId, from, to);
     }
 
     @Override
-    public Map<String, Integer> totalPages(LocalDate from, LocalDate to) {
+    public Map<String, Integer> totalPages(YearMonth from, YearMonth to) {
+        LocalDate fromDate = from.atDay(1);
+        LocalDate toDate = to.atEndOfMonth();
         HashMap<String, Integer> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         for (int i = 0 ; i < printerList.size() ; i++){
-            newMap.put(printerList.get(i).getPrinterName(),pagesNum(printerList.get(i).getId(), from, to));
+            newMap.put(printerList.get(i).getPrinterName(), pagesNum(printerList.get(i).getId(), fromDate, toDate));
+        }
+        return newMap;
+    }
+
+    @Override
+    public Map<String, Double> printingRequest(YearMonth from, YearMonth to) {
+        // TODO Auto-generated method stub
+        LocalDate fromDate = from.atDay(1);
+        LocalDate toDate = to.atEndOfMonth();
+        HashMap<String, Double> newMap = new HashMap<>();
+        ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
+        Double sumOfRequest = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
+        for (int i = 0 ; i < printerList.size() ; i++){
+            Double requestOf = printingLogRepository.countRequestById(printerList.get(i).getId(), fromDate, toDate).doubleValue();
+            newMap.put(printerList.get(i).getPrinterName(), requestOf/sumOfRequest*100);
+        }
+        return newMap;
+    }
+
+    //theo tgian
+    @Override
+    public Map<PageSize, Double> pageSizeByMonth(YearMonth from, YearMonth to) {
+        LocalDate fromDate = from.atDay(1);
+        LocalDate toDate = to.atEndOfMonth();
+        HashMap<PageSize, Double> newMap = new HashMap<>();
+        Double sumOfPageSize = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
+
+        Double pageSizeOfA5 = printingLogRepository.countPageSize(PageSize.A5,fromDate,toDate).doubleValue();
+        Double pageSizeOfA4 = printingLogRepository.countPageSize(PageSize.A4,fromDate,toDate).doubleValue();
+        Double pageSizeOfA3 = printingLogRepository.countPageSize(PageSize.A3,fromDate,toDate).doubleValue();
+        Double pageSizeOfA2 = printingLogRepository.countPageSize(PageSize.A2,fromDate,toDate).doubleValue();
+        Double pageSizeOfA1 = printingLogRepository.countPageSize(PageSize.A1,fromDate,toDate).doubleValue();
+       
+        newMap.put(PageSize.A5, pageSizeOfA5/sumOfPageSize*100);
+        newMap.put(PageSize.A4, pageSizeOfA4/sumOfPageSize*100);
+        newMap.put(PageSize.A3, pageSizeOfA3/sumOfPageSize*100);
+        newMap.put(PageSize.A2, pageSizeOfA2/sumOfPageSize*100);
+        newMap.put(PageSize.A1, pageSizeOfA1/sumOfPageSize*100);
+
+        return newMap;
+
+    }
+
+    @Override
+    public Map<YearMonth, Integer> profitByMonth(YearMonth from, YearMonth to) {
+        HashMap<YearMonth, Integer> newMap = new HashMap<>();
+        while (!from.isAfter(to)) {
+            LocalDate fromDate = from.atDay(1);
+            LocalDate toDate = from.atEndOfMonth();
+            Integer profitPerMonth = paymentLogRepository.countProfit(fromDate, toDate);
+            newMap.put(from, profitPerMonth);
+            from = from.plusMonths(1);
         }
         return newMap;
     }

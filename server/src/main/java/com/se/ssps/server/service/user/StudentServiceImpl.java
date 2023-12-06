@@ -70,6 +70,7 @@ public class StudentServiceImpl implements StudentService{
         Integer remainPages = studentRepository.findStudentById(id).getBalance() + paymentLog.getNumOfPages();
         studentRepository.updateNumOfPages(remainPages, id);
         paymentLog.setStudent(studentRepository.findStudentById(id));
+        paymentLog.setUnitPrice(remainPages);
         paymentLogRepository.save(paymentLog);
     }
 

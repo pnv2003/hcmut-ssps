@@ -1,12 +1,14 @@
 package com.se.ssps.server.service.user;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.se.ssps.server.entity.Config;
+import com.se.ssps.server.entity.PageSize;
 import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
 import com.se.ssps.server.entity.PrintingLog;
@@ -91,10 +93,15 @@ public interface AdminService {
 //================================================================================
 //================================================================================
     public Config getAllConfig();
-    
-    public Map<String, Integer> totalPages (LocalDate from, LocalDate to);
+//================================================================================
+//================================================================================
+    public Map<String, Integer> totalPages (YearMonth from, YearMonth to);
 
     // public Map<>
+    public Map<String, Double> printingRequest(YearMonth from, YearMonth to);
 
+    public Map<PageSize, Double> pageSizeByMonth(YearMonth from, YearMonth to);
 
+    public Map<YearMonth, Integer> profitByMonth(YearMonth from, YearMonth to);
+    
 }
