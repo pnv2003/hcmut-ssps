@@ -78,7 +78,7 @@ public class AdminController {
 
     //Cập nhập một máy in mới
     @PutMapping("/printer")
-    public Map<String,Boolean> updatePrinter(@RequestBody Printer newPrinter, @RequestParam(name = "room-id",required = false) Integer roomId){
+    public Map<String,Boolean> updatePrinter(@RequestBody Printer newPrinter, @RequestParam(name = "room-id") Integer roomId){
         return adminService.updatePrinter(newPrinter,roomId);
     }
 

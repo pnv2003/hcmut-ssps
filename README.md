@@ -30,4 +30,13 @@ sendRequest(
         paymentMethod: paymentMethod
     }
 )
-```,
+```
+# Hướng dẫn cài đặt
+## Công nghệ bên Front-end
+
+## Công nghệ bên Back-end
+### Môi trường java jdk 21
+```url
+https://www.oracle.com/java/technologies/downloads/#jdk21-windows
+```
+### Môi trường Apache Maven

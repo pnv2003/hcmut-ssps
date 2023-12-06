@@ -100,24 +100,31 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Map<String, Boolean> updatePrinter(Printer newPrinter, Integer roomId) {
         HashMap<String, Boolean> newMap = new HashMap<>();
+        Room findRoom = roomRepository.findRoomById(roomId);
+        if (findRoom.getPrinter()!= null) {
+            if (findRoom.getPrinter().getId().equals(newPrinter.getId())) {
+                newMap.put("accepted", true);
+                printerRepository.updateDescription(newPrinter.getDescription(), newPrinter.getId());
+                printerRepository.updateEfficiency(newPrinter.getEfficiency(), newPrinter.getId());
+                printerRepository.updateFirm(newPrinter.getFirm(),newPrinter.getId());
+                printerRepository.updateInkAmount(newPrinter.getInkAmount(), newPrinter.getId());
+                printerRepository.updateName(newPrinter.getPrinterName(), newPrinter.getId());
+                printerRepository.updatePageAmount(newPrinter.getPageAmount(), newPrinter.getId());
+                return newMap;
+            }
+            newMap.put("accepted", false);
+            return newMap;
+        }
         printerRepository.updateDescription(newPrinter.getDescription(), newPrinter.getId());
         printerRepository.updateEfficiency(newPrinter.getEfficiency(), newPrinter.getId());
         printerRepository.updateFirm(newPrinter.getFirm(),newPrinter.getId());
         printerRepository.updateInkAmount(newPrinter.getInkAmount(), newPrinter.getId());
         printerRepository.updateName(newPrinter.getPrinterName(), newPrinter.getId());
         printerRepository.updatePageAmount(newPrinter.getPageAmount(), newPrinter.getId());
-        if (roomId != null){
-            Room findRoom = roomRepository.findRoomById(roomId);
-            if (findRoom.getPrinter()!= null) {
-                newMap.put("accepted", false);
-                return newMap;
-            }
-            printerRepository.updateRoom(findRoom, newPrinter.getId());
-            newMap.put("accepted", true);
-            return newMap;
-        }
+        printerRepository.updateRoom(findRoom, newPrinter.getId());
         newMap.put("accepted", true);
         return newMap;
+
     }
 //=====================================================================================
 //=====================================================================================

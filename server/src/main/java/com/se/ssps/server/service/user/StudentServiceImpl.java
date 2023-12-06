@@ -60,6 +60,14 @@ public class StudentServiceImpl implements StudentService{
             //1% muc in dc 20 trang
             printerRepository.updateInkAmount(findPrinter.getInkAmount() - newLog.getNumOfPages()/20, printerID);
             printerRepository.updatePageAmount(findPrinter.getPageAmount() - newLog.getNumOfPages(), printerID); 
+
+            if (findPrinter.getInkAmount() <= 0){
+                printerRepository.updateInkAmount(100, printerID);
+            }
+
+            if (findPrinter.getPageAmount() <= 0){
+                printerRepository.updatePageAmount(10000, printerID);
+            }
         }
     }
 
