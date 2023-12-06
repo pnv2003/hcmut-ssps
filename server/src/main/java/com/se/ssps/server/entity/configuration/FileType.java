@@ -16,6 +16,6 @@ public class FileType {
 
     private String fileTypeName;
 
-    private boolean type;
+    // private boolean type;
 
 }
