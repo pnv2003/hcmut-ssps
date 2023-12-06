@@ -99,14 +99,26 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void updatePrinter(Printer newPrinter, Integer id) {
-        printerRepository.updateDescription(newPrinter.getDescription(), id);
-        printerRepository.updateEfficiency(newPrinter.getEfficiency(), id);
-        printerRepository.updateFirm(newPrinter.getFirm(), id);
-        printerRepository.updateInkAmount(newPrinter.getInkAmount(), id);
-        printerRepository.updateName(newPrinter.getPrinterName(), id);
-        printerRepository.updatePageAmount(newPrinter.getPageAmount(), id);
-        printerRepository.updateRoom(newPrinter.getRoom(), id);
+    public Map<String, Boolean> updatePrinter(Printer newPrinter, Integer roomId) {
+        HashMap<String, Boolean> newMap = new HashMap<>();
+        printerRepository.updateDescription(newPrinter.getDescription(), newPrinter.getId());
+        printerRepository.updateEfficiency(newPrinter.getEfficiency(), newPrinter.getId());
+        printerRepository.updateFirm(newPrinter.getFirm(),newPrinter.getId());
+        printerRepository.updateInkAmount(newPrinter.getInkAmount(), newPrinter.getId());
+        printerRepository.updateName(newPrinter.getPrinterName(), newPrinter.getId());
+        printerRepository.updatePageAmount(newPrinter.getPageAmount(), newPrinter.getId());
+        if (roomId != null){
+            Room findRoom = roomRepository.findRoomById(roomId);
+            if (findRoom.getPrinter()!= null) {
+                newMap.put("accepted", false);
+                return newMap;
+            }
+            printerRepository.updateRoom(findRoom, newPrinter.getId());
+            newMap.put("accepted", true);
+            return newMap;
+        }
+        newMap.put("accepted", true);
+        return newMap;
     }
 //=====================================================================================
 //=====================================================================================

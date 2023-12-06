@@ -31,7 +31,7 @@ public interface AdminService {
 
     public Map<String, Boolean> deletePrinter(Integer id);
 
-    public void updatePrinter(Printer newPrinter, Integer id);
+    public Map<String, Boolean> updatePrinter(Printer newPrinter, Integer roomId);
 //=====================================================================================
 //================================================================================
 //Thao tác đối với cơ sởx

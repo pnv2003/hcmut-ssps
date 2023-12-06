@@ -45,18 +45,30 @@ list<Printer>
 ```
 Map<String,Boolean> : <"accepted", true/false>
 ```
-#### 1.4 Update a printer: `PUT` ****
+#### 1.4 Update a printer: `PUT`
+change room:
 ```
-/admin/printer?id={printer-id}
+/admin/printer?roon-id={room-id}
+```
+not change room
+```
+/admin/printer
 ```
 ```
 {
+    "id": integer,
     "printerName": String,
     "inkAmount": Integer,
     "pageAmount": Integer,
     "firm": string,
     "description": String,
     "efficiency":Integer
+}
+```
+* return
+```
+{
+    "accepted":boolean
 }
 ```
 #### 1.5 Get info/status from a printer: `GET`
