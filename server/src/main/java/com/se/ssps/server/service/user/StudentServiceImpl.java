@@ -12,12 +12,15 @@ import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
 import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.user.Student;
+import com.se.ssps.server.repository.PageUnitRepo;
 import com.se.ssps.server.repository.PaymentLogRepository;
 import com.se.ssps.server.repository.PrinterRepository;
 import com.se.ssps.server.repository.PrintingLogRepository;
 import com.se.ssps.server.repository.StudentRepository;
 @Service
 public class StudentServiceImpl implements StudentService{
+    @Autowired
+    PageUnitRepo pageUnitRepo;
 
     @Autowired
     PrinterRepository printerRepository;
@@ -70,7 +73,8 @@ public class StudentServiceImpl implements StudentService{
         Integer remainPages = studentRepository.findStudentById(id).getBalance() + paymentLog.getNumOfPages();
         studentRepository.updateNumOfPages(remainPages, id);
         paymentLog.setStudent(studentRepository.findStudentById(id));
-        paymentLog.setUnitPrice(remainPages);
+        paymentLog.setUnitPrice(pageUnitRepo.getValue());
+        paymentLog.setPayDate(LocalDateTime.now());
         paymentLogRepository.save(paymentLog);
     }
 

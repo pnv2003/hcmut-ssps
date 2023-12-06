@@ -1,6 +1,7 @@
 package com.se.ssps.server.service.user;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -290,7 +291,13 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public void setPagePrice(Integer pagePrice) {  
-		this.pageUnitPrice = new PageUnitPrice(pagePrice);
+        if (pageUnitPriceRepo.findAll().isEmpty()){
+            PageUnitPrice newPrice = new PageUnitPrice(pagePrice);
+            pageUnitPriceRepo.save(newPrice);
+        }
+        else {
+            pageUnitPriceRepo.setPrice(pagePrice);
+        }
 	}
 //=====================================================================================
 //=====================================================================================
@@ -353,9 +360,9 @@ public class AdminServiceImpl implements AdminService{
     public Map<YearMonth, Integer> profitByMonth(YearMonth from, YearMonth to) {
         HashMap<YearMonth, Integer> newMap = new HashMap<>();
         while (!from.isAfter(to)) {
-            LocalDate fromDate = from.atDay(1);
-            LocalDate toDate = from.atEndOfMonth();
-            Integer profitPerMonth = paymentLogRepository.countProfit(fromDate, toDate);
+            LocalDateTime fromDate = from.atDay(1).atStartOfDay();
+            LocalDateTime toDate = from.atEndOfMonth().atTime(24, 59, 59, 59);
+            Integer profitPerMonth = paymentLogRepository.countPageNums(fromDate, toDate) * pageUnitPriceRepo.getValue();
             newMap.put(from, profitPerMonth);
             from = from.plusMonths(1);
         }

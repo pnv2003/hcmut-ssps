@@ -15,5 +15,5 @@ public class Config {
 
     private MaxFileSize maxFileSize;
 
-    private PageUnitPrice pageUnitPrice;
+    private Integer pageUnitPrice;
 }
