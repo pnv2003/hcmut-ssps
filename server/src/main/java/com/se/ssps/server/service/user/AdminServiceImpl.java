@@ -75,9 +75,9 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public Printer addPrinter(Integer room_id, Printer newPrinter) {
-        if (roomRepository.findRoomById(room_id).getPrinter()!=null) return null;
         newPrinter.setRoom(roomRepository.findRoomById(room_id));
         roomRepository.findRoomById(room_id).setPrinter(newPrinter);
+        roomRepository.roomHavePrinter(room_id);
         return printerRepository.save(newPrinter);
     }
 
@@ -200,6 +200,7 @@ public class AdminServiceImpl implements AdminService{
         for (int i = 0 ; i < buildingCheckList.size(); i ++){
             if (buildingCheckList.get(i).getId().equals(building_id)){
                 newRoom.setBuilding(buildingCheckList.get(i));
+                newRoom.setHavePrinter(false);
                 buildingCheckList.get(i).getRooms().add(newRoom);
                 return roomRepository.save(newRoom);
             }

@@ -30,6 +30,8 @@ public class Room {
 
     private boolean isDel;
 
+    private boolean havePrinter;
+
     public boolean equals(Room room){
         if (this.id.equals(room.getId())) return true;
         return false;
