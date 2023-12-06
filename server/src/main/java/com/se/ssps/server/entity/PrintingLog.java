@@ -41,9 +41,9 @@ public class PrintingLog {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime endDate;
 
-    private double squarePrinting;
+    private Double squarePrinting;
     // @OneToOne
-    // @JoinColumn(name = "file_id",referencedColumnName = "id")
+    // @JoinColumn(name = "file_iD",referencedColumnName = "id")
     // private File file;
 
     @ManyToOne

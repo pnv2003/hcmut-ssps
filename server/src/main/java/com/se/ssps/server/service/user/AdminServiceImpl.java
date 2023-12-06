@@ -301,15 +301,15 @@ public class AdminServiceImpl implements AdminService{
 	}
 //=====================================================================================
 //=====================================================================================
-    private Integer pagesNum(Integer printerId, LocalDate from, LocalDate to){
+    private Double pagesNum(Integer printerId, LocalDateTime from, LocalDateTime to){
         return printingLogRepository.sumPageNum(printerId, from, to);
     }
 
     @Override
-    public Map<String, Integer> totalPages(YearMonth from, YearMonth to) {
-        LocalDate fromDate = from.atDay(1);
-        LocalDate toDate = to.atEndOfMonth();
-        HashMap<String, Integer> newMap = new HashMap<>();
+    public Map<String, Double> totalSquare(YearMonth from, YearMonth to) {
+        LocalDateTime fromDate = from.atDay(1).atStartOfDay();
+        LocalDateTime toDate = to.atEndOfMonth().atTime(24, 59,59);
+        HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         for (int i = 0 ; i < printerList.size() ; i++){
             newMap.put(printerList.get(i).getPrinterName(), pagesNum(printerList.get(i).getId(), fromDate, toDate));
@@ -320,8 +320,8 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Map<String, Double> printingRequest(YearMonth from, YearMonth to) {
         // TODO Auto-generated method stub
-        LocalDate fromDate = from.atDay(1);
-        LocalDate toDate = to.atEndOfMonth();
+        LocalDateTime fromDate = from.atDay(1).atStartOfDay();
+        LocalDateTime toDate = to.atEndOfMonth().atTime(24, 59,59);
         HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         Double sumOfRequest = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
@@ -335,8 +335,8 @@ public class AdminServiceImpl implements AdminService{
     //theo tgian
     @Override
     public Map<PageSize, Double> pageSizeByMonth(YearMonth from, YearMonth to) {
-        LocalDate fromDate = from.atDay(1);
-        LocalDate toDate = to.atEndOfMonth();
+        LocalDateTime fromDate = from.atDay(1).atStartOfDay();
+        LocalDateTime toDate = to.atEndOfMonth().atTime(24, 59,59);
         HashMap<PageSize, Double> newMap = new HashMap<>();
         Double sumOfPageSize = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
 

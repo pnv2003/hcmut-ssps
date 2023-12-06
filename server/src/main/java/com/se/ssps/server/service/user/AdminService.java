@@ -95,7 +95,7 @@ public interface AdminService {
     public Config getAllConfig();
 //================================================================================
 //================================================================================
-    public Map<String, Integer> totalPages (YearMonth from, YearMonth to);
+    public Map<String, Double> totalSquare (YearMonth from, YearMonth to);
 
     public Map<String, Double> printingRequest(YearMonth from, YearMonth to);
 

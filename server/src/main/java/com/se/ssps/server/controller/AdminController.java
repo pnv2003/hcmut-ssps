@@ -179,8 +179,8 @@ public class AdminController {
 //Thống kê
     //Thống kê số trang theo từng máy in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/pages-by-printer")
-    public Map<String,Integer> pageByPrinter(@RequestParam YearMonth from,@RequestParam YearMonth to){
-        return adminService.totalPages(from, to);
+    public Map<String,Double> pageByPrinter(@RequestParam YearMonth from,@RequestParam YearMonth to){
+        return adminService.totalSquare(from, to);
     }
 
     //Thống kê tỉ lệ số yêu cầu theo từng máy in trong khoảng thời gian (from, to)

@@ -16,6 +16,6 @@ public interface PageUnitRepo extends JpaRepository<PageUnitPrice, Integer> {
     @Query("update PageUnitPrice p set p.price = ?1 where p.id = 1")
     public void setPrice (Integer price);
 
-    @Query ("select p.price")
+    @Query ("select p.price from PageUnitPrice p")
     public Integer getValue();
 }
