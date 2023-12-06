@@ -1,5 +1,7 @@
 package com.se.ssps.server.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,9 +33,11 @@ public class User {
     private Boolean isAdmin;
 
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Student student;
 
     @OneToOne(mappedBy = "user" )
+    @JsonIgnore
     private Admin admin;
     
     public User(String firstName, String lastName, String username, String password, Boolean isAdmin) {

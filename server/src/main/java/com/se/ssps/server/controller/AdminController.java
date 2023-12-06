@@ -1,5 +1,6 @@
 package com.se.ssps.server.controller;
 
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.se.ssps.server.entity.Config;
+import com.se.ssps.server.entity.PageSize;
 import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
 import com.se.ssps.server.entity.PrintingLog;
@@ -41,8 +43,8 @@ public class AdminController {
     }
 
     @PostMapping("/file-type")
-    public void addFileType(@RequestBody FileType newFileType){
-        adminService.addType(newFileType);
+    public FileType addFileType(@RequestBody FileType newFileType){
+       return adminService.addType(newFileType);
     }
     
     @DeleteMapping("/file-type")
@@ -163,8 +165,8 @@ public class AdminController {
     }
 
     @PostMapping("/page-allocation")
-    public void addPageAllocation(@RequestBody PageAllocation newAllocation){
-        adminService.addPageAllocation(newAllocation);
+    public PageAllocation addPageAllocation(@RequestBody PageAllocation newAllocation){
+        return adminService.addPageAllocation(newAllocation);
     }
 
     @DeleteMapping("/page-allocation")
@@ -172,5 +174,30 @@ public class AdminController {
         return adminService.deletePageAllocation(id);
     }
 
+//=====================================================================================
+//=====================================================================================
+//Thống kê
+    //Thống kê số trang theo từng máy in trong khoảng thời gian (from, to)
+    @GetMapping("/statistics/pages-by-printer")
+    public Map<String,Integer> pageByPrinter(@RequestParam YearMonth from,@RequestParam YearMonth to){
+        return adminService.totalPages(from, to);
+    }
 
+    //Thống kê tỉ lệ số yêu cầu theo từng máy in trong khoảng thời gian (from, to)
+    @GetMapping("/statistics/request-by-printer")
+    public Map<String, Double> requestByPrinter(@RequestParam YearMonth from,@RequestParam YearMonth to){
+        return adminService.printingRequest(from, to);
+    }
+
+    //Thống kê tỉ lệ loại kích thước trang được yêu cầu in trong khoảng thời gian (from, to)
+    @GetMapping("/statistics/size-by-month")
+    public Map<PageSize, Double> pageSizeByMonth(@RequestParam YearMonth from,@RequestParam YearMonth to){
+        return adminService.pageSizeByMonth(from, to);
+    }
+
+    //Thống kê số tiền bán trang in đối với từng tháng trong khoảng thời gian (from, to)
+    @GetMapping("/statistics/profit-by-month")
+    public Map<YearMonth, Integer> profitByMonth(@RequestParam YearMonth from,@RequestParam YearMonth to){
+        return adminService.profitByMonth(from, to);
+    }
 }

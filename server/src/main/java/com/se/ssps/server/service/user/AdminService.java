@@ -97,7 +97,6 @@ public interface AdminService {
 //================================================================================
     public Map<String, Integer> totalPages (YearMonth from, YearMonth to);
 
-    // public Map<>
     public Map<String, Double> printingRequest(YearMonth from, YearMonth to);
 
     public Map<PageSize, Double> pageSizeByMonth(YearMonth from, YearMonth to);

@@ -28,7 +28,7 @@ public class StudentController {
 
     @PostMapping("/print")
     public void printDoc(   @RequestBody List<PrintingLog> printingLog, 
-                            @RequestParam Integer printerID,
+                            @RequestParam(name = "printer-id") Integer printerID,
                             @PathVariable Integer id){
         studentService.addPrintingLog(printingLog,printerID,id);
     }
