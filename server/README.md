@@ -23,7 +23,8 @@ list<Printer>
     "efficiency":Integer
 }
 ```
-* return
+* return 
+if accpeted
 ```
 {
     "id": Integer
@@ -36,6 +37,10 @@ list<Printer>
     "isDel": boolean,
     "room":Room
 }
+```
+not accepted
+```
+null
 ```
 #### 1.3 Delete a printer: `DELETE`
 ```

@@ -21,6 +21,7 @@ public class Room {
     private String roomName;
 
     @OneToOne(mappedBy = "room")
+    @JsonIgnore
     private Printer printer;
 
     @ManyToOne

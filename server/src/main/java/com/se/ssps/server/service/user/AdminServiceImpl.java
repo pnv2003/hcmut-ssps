@@ -75,6 +75,7 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public Printer addPrinter(Integer room_id, Printer newPrinter) {
+        if (roomRepository.findRoomById(room_id).getPrinter()!=null) return null;
         newPrinter.setRoom(roomRepository.findRoomById(room_id));
         roomRepository.findRoomById(room_id).setPrinter(newPrinter);
         return printerRepository.save(newPrinter);
