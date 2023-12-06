@@ -40,3 +40,6 @@ sendRequest(
 https://www.oracle.com/java/technologies/downloads/#jdk21-windows
 ```
 ### Môi trường Apache Maven
+```url
+https://maven.apache.org/download.cgi
+```
