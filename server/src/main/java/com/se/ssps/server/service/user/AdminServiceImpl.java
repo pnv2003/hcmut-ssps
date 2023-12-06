@@ -91,13 +91,10 @@ public class AdminServiceImpl implements AdminService{
     public Map<String, Boolean> deletePrinter(Integer id) {
         HashMap<String, Boolean> newMap = new HashMap<>();
         Printer findPrinter = printerRepository.findPrinterById(id);
-        if (findPrinter.getPrintingLogs().isEmpty()){
-            printerRepository.delete(findPrinter);
-            newMap.put("accepted", true);
-            return newMap;
-        }
-        newMap.put("accepted", false);
+        printerRepository.delete(findPrinter);
+        newMap.put("accepted", true);
         return newMap;
+
     }
 
     @Override
