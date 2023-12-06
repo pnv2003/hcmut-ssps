@@ -1,15 +1,10 @@
 import { nanoid } from "nanoid";
 import "./../styles/file-upload.css";
-import sendRequest from "../helpers/request";
 // import Dropzone from "react-dropzone-uploader";
 
 export default function FileUpload(props) {
-    const maxFileSize = 
-        sendRequest(
-            'GET',
-            '/config',
-            ''
-        );
+    // sendGetRequest('/admin/config').
+    //     then((response))
 
     // TODO: file upload
     // TODO: get permitted file types, max size
@@ -70,7 +65,7 @@ export default function FileUpload(props) {
 
             <div className="file-types">
                 {permittedFileTypes}
-                <span>{lessThan + ' ' + maxFileSize}MB</span>
+                {/* <span>{lessThan + ' ' + maxFileSize}MB</span> */}
             </div>
         </div>
     );

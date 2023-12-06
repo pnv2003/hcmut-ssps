@@ -1,16 +1,13 @@
-import AdminHeader from "../../components/AdminHeader";
-import VerticalNavbar from "../../components/VerticalNavbar";
+import AdminLayout from "../../components/AdminLayout";
+import PrinterStatusCard from "../../components/PrinterStatusCard";
 
 export default function PrinterStatus() {
     return (
-        <div className="printer-status">
-            <AdminHeader />
-            <main>
-                <VerticalNavbar />
-                <article>
-                    <h1>This is a printer status</h1>
-                </article>
-            </main>
-        </div>
+        <AdminLayout>
+            <article className="printer-status">
+                <div className="util"></div>
+                <PrinterStatusCard active={true}/>
+            </article>
+        </AdminLayout>
     );
 }

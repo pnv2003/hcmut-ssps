@@ -28,6 +28,7 @@ import PrinterDetails from './pages/admin/PrinterDetails';
 import PrinterEdit from './pages/admin/PrinterEdit';
 import AdminRoute from './pages/admin/AdminRoute';
 import StudentRoute from './pages/student/StudentRoute';
+import ConfigPageAllocationAdd from './pages/admin/ConfigPageAllocationAdd';
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
             <Route path='/student/' element={<StudentRoute />} />
             <Route path='/student/home' element={<StudentHome />} />
             <Route path='/student/print' element={<PrintDoc />} />
-            <Route path='/student/success' element={<PrintRequestSent />} />
+            <Route path='/student/print/success' element={<PrintRequestSent />} />
             <Route path='/student/buy' element={<BuyPage />} />
             <Route path='/student/log' element={<PrintingLog />} />
           </Route>
@@ -59,6 +60,7 @@ function App() {
             <Route path='/admin/printer/edit/' element={<PrinterEdit />} />
             <Route path='/admin/config' element={<ConfigRoute />} />
             <Route path='/admin/config/pgalloc' element={<ConfigPageAllocation />} />
+            <Route path='/admin/config/pgalloc/add' element={<ConfigPageAllocationAdd />} />
             <Route path='/admin/config/file' element={<ConfigFile />} />
             <Route path='/admin/config/location' element={<ConfigLocation />} />
             <Route path='/admin/log/print' element={<PrintingLogAll />} />

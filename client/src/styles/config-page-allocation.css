@@ -1,0 +1,11 @@
+.config-page-allocation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.config-page-allocation .util {
+    display: flex;
+    align-items: center;
+}

@@ -17,9 +17,9 @@ export default function LocationBuildingAdd(props) {
     );
 
     const [building, setBuilding] = useState('');
-    const [inCampus, setInCampus] = useState(0);
+    const [inCampus, setInCampus] = useState(campusOptions[0]?.id || 0);
 
-    console.log(inCampus + ' <- inCampus init');
+    // console.log(inCampus + ' <- inCampus init');
 
     function handleAddBuilding() {
         props.addBuilding({

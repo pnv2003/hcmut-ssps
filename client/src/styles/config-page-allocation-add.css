@@ -1,0 +1,16 @@
+.config-page-allocation-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.config-page-allocation-add > * {
+    width: 100%;
+    max-width: 25rem;
+}
+
+.config-page-allocation-add .foot {
+    display: flex;
+    justify-content: space-around;
+}

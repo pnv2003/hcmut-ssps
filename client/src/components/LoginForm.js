@@ -43,28 +43,22 @@ export default function LoginForm() {
                 username: username,
                 password: password
             }
-        ).then((response) => {
-            console.log(response);
-            const json = response.json();
-            console.log(json);
-
-            json.then((data) => {
-                if (data.user === null) {
-                    // TODO: user pass false case
-                    setUsernameError('Username does not exist');
+        ).then((data) => {
+            if (data.user === null) {
+                // TODO: user pass false case
+                setUsernameError('Username does not exist');
+            } else {
+                if (!data.correctPass) {
+                    setPasswordError('Password does not match');
                 } else {
-                    if (!data.correctPass) {
-                        setPasswordError('Password does not match');
-                    } else {
-                        // login success
-                        login(data.user);
-                        navigate(
-                            fromPage,
-                            { replace: true }
-                        );
-                    }
+                    // login success
+                    login(data.user);
+                    navigate(
+                        fromPage,
+                        { replace: true }
+                    );
                 }
-            });
+            }
         });
     }
 

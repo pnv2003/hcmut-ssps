@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FileList from "../../components/FileList";
 import FileUpload from "../../components/FileUpload";
 import StudentHeader from "../../components/StudentHeader";
@@ -6,48 +6,51 @@ import "./../../styles/print-doc.css";
 import FilePrintProperties from "../../components/FilePrintProperties";
 import { nanoid } from "nanoid";
 import Button from "../../components/Button";
+import { sendGetRequest } from "../../helpers/request";
+import { dumpObject } from "../../helpers/dump";
+import getOptions from "../../helpers/option";
 
 export default function PrintDoc() {
-    const requests = {
-        printer: 123,
-        userId: 12,
-        requestFiles: [
-            
-        ]
-    }
-
     // TODO: get printer options
-    const printers = [
-        { id: 111 },
-        { id: 222 },
-        { id: 333 }
-    ];
+    // let campusList = [];
+    // let BuildingList = [];
+    // let roomList = [];
 
-    const printerOptions = printers.map((printer) => 
-        <option value={printer.id}>Gì đó</option>
-    );
+    const [printer, setPrinter] = useState('');
+    const [files, setFiles] = useState([]);
+    
+    const allPrinters = useRef([]);
 
-    const [printer, setPrinter] = useState(printers[0].id);
+    useEffect(() => {
+        sendGetRequest('/admin/printer', 'cannot get printer list')
+            .then((data) => {
+                const initialPrinters = data.map((p) => {
+                    // dumpObject(p, '<---printer');
+
+                    return {
+                        id: p.id,
+                        room: p.room.roomName,
+                        building: p.room.building.buildingName,
+                        campus: p.room.building.campus.campusName
+                    };
+                });
+
+                allPrinters.current = initialPrinters; 
+            });
+    }, []);
+
+    dumpObject(allPrinters.current, 'allPrinters?');
+
+    // const printers = [
+    //     { id: 111 },
+    //     { id: 222 },
+    //     { id: 333 }
+    // ];
+
+    
 
     // TODO: manage file lists
-    const [files, setFiles] = useState(
-        [
-            { 
-                name: 'cnpm.docx', 
-                size: 10,
-                // status: true, 
-                config: {
-                    numOfCopies: 1, 
-                    pageSize: 'A4',
-                    isHori: true,
-                    isDoubleSided: false
-                }
-            },
-            { name: 'ssps.txt', status: true},
-            { name: 'ssps_2.docx', status: false },
-            { name: 'btl.pdf', status: false }
-        ]
-    );
+    
 
     // function addFile(name, status) {
     //     const newFile = {
@@ -79,10 +82,8 @@ export default function PrintDoc() {
         setFiles(remainingFiles);
     }
 
-
-    // send request
-    function sendRequest() {
-
+    function sendPrintRequest() {
+        
     }
 
     return (
@@ -99,12 +100,19 @@ export default function PrintDoc() {
                 </div>
                 <div className="lower">
                     <div>
-                        <label htmlFor="printer">Chọn vị trí máy in</label>
+                        <label htmlFor="printer">Chọn máy in</label>
                         <select name="printer" id="printer">
-                                {printerOptions}
+                            {
+                                
+                            }
                         </select>
                     </div>
-                    <Button text="Xác nhận yêu cầu" link="#" action={sendRequest}/>
+                    <Button 
+                        link="/student/print/success"
+                        action={sendPrintRequest}
+                    >
+                        Xác nhận yêu cầu
+                    </Button> 
                 </div>
             </main>
         </div>

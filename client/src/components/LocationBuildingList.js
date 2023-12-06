@@ -5,17 +5,35 @@ import ButtonIcon from "./ButtonIcon";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 export default function LocationBuildingList(props) {
+
+    function getCampusName(campusId) {
+        const found = props.campuses.filter((campus) => (campus.id === campusId));
+
+        if (!found) {
+            window.alert('Fatal error: Campus not found');
+            return null;
+        } 
+
+        if (!found[0]) {
+            window.location.reload();
+        }
+
+        return found[0].name;
+    }
+
     return (
         <table className="table">
             <thead>
                 <tr>
+                    <th>Cơ sở</th>
                     <th>Tòa</th>
                 </tr>
             </thead>
             <tbody>
                 {props.buildings.map((building) => {
                     return (
-                        <tr>
+                        <tr key={building.id}>
+                            <td>{getCampusName(building.inCampus)}</td>
                             <td>{building.name}</td>
                             <td>
                                 <ButtonIcon 

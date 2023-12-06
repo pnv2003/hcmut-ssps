@@ -4,13 +4,14 @@ import { faEye, faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-
 import './../../styles/printer-info.css';
 import './../../styles/table.css';
 import { nanoid } from "nanoid";
-import sendRequest from "../../helpers/request";
-import { useState } from "react";
+import sendRequest, { sendGetRequest } from "../../helpers/request";
+import { useEffect, useRef, useState } from "react";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import Filter from "../../components/Filter";
 import SearchBar from "../../components/SearchBar";
 import Button from "../../components/Button";
 import ButtonIcon from "../../components/ButtonIcon";
+import { dumpObject } from "../../helpers/dump";
 
 export default function PrinterInfo() {
     const headers = [
@@ -24,15 +25,36 @@ export default function PrinterInfo() {
         { name: 'Hành động', value: 'action'}
     ];
 
-    const initialPrinters = [
-        {id: 'CMG1', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
-        {id: 'CMG2', brand: 'Canon', model: 'AXIOS', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
-        {id: 'CMG3', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
-        {id: 'CMG4', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
-        {id: 'CMG5', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 }
-    ];
+    // const [initialPrinters, setInitialPrinters] = useState([]);
+    const [printers, setPrinters] = useState([]);
+    const allPrinters = useRef([]);
 
-    const [printers, setPrinters] = useState(initialPrinters);
+    useEffect(() => {
+        sendGetRequest('/admin/printer', 'cannot get printer') 
+            .then((data) => {
+                const initialPrinters = data.map((p) => {
+                    return {
+                        id: p.id,
+                        brand: p.firm,
+                        model: p.printerName,
+                        description: p.description,
+                        room: p.room,
+                        building: p.room.building,
+                        campus: p.room.building.campus
+                    };
+                });
+                setPrinters(initialPrinters);
+                allPrinters.current = initialPrinters;
+            });
+    }, []);
+
+    // const initialPrinters = [
+    //     {id: 'CMG1', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
+    //     {id: 'CMG2', brand: 'Canon', model: 'AXIOS', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
+    //     {id: 'CMG3', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
+    //     {id: 'CMG4', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 },
+    //     {id: 'CMG5', brand: 'Canon', model: 'MAXIFY GX5070', description: 'Máy in siêu tốc', campus: 2, building: 'H3', room: 504 }
+    // ];
 
     // function addPrinter(newPrinter) {
     //     setPrinters([...printers, newPrinter]);
@@ -54,28 +76,28 @@ export default function PrinterInfo() {
             sendRequest(
                 'DELETE',
                 '/admin/printer?id=' + printerId,
-                ''
-            ).then((response) => {
-                if (response.ok) {
-                    const remainingPrinters = printers.filter((printer) => (printerId !== printer.id));
+                '',
+                'cannot delete printer'
+            ).then((data) => {
+                if (data.accepted) {
+                    const remainingPrinters = printers.filter((printer) => (printerId != printer.id));
                     setPrinters(remainingPrinters);
                 } else {
-                    console.error('REQUEST FAILED-: cannot remove the printer');
+                    window.alert('Cannot delete printer!');
                 }
             });
         }
     }
 
-    function handleSearch(input) {
-        const filteredPrinters = initialPrinters.filter((printer) => {
+    function handleSearch(input) {   
+        const filteredPrinters = allPrinters.current.filter((printer) => {
             return (
-                printer.id.toLowerCase().includes(input) ||
                 printer.brand.toLowerCase().includes(input) ||
                 printer.model.toLowerCase().includes(input) ||
                 printer.description.toLowerCase().includes(input) ||
-                printer.campus.toString().toLowerCase().includes(input) ||
-                printer.building.toLowerCase().includes(input) ||
-                printer.room.toString().toLowerCase().includes(input)
+                printer.campus.campusName.toString().toLowerCase().includes(input) ||
+                printer.building.buildingName.toLowerCase().includes(input) ||
+                printer.room.roomName.toString().toLowerCase().includes(input)
             )
         });
         setPrinters(filteredPrinters);
@@ -88,9 +110,9 @@ export default function PrinterInfo() {
                 <td>{printer.brand}</td>
                 <td>{printer.model}</td>
                 <td>{printer.description}</td>
-                <td>{printer.campus}</td>
-                <td>{printer.building}</td>
-                <td>{printer.room}</td>
+                <td>{printer.campus.campusName}</td>
+                <td>{printer.building.buildingName}</td>
+                <td>{printer.room.roomName}</td>
                 <td className="action-button">
                     {/* <ButtonIcon
                         link={'/admin/printer/details'}
