@@ -11,8 +11,8 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface MaxSizeRepository extends JpaRepository<MaxFileSize,Double> {
-    @Query("select s from MaxFileSize s")
-    public double getValue();
+    @Query("select s.maxFileSize from MaxFileSize s")
+    public Double getValue();
 
     @Modifying
     @Transactional
