@@ -17,6 +17,6 @@ public interface MaxSizeRepository extends JpaRepository<MaxFileSize,Integer> {
     @Modifying
     @Transactional
     @Query("update MaxFileSize s set s.maxFileSize = ?1 where s.id = 1")
-    public void setMaxSize(double size);
+    public void setMaxSize(Double size);
 
 }
