@@ -15,8 +15,10 @@ import com.se.ssps.server.entity.PrintingLog;
 import com.se.ssps.server.entity.configuration.Building;
 import com.se.ssps.server.entity.configuration.Campus;
 import com.se.ssps.server.entity.configuration.FileType;
+import com.se.ssps.server.entity.configuration.MaxFileSize;
 // import com.se.ssps.server.entity.configuration.MaxFileSize;
 import com.se.ssps.server.entity.configuration.PageAllocation;
+import com.se.ssps.server.entity.configuration.PageUnitPrice;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.service.user.AdminService;
 
@@ -33,13 +35,13 @@ public class AdminController {
     }
 
     @PostMapping("/file-size")
-    public void setMaxFileSize(@RequestParam(name = "size") double maxFileSize){
-        adminService.setMaxFileSize(maxFileSize);
+    public MaxFileSize setMaxFileSize(@RequestParam(name = "size") double maxFileSize){
+        return adminService.setMaxFileSize(maxFileSize);
     }
 
     @PostMapping("/unit-price")
-    public void setPageUnitPrice(@RequestParam(name = "price") Integer pageUnitPrice){
-        adminService.setPagePrice(pageUnitPrice);
+    public PageUnitPrice setPageUnitPrice(@RequestParam(name = "price") Integer pageUnitPrice){
+        return adminService.setPagePrice(pageUnitPrice);
     }
 
     @PostMapping("/file-type")
