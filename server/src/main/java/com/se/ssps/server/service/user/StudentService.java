@@ -1,5 +1,6 @@
 package com.se.ssps.server.service.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public interface StudentService {
 //==============================================================================================
 //==============================================================================================
     //Thao tác đối với việc in tài liệu
-    public void addPrintingLog(List<PrintingLog> printingLog, Integer printerID, Integer id);
+    public void addPrintingLog(ArrayList<PrintingLog> printingLog, Integer printerID, Integer id);
 
     public List<PrintingLog> listOfPrintingLogs(Integer id);
 

@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentService{
     PaymentLogRepository paymentLogRepository;
 
     @Override
-    public void addPrintingLog(List<PrintingLog> printingLog, Integer printerID, Integer id) {
+    public void addPrintingLog(ArrayList<PrintingLog> printingLog, Integer printerID, Integer id) {
         ArrayList<PrintingLog> checkList = new ArrayList<PrintingLog>(printingLog);
         for (int i = 0 ; i < checkList.size() ; i ++){
             PrintingLog newLog = checkList.get(i);
