@@ -100,7 +100,7 @@ public interface AdminService {
 //================================================================================
     public List<TotalSquare> totalSquare (YearMonth from, YearMonth to);
 
-    public Map<String, Double> printingRequest(YearMonth from, YearMonth to);
+    public List<TotalSquare> printingRequest(YearMonth from, YearMonth to);
 
     public Map<PageSize, Double> pageSizeByMonth(YearMonth from, YearMonth to);
 

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.antlr.v4.runtime.tree.pattern.TokenTagToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -356,18 +357,23 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public Map<String, Double> printingRequest(YearMonth from, YearMonth to) {
+    public List<TotalSquare> printingRequest(YearMonth from, YearMonth to) {
         // TODO Auto-generated method stub
+        ArrayList<TotalSquare> returnList = new ArrayList<>();
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
         LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
-        HashMap<String, Double> newMap = new HashMap<>();
+        // HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         Double sumOfRequest = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
         for (int i = 0 ; i < printerList.size() ; i++){
+            TotalSquare newValue = new TotalSquare();
             Double requestOf = printingLogRepository.countRequestById(printerList.get(i).getId(), fromDate, toDate).doubleValue();
-            newMap.put(printerList.get(i).getPrinterName(), requestOf/sumOfRequest*100);
+            newValue.setName(printerList.get(i).getPrinterName());
+            newValue.setStat(requestOf/sumOfRequest*100);
+            returnList.add(newValue);
+
         }
-        return newMap;
+        return returnList;
     }
 
     //theo tgian

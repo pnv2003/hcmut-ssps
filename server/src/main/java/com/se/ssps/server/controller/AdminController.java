@@ -190,7 +190,7 @@ public class AdminController {
 
     //Thống kê tỉ lệ số yêu cầu theo từng máy in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/request-by-printer")
-    public Map<String, Double> requestByPrinter(@RequestParam String from,@RequestParam String to){
+    public List<TotalSquare> requestByPrinter(@RequestParam String from,@RequestParam String to){
         return adminService.printingRequest(YearMonth.parse(from), YearMonth.parse(to));
     }
 
