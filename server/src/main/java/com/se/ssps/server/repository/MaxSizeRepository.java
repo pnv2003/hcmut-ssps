@@ -10,13 +10,13 @@ import com.se.ssps.server.entity.configuration.MaxFileSize;
 import jakarta.transaction.Transactional;
 
 @Repository
-public interface MaxSizeRepository extends JpaRepository<MaxFileSize,Double> {
-    @Query("select s.maxFileSize from MaxFileSize s")
+public interface MaxSizeRepository extends JpaRepository<MaxFileSize,Integer> {
+    @Query("select s.maxFileSize from MaxFileSize s where s.id = 1")
     public Double getValue();
 
     @Modifying
     @Transactional
-    @Query("update MaxFileSize s set s.maxFileSize = ?1")
+    @Query("update MaxFileSize s set s.maxFileSize = ?1 where s.id = 1")
     public void setMaxSize(double size);
 
 }
