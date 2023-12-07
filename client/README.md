@@ -14,6 +14,7 @@
 
 ## Colors
 
+- `#A4D9FF`: fainted blue
 - `#0D99FF`: blue
 - `#4BD396`: green
 - `#F5707A`: red

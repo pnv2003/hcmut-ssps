@@ -12,13 +12,13 @@ export default function FilePrintProperties(props) {
     ];
 
     const sidedList = [
-        { name: 'In một mặt', value: 1 },
-        { name: 'In hai mặt', value: 2 }
+        { name: 'In một mặt', value: false },
+        { name: 'In hai mặt', value: true }
     ]
 
-    const pageOrientations = [
-        { name: 'Trang nằm dọc', value: 'Portrait' },
-        { name: 'Trang nằm ngang', value: 'Landscape' }
+    const isLandscapeOptions = [
+        { name: 'Trang nằm dọc', value: false },
+        { name: 'Trang nằm ngang', value: true }
     ]
 
     // const pageSizeOptions = pageSizes.map((size) => 
@@ -27,27 +27,27 @@ export default function FilePrintProperties(props) {
 
     const [numCopies, setNumCopies] = useState(props.currentFile?.config.numCopies || 0);
     const [pageSize, setPageSize] = useState(props.currentFile?.config.pageSize || pageSizes[0].name);
-    const [sided, setSided] = useState(props.currentFile?.config.sided || sidedList[0].value);
-    const [pageOrientation, setPageOrientation] = useState(props.currentFile?.config.orientation || pageOrientations[0].value);
+    const [isDoubleSided, setIsDoubleSided] = useState(props.currentFile?.config.isDoubleSided || sidedList[0].value);
+    const [isLandscape, setIsLandscape] = useState(props.currentFile?.config.isLandscape || false);
     const [pageNum, setPageNum] = useState(props.currentFile?.config.pageNum || 0);
 
     function handleApply() {
-        props.editFileConfig(props.currentFileId, {
-            numOfCopies: numCopies,
+        props.editFileConfig(props.currentFile.id, {
+            numCopies: numCopies,
             pageSize: pageSize,
-            orientation: pageOrientation,
-            sided: sided,
-            pageNum: pageNum
+            isLandscape: isLandscape === "true",
+            isDoubleSided: isDoubleSided === "true",
+            pageNum: pageNum - 0
         });
     }
 
     function handleApplyAll() {
         props.editFileConfig(null, {
-            numOfCopies: numCopies,
+            numCopies: numCopies,
             pageSize: pageSize,
-            orientation: pageOrientation,
-            sided: sided,
-            pageNum: pageNum
+            isLandscape: isLandscape === "true",
+            isDoubleSided: isDoubleSided === "true",
+            pageNum: pageNum - 0
         });
     }
 
@@ -88,9 +88,9 @@ export default function FilePrintProperties(props) {
             <div className="field">
                 <label htmlFor="sided">In một mặt/hai mặt</label>
                 <select name="sided" id="sided"
-                    value={sided}
+                    value={isDoubleSided}
                     onChange={(e) => {
-                        setSided(e.target.value);
+                        setIsDoubleSided(e.target.value);
                     }}>
                     {getOptions(sidedList)}
                 </select>
@@ -98,11 +98,11 @@ export default function FilePrintProperties(props) {
             <div className="field">
                 <label htmlFor="orientation">Hướng trang</label>
                 <select name="orientation" id="orientation"
-                    value={pageOrientation}
+                    value={isLandscape}
                     onChange={(e) => {
-                        setPageOrientation(e.target.value);
+                        setIsLandscape(e.target.value);
                     }}>
-                   {getOptions(pageOrientations)}
+                   {getOptions(isLandscapeOptions)}
                 </select>
             </div>
             <div className="field">

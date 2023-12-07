@@ -10,7 +10,7 @@ export default function Button(props) {
 
     return (
         <Link
-            to={props.link || "#"}
+            to={props.link || "javascript:void(0)"}
             state={props.state || undefined}
             replace={props.replace || false}
             onClick={props.action || handleClick}

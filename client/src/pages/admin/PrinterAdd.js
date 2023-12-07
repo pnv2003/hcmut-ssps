@@ -84,7 +84,8 @@ export default function PrinterAdd(props) {
                 description: description,
                 pageAmount: 10000, // TODO: config
                 inkAmount: 100, // TODO: config
-                efficiency: 90
+                efficiency: 90,
+                status: true
             },
             'cannot add printer'
         ).then((data) => {

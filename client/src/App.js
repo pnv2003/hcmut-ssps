@@ -29,12 +29,13 @@ import PrinterEdit from './pages/admin/PrinterEdit';
 import AdminRoute from './pages/admin/AdminRoute';
 import StudentRoute from './pages/student/StudentRoute';
 import ConfigPageAllocationAdd from './pages/admin/ConfigPageAllocationAdd';
+import Test from './pages/Test';
 
 function App() {
   return (
     
       <Routes>
-        {/* <Route path='/test' element={<Test />}/>  */}
+        <Route path='/test' element={<Test />}/> 
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forbidden' element={<AccessDenied />} />

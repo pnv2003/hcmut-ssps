@@ -6,19 +6,23 @@ import "./../../styles/print-doc.css";
 import FilePrintProperties from "../../components/FilePrintProperties";
 import { nanoid } from "nanoid";
 import Button from "../../components/Button";
-import { sendGetRequest } from "../../helpers/request";
-import { dumpObject } from "../../helpers/dump";
+import sendRequest, { sendGetRequest } from "../../helpers/request";
+import dump, { dumpObject } from "../../helpers/dump";
 import getOptions from "../../helpers/option";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function PrintDoc() {
     const { getUser } = useAuth();
+    const navigate = useNavigate();
 
     const [printer, setPrinter] = useState('');
     const [files, setFiles] = useState([]);
     const [allPrinters, setAllPrinters] = useState([]);
     const [currentFile, setCurrentFile] = useState(null);
 
+    const pageCount = useRef(0);
+    const [pageBalance, setPageBalance] = useState(0);
 
     useEffect(() => {
         sendGetRequest('/admin/printer', 'cannot get printer list')
@@ -34,10 +38,25 @@ export default function PrintDoc() {
 
                 setAllPrinters(initialPrinters);
             });
+
+
+            sendGetRequest('/student/' + getUser().id + '/info', 'cannot get student info')
+                .then((data) => {
+                    setPageBalance(data.balance);
+                });
     }, []);
 
     function addFiles(newFiles) {
-        setFiles(files.concat(newFiles));
+        const newFileList = files.concat(newFiles);
+
+        let newPageCount = 0;
+        for (let index = 0; index < newFileList.length; index++) {
+            const file = newFileList[index];
+            newPageCount += file.config.pageNum * file.config.numCopies;
+        }
+        pageCount.current = newPageCount;
+
+        setFiles(newFileList);
     }
 
     function editFileConfig(id, newConfig) {
@@ -45,6 +64,14 @@ export default function PrintDoc() {
             const editedFiles = files.map((file) => {
                 return {...file, config: newConfig};
             });
+
+            let newPageCount = 0;
+            for (let index = 0; index < editedFiles.length; index++) {
+                const file = editedFiles[index];
+                newPageCount += file.config.pageNum * file.config.numCopies;
+            }
+            pageCount.current = newPageCount;
+
             setFiles(editedFiles);
             return;
         }
@@ -55,6 +82,14 @@ export default function PrintDoc() {
             }
             return file;
         });
+
+        let newPageCount = 0;
+        for (let index = 0; index < editedFiles.length; index++) {
+            const file = editedFiles[index];
+            newPageCount += file.config.pageNum * file.config.numCopies;
+        }
+        pageCount.current = newPageCount;
+
         setFiles(editedFiles);
     }
 
@@ -62,6 +97,13 @@ export default function PrintDoc() {
         const remainingFiles = 
             files.filter((file) => (id !== file.id));
         
+        let newPageCount = 0;
+        for (let index = 0; index < remainingFiles.length; index++) {
+            const file = remainingFiles[index];
+            newPageCount += file.config.pageNum * file.config.numCopies;
+        }
+        pageCount.current = newPageCount;
+
         setFiles(remainingFiles);
     }
 
@@ -70,7 +112,33 @@ export default function PrintDoc() {
     }
 
     function sendPrintRequest() {
-        
+        if (pageCount.current > pageBalance) {
+            window.alert('Số trang còn lại không đủ');
+            return;
+        }
+
+
+
+        sendRequest(
+            'POST',
+            '/student/' + getUser().id + '/print?printer-id=' + printer, 
+            {
+                printingLog: files.map((file) => {
+                    return {
+                        fileName: file.name,
+                        size: file.size,
+                        numOfPages: file.config.pageNum,
+                        numOfCopies: file.config.numCopies,
+                        isHori: file.config.isLandscape,
+                        isDoubleSided: file.config.isDoubleSided,
+                        pageSize: file.config.pageSize
+                    };
+                })
+            },
+            'cannot send print request'
+        );
+
+        navigate('/student/print/success');
     }
 
     return (
@@ -78,7 +146,14 @@ export default function PrintDoc() {
             <StudentHeader />
             <main>
                 <div className="upper">
-                    <FileList files={files} removeFile={removeFile} handleSelect={handleSelect}/>
+                    <div className="left">
+                        <FileList files={files} removeFile={removeFile} handleSelect={handleSelect}/>
+                        <div className="page-count">
+                            <p>Tổng số trang: {pageCount.current}</p>
+                            <p>Số trang còn lại: {pageBalance}</p>
+                        </div>
+                    </div>
+                    
                     <div className="config">
                         <FileUpload addFiles={addFiles}/>
                         <FilePrintProperties editFileConfig={editFileConfig} currentFile={currentFile}/>
@@ -93,6 +168,7 @@ export default function PrintDoc() {
                             onChange={(e) => {
                                 setPrinter(e.target.value);
                             }}>
+                                <option value="null">Chọn máy in</option>
                             {
                                 getOptions(
                                     allPrinters.map((p) => {
@@ -106,7 +182,6 @@ export default function PrintDoc() {
                         </select>
                     </div>
                     <Button 
-                        link="/student/print/success"
                         action={sendPrintRequest}
                     >
                         Xác nhận yêu cầu

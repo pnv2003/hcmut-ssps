@@ -15,6 +15,17 @@
 
 .print-doc main .upper {
     display: flex;
+    /* align-items: center; */
+    gap: 2rem;
+    justify-content: center;
+}
+
+.print-doc main .upper .left {
+    min-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .print-doc main .lower {

@@ -9,7 +9,7 @@ export default function ButtonIcon(props) {
 
     return (
         <Link
-            to={props.link || "#"}
+            to={props.link || "javascript:void(0)"}
             state={props.state || undefined}
             replace={props.replace || false}
             className={"button-icon " + props.className}

@@ -1,14 +1,17 @@
 .file-list {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
+    /* display: flex;
+    flex-direction: column; */
+    /* padding: 2rem; */
 }
 
+.file-list ul {
+    padding: 0;
+}
 
 .file-list .list {
     list-style-type: none;
     border: 2px solid black;
-    height: 50vh;
+    height: 100%;
     overflow: auto;
 }
 
@@ -19,12 +22,12 @@
     align-items: center;
     text-decoration: none;
     color: black;
-    padding-right: 2rem;
+    padding-right: 1rem;
 }
 
 .file-list .file-item:hover {
-    background-color: #0D99FF;
-    color: white;
+    background-color: #A4D9FF;
+    /* color: white; */
 }
 
 .file-list .file-item:active {
@@ -44,11 +47,20 @@
 }
 
 .file-list .filename {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 
 .file-list .info {
     display: flex;
-    gap: 4rem;
+}
+
+.file-list .info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.file-list .info.hidden {
+    display: none;
 }

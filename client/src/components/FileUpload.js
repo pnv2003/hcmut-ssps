@@ -46,9 +46,9 @@ export default function FileUpload(props) {
                 size: file.size, 
                 type: file.type,
                 config: {
-                    numOfCopies: 1, 
+                    numCopies: 1, 
                     pageSize: 'A4',
-                    isHori: false,
+                    isLandscape: false,
                     isDoubleSided: false,
                     pageNum: 1
                 }
@@ -67,8 +67,12 @@ export default function FileUpload(props) {
                 window.alert('File "' + file.name + '" is too large(' + file.type / 1048576 +  ' MB)');
                 continue;
             }
+
+            const fileSplit = file.name.split('.');
+            const fileExtension = fileSplit[fileSplit.length - 1];
+
             if (!fileTypes.map((type) => type.extension)
-                .includes(file.type.split('/')[1])) {
+                .includes(fileExtension)) {
 
                 checkFileType = false;
                 window.alert('Invalid file type of "' + file.name + '": ' + file.type);
