@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 
 @Repository
 public interface PageUnitRepo extends JpaRepository<PageUnitPrice, Integer> {
-    @Modifying
+    @org.springframework.data.jpa.repository.Modifying
     @Transactional
     @Query("update PageUnitPrice p set p.price = ?1 where p.id = 1")
     public void setPrice (Integer price);
