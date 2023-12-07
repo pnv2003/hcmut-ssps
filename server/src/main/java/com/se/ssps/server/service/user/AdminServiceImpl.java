@@ -26,6 +26,7 @@ import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.repository.BuildingRepository;
 import com.se.ssps.server.repository.CampusRepository;
 import com.se.ssps.server.repository.FileTypeRepository;
+import com.se.ssps.server.repository.MaxSizeRepository;
 import com.se.ssps.server.repository.PageAllocationRepository;
 import com.se.ssps.server.repository.PageUnitRepo;
 import com.se.ssps.server.repository.PaymentLogRepository;
@@ -33,11 +34,14 @@ import com.se.ssps.server.repository.PrinterRepository;
 import com.se.ssps.server.repository.PrintingLogRepository;
 import com.se.ssps.server.repository.RoomRepository;
 
+import ch.qos.logback.core.util.FileSize;
+
 @Service
 public class AdminServiceImpl implements AdminService{
     //Khai báo các repository
     //@Autowired
-    MaxFileSize maxFileSize ;
+    @Autowired
+    MaxSizeRepository maxFileSizeRepo ;
 
     @Autowired
     PageUnitRepo pageUnitPriceRepo;
@@ -298,14 +302,14 @@ public class AdminServiceImpl implements AdminService{
     public Config getAllConfig() {
         Config returnConfig = new Config();
         returnConfig.setFileTypeList(findAllType());
-        returnConfig.setMaxFileSize(maxFileSize);
+        returnConfig.setMaxFileSize(maxFileSizeRepo.getValue());
         returnConfig.setPageUnitPrice(pageUnitPriceRepo.getValue());
         return returnConfig;
     }
 
 	@Override
 	public void setMaxFileSize(double maxFileSize) {
-		this.maxFileSize = new MaxFileSize(maxFileSize);
+		maxFileSizeRepo.setMaxSize(maxFileSize);
  	}
 
 	@Override

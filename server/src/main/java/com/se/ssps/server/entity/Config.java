@@ -13,7 +13,7 @@ import com.se.ssps.server.entity.configuration.PageUnitPrice;
 public class Config {
     private List<FileType> fileTypeList;
 
-    private MaxFileSize maxFileSize;
+    private Double maxFileSize;
 
     private Integer pageUnitPrice;
 }
