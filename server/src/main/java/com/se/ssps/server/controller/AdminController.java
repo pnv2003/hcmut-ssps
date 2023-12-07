@@ -181,25 +181,25 @@ public class AdminController {
 //Thống kê
     //Thống kê số trang theo từng máy in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/pages-by-printer")
-    public Map<String,Double> pageByPrinter(@RequestParam YearMonth from,@RequestParam YearMonth to){
-        return adminService.totalSquare(from, to);
+    public Map<String,Double> pageByPrinter(@RequestParam String from,@RequestParam String to){
+        return adminService.totalSquare(YearMonth.parse(from), YearMonth.parse(to));
     }
 
     //Thống kê tỉ lệ số yêu cầu theo từng máy in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/request-by-printer")
-    public Map<String, Double> requestByPrinter(@RequestParam YearMonth from,@RequestParam YearMonth to){
-        return adminService.printingRequest(from, to);
+    public Map<String, Double> requestByPrinter(@RequestParam String from,@RequestParam String to){
+        return adminService.printingRequest(YearMonth.parse(from), YearMonth.parse(to));
     }
 
     //Thống kê tỉ lệ loại kích thước trang được yêu cầu in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/size-by-month")
-    public Map<PageSize, Double> pageSizeByMonth(@RequestParam YearMonth from,@RequestParam YearMonth to){
-        return adminService.pageSizeByMonth(from, to);
+    public Map<PageSize, Double> pageSizeByMonth(@RequestParam String from,@RequestParam String to){
+        return adminService.pageSizeByMonth(YearMonth.parse(from), YearMonth.parse(to));
     }
 
     //Thống kê số tiền bán trang in đối với từng tháng trong khoảng thời gian (from, to)
     @GetMapping("/statistics/profit-by-month")
-    public Map<YearMonth, Integer> profitByMonth(@RequestParam YearMonth from,@RequestParam YearMonth to){
-        return adminService.profitByMonth(from, to);
+    public Map<YearMonth, Integer> profitByMonth(@RequestParam String from,@RequestParam String to){
+        return adminService.profitByMonth(YearMonth.parse(from), YearMonth.parse(to));
     }
 }

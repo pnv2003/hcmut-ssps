@@ -33,7 +33,7 @@ public class StudentController {
                             @PathVariable Integer id){
         studentService.addPrintingLog(printingLog,printerID,id);
     }
-
+ 
     @GetMapping("/printing-logs")
     public List<PrintingLog> listOfPrintingLogs(@PathVariable Integer id){
          return studentService.listOfPrintingLogs(id);

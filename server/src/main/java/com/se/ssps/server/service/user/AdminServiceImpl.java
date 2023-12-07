@@ -341,7 +341,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Map<String, Double> totalSquare(YearMonth from, YearMonth to) {
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
-        LocalDateTime toDate = to.atEndOfMonth().atTime(24, 59,59);
+        LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
         HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         for (int i = 0 ; i < printerList.size() ; i++){
@@ -354,7 +354,7 @@ public class AdminServiceImpl implements AdminService{
     public Map<String, Double> printingRequest(YearMonth from, YearMonth to) {
         // TODO Auto-generated method stub
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
-        LocalDateTime toDate = to.atEndOfMonth().atTime(24, 59,59);
+        LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
         HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         Double sumOfRequest = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
@@ -369,7 +369,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public Map<PageSize, Double> pageSizeByMonth(YearMonth from, YearMonth to) {
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
-        LocalDateTime toDate = to.atEndOfMonth().atTime(24, 59,59);
+        LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
         HashMap<PageSize, Double> newMap = new HashMap<>();
         Double sumOfPageSize = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
 
@@ -394,7 +394,7 @@ public class AdminServiceImpl implements AdminService{
         HashMap<YearMonth, Integer> newMap = new HashMap<>();
         while (!from.isAfter(to)) {
             LocalDateTime fromDate = from.atDay(1).atStartOfDay();
-            LocalDateTime toDate = from.atEndOfMonth().atTime(24, 59, 59, 59);
+            LocalDateTime toDate = from.atEndOfMonth().atTime(23, 59, 59, 59);
             Integer profitPerMonth = paymentLogRepository.countPageNums(fromDate, toDate) * pageUnitPriceRepo.getValue();
             newMap.put(from, profitPerMonth);
             from = from.plusMonths(1);
