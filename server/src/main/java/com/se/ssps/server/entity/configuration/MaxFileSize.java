@@ -8,9 +8,10 @@ import lombok.*;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table
 public class MaxFileSize {
     @Id
-    private double maxFileSize;
+    private Double maxFileSize;
 }

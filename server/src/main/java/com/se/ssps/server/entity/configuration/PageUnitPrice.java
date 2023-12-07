@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table
 public class PageUnitPrice {
