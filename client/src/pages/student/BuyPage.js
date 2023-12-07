@@ -1,30 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StudentHeader from "../../components/StudentHeader";
 import "./../../styles/buy-page.css";
 import Button from "../../components/Button";
-import sendRequest from "../../helpers/request";
+import sendRequest, { sendGetRequest } from "../../helpers/request";
 import { useAuth } from "../../contexts/AuthContext";
+import { dumpObject } from "../../helpers/dump";
 
 export default function BuyPage() {
     const { getUser } = useAuth();
 
-    const unitPrice = 0;
-    sendRequest(
-        'GET',
-        '/config',
-        ''
-    ).then((response) => {
-        console.log(response);
-    }); 
+    const [unitPrice, setUnitPrice] = useState(0);
 
-    const payments = [
-        {
-            studentId: 1,
-            numOfPages: 10,
-            unitPrice: 10,
-            paymentMethod: 'Momo'
-        }
-    ]
+    useEffect(() => {
+        sendGetRequest('/admin/config', 'cannot get config list')
+            .then((data) => {
+                if (data.pageUnitPrice) {
+                    setUnitPrice(data.pageUnitPrice);
+                } else {
+                    setUnitPrice(0);
+                }
+            });
+    }, []);
 
     // form control
     const [paymentMethod, setPaymentMethod] = useState("bank");
@@ -49,14 +45,12 @@ export default function BuyPage() {
     function sendPaymentRequest() {
         sendRequest(
             'POST',
-            '/buy-pages',
+            '/student/' + getUser().id + '/buy-pages',
             {
-                studentId: getUser(),
-                numOfPages: 100,
-                unitPrice: 10,
+                numOfPages: numPages,
                 paymentMethod: paymentMethod
             }
-        )
+        );
     }
 
     const bankForm = (
@@ -132,28 +126,34 @@ export default function BuyPage() {
 
 
                     <table className="unit-price">
-                        <tr>
-                            <td>Tổng số trang</td>
-                            <td>500</td>
-                        </tr>
-                        <tr>
-                            <td>Đơn giá</td>
-                            <td>200</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td>Tổng số trang</td>
+                                <td>{numPages || 0}</td>
+                            </tr>
+                            <tr>
+                                <td>Đơn giá</td>
+                                <td>{unitPrice} VND</td>
+                            </tr>
+                        </tbody>
                     </table>
 
                     <table className="total-cost">
-                        <tr>
-                            <td>Tổng cộng</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td className="figure">10000 VND</td>
-                        </tr>
+                            <tbody>
+                                <tr>
+                                    <td>Tổng cộng</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td className="figure">{numPages * unitPrice} VND</td>
+                                </tr>
+                            </tbody>
                     </table>
 
-                    <Button text="Thanh toán" link="#" action={sendPaymentRequest} />
+                    <Button action={sendPaymentRequest}>
+                        Thanh toán
+                    </Button>
                 </div>
             </main>
 

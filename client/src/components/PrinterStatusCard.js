@@ -2,16 +2,17 @@ import React from "react"
 import Button from "./Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleCheck, faCircleXmark } from "@fortawesome/free-regular-svg-icons"
+import "./../styles/printer-status-card.css";
 
 export default function PrinterStatusCard(props) {
     return (
         <div className="printer-status-card">
-            <div className="head">
+            <div className={"head " + (props.active ? "success" : "grey") }>
                 <h1>{props.title}</h1>
                 <span>{props.active ? (<FontAwesomeIcon icon={faCircleCheck} />) : (<FontAwesomeIcon icon={faCircleXmark} />) }</span>
             </div>
             <div className="body">
-                <p>Trạng thái: <span className="status">{props.active ? ("Sẵn sàng") : ("Ngừng hoạt động")}</span></p>
+                <p className="status">Trạng thái: <span className={"status-text " + (props.active ? "success" : "grey")}>{props.active ? ("Sẵn sàng") : ("Ngừng hoạt động")}</span></p>
                 <div className="stat">
                     <div>
                         <p>Lượt in</p>

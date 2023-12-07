@@ -32,14 +32,14 @@
 }
 
 /* ZZZZZ */
-tbody tr:nth-child(odd) {
+.table tbody tr:nth-child(odd) {
     background-color: #DDEEFF;
 }
 
-tbody tr:nth-child(even) {
+.table tbody tr:nth-child(even) {
     background-color: #FFFFFF;
 }
 
-table {
+.table {
     background-color: #0D99FF;
 }

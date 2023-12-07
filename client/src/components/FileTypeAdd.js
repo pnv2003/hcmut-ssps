@@ -6,20 +6,20 @@ import Button from "./Button";
 import { nanoid } from "nanoid";
 
 export default function FileTypeAdd(props) {
-    const fileTypeTypes = [
-        { name: 'Văn bản', value: 'text' },
-        { name: 'Hình ảnh', value: 'image' },
-        { name: 'Ứng dụng', value: 'application' }
-    ];
+    // const fileTypeTypes = [
+    //     { name: 'Văn bản', value: 'text' },
+    //     { name: 'Hình ảnh', value: 'image' },
+    //     { name: 'Ứng dụng', value: 'application' }
+    // ];
 
     const [extension, setExtension] = useState('');
-    const [type, setType] = useState(fileTypeTypes[0].value);
+    // const [type, setType] = useState(fileTypeTypes[0].value);
 
     function handleAddFileType() {
         props.addFileType({
-            id: `file-${nanoid()}`,
-            extension: extension,
-            type: type
+            // id: `file-${nanoid()}`,
+            extension: extension
+            // type: type
         });
     }
 
@@ -27,14 +27,14 @@ export default function FileTypeAdd(props) {
         <section className="file-type-add">
             <h3>Thêm định dạng file</h3>
             <div className="field">
-                <label for="extension">Phần mở rộng</label>
+                <label htmlFor="extension">Phần mở rộng</label>
                 <input type="text" name="extension" id="extension" 
                     value={extension}
                     onChange={(e) => {
                         setExtension(e.target.value);
                     }}/>
             </div>
-            <div className="field">
+            {/* <div className="field">
                 <label for="type">Loại file</label>
                 <select name="type" id="type" 
                     value={type}
@@ -43,7 +43,7 @@ export default function FileTypeAdd(props) {
                     }}>
                     {getOptions(fileTypeTypes)}
                 </select>
-            </div>
+            </div> */}
             <Button
                 action={handleAddFileType}
             >

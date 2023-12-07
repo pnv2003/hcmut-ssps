@@ -9,24 +9,21 @@ import Button from "../../components/Button";
 import { sendGetRequest } from "../../helpers/request";
 import { dumpObject } from "../../helpers/dump";
 import getOptions from "../../helpers/option";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function PrintDoc() {
-    // TODO: get printer options
-    // let campusList = [];
-    // let BuildingList = [];
-    // let roomList = [];
+    const { getUser } = useAuth();
 
     const [printer, setPrinter] = useState('');
     const [files, setFiles] = useState([]);
-    
-    const allPrinters = useRef([]);
+    const [allPrinters, setAllPrinters] = useState([]);
+    const [currentFile, setCurrentFile] = useState(null);
+
 
     useEffect(() => {
         sendGetRequest('/admin/printer', 'cannot get printer list')
             .then((data) => {
                 const initialPrinters = data.map((p) => {
-                    // dumpObject(p, '<---printer');
-
                     return {
                         id: p.id,
                         room: p.room.roomName,
@@ -35,37 +32,23 @@ export default function PrintDoc() {
                     };
                 });
 
-                allPrinters.current = initialPrinters; 
+                setAllPrinters(initialPrinters);
             });
     }, []);
 
-    dumpObject(allPrinters.current, 'allPrinters?');
-
-    // const printers = [
-    //     { id: 111 },
-    //     { id: 222 },
-    //     { id: 333 }
-    // ];
-
-    
-
-    // TODO: manage file lists
-    
-
-    // function addFile(name, status) {
-    //     const newFile = {
-    //         id: `file-${nanoid()}`,
-    //         name: name,
-    //         status: status,
-    //         config: {
-    //             // TODO: initial config   
-    //         }
-    //     };
-
-    //    setFiles([...files, newFile]);
-    // }
+    function addFiles(newFiles) {
+        setFiles(files.concat(newFiles));
+    }
 
     function editFileConfig(id, newConfig) {
+        if (id === null) {
+            const editedFiles = files.map((file) => {
+                return {...file, config: newConfig};
+            });
+            setFiles(editedFiles);
+            return;
+        }
+
         const editedFiles = files.map((file) => {
             if (id === file.id) {
                 return {...file, config: newConfig };
@@ -82,6 +65,10 @@ export default function PrintDoc() {
         setFiles(remainingFiles);
     }
 
+    function handleSelect(file) {
+        setCurrentFile(file);
+    }
+
     function sendPrintRequest() {
         
     }
@@ -91,19 +78,30 @@ export default function PrintDoc() {
             <StudentHeader />
             <main>
                 <div className="upper">
-                    <FileList files={files} removeFile={removeFile}/>
+                    <FileList files={files} removeFile={removeFile} handleSelect={handleSelect}/>
                     <div className="config">
-                        <FileUpload setFiles={setFiles}/>
-                        <FilePrintProperties editFileConfig={editFileConfig}/>
+                        <FileUpload addFiles={addFiles}/>
+                        <FilePrintProperties editFileConfig={editFileConfig} currentFile={currentFile}/>
                         
                     </div>
                 </div>
                 <div className="lower">
                     <div>
                         <label htmlFor="printer">Chọn máy in</label>
-                        <select name="printer" id="printer">
+                        <select name="printer" id="printer"
+                            value={printer}
+                            onChange={(e) => {
+                                setPrinter(e.target.value);
+                            }}>
                             {
-                                
+                                getOptions(
+                                    allPrinters.map((p) => {
+                                        return{
+                                            name: p.room + p.building + '-' + p.campus,
+                                            value: p.id
+                                        }
+                                    })
+                                )
                             }
                         </select>
                     </div>

@@ -7,7 +7,7 @@ export default function FileTypeList(props) {
     const headers = [
         { name: 'ID', class: 'id'},
         { name: 'Phần mở rộng', class: 'extension'},
-        { name: 'Loại file', class: 'type' }
+        // { name: 'Loại file', class: 'type' }
     ];
 
     return (
@@ -15,17 +15,17 @@ export default function FileTypeList(props) {
             <thead>
                 <tr>
                     {headers.map(header => (
-                        <th className={header.class}>{header.name}</th>
+                        <th className={header.class} key={header.class}>{header.name}</th>
                     ))}   
                 </tr>
             </thead>
             <tbody>
                 {props.fileTypes.map((ftype) => {
                     return (
-                        <tr>
+                        <tr key={ftype.id}>
                             {/* <td>{ftype.id[5]}</td> */}
                             <td>{ftype.extension}</td>
-                            <td>{ftype.type}</td>
+                            {/* <td>{ftype.type}</td> */}
                             <td>
                                 <ButtonIcon
                                     action={(e) => {

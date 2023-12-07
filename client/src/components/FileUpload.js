@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid";
 import "./../styles/file-upload.css";
-// import Dropzone from "react-dropzone-uploader";
+import { useEffect, useState } from "react";
+import { sendGetRequest } from "../helpers/request";
+import dump, { dumpObject } from "../helpers/dump";
 
 export default function FileUpload(props) {
     // sendGetRequest('/admin/config').
@@ -9,14 +11,22 @@ export default function FileUpload(props) {
     // TODO: file upload
     // TODO: get permitted file types, max size
 
-    const fileTypes = [
-        { extension: 'pdf', type: 'application', mime: 'pdf' },
-        // { extension: 'doc', type: 'application', mime: 'msword' },
-        // { extension: 'docx', type: 'application', mime: 'vnd.openxmlformats-officedocument.wordprocessingml.document' },
-        { extension: 'gif', type: 'image', mime: 'gif' },
-        { extension: 'jpg', type: 'image', mime: 'jpeg' },
-        { extension: 'png', type: 'image', mime: 'png' }
-    ]
+    const [fileTypes, setFileTypes] = useState([]);
+    const [maxFileSize, setMaxFileSize] = useState(0);
+
+    useEffect(() => {
+        sendGetRequest('/admin/config', 'cannot get config list')
+            .then((data) => {
+                const initialFileTypes = data.fileTypeList.map((type) => {
+                    return {
+                        extension: type.fileTypeName
+                    };
+                });
+
+                setFileTypes(initialFileTypes);
+                setMaxFileSize(data.maxFileSize);
+            });
+    }, []);
 
     const lessThan = '<';
     
@@ -26,33 +36,50 @@ export default function FileUpload(props) {
     );
 
     function handleFileChange(e) {
-        console.log(JSON.stringify(e.target.files[0]));
-        
-        const reader = new FileReader();
-        const fileInfo = e.target.files[0];
-        if (fileInfo) {
-            reader.readAsBinaryString(e.target.files[0]);
-            reader.onloadend = () => {
-                const count = reader.result.match(/\/Type[\s]*\/Page[^s]/g).length;
-                console.log('Number of Pages:', count);
-            }
-        }
+        // dumpObject(e.target.files, 'filesssssss');
 
 
         const fileList = [...e.target.files].map((file) => {
             return { 
+                id: `file-${nanoid()}`,
                 name: file.name, 
                 size: file.size, 
+                type: file.type,
                 config: {
                     numOfCopies: 1, 
                     pageSize: 'A4',
                     isHori: false,
-                    isDoubleSided: false
+                    isDoubleSided: false,
+                    pageNum: 1
                 }
             };
         });
-        
-        props.setFiles(fileList);
+
+        let checkFileSize = true;
+        let checkFileType = true;
+
+        let fileListToAdd = [];
+
+        for (let index = 0; index < fileList.length; index++) {
+            const file = fileList[index];
+            if (file.size > (1048576 * maxFileSize)) {
+                checkFileSize = false;
+                window.alert('File "' + file.name + '" is too large(' + file.type / 1048576 +  ' MB)');
+                continue;
+            }
+            if (!fileTypes.map((type) => type.extension)
+                .includes(file.type.split('/')[1])) {
+
+                checkFileType = false;
+                window.alert('Invalid file type of "' + file.name + '": ' + file.type);
+                continue;
+            }
+            fileListToAdd.push(file);
+        }
+
+        if (checkFileSize && checkFileType) {
+            props.addFiles(fileListToAdd);
+        }
     }
 
     return (
@@ -60,12 +87,11 @@ export default function FileUpload(props) {
             <h2>Tải tài liệu</h2>
 
             <input type="file" name="file" id="file" multiple
-                accept="image/*"
                 onChange={handleFileChange}/>
 
             <div className="file-types">
                 {permittedFileTypes}
-                {/* <span>{lessThan + ' ' + maxFileSize}MB</span> */}
+                <span>{lessThan + ' ' + maxFileSize}MB</span>
             </div>
         </div>
     );
