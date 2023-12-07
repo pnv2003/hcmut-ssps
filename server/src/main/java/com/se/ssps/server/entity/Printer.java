@@ -35,6 +35,8 @@ public class Printer {
 
     private boolean isDel;
 
+    private Boolean status;
+
 
     @OneToOne
     @JoinColumn(name = "room_id", referencedColumnName = "id")

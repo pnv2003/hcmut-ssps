@@ -56,10 +56,10 @@ public class PrintingLog {
 
     public void calculateSquare(){
         final double a4Square = 0.06237;
-        if (this.pageSize == PageSize.A4) this.squarePrinting = a4Square*this.numOfPages;
-        if (this.pageSize == PageSize.A3) this.squarePrinting = a4Square*2*this.numOfPages;
-        if (this.pageSize == PageSize.A2) this.squarePrinting = a4Square*4*this.numOfPages;
-        if (this.pageSize == PageSize.A1) this.squarePrinting = a4Square*8*this.numOfPages;
-        if (this.pageSize == PageSize.A5) this.squarePrinting = a4Square/2*this.numOfPages;
+        if (this.pageSize == PageSize.A4) this.squarePrinting = a4Square*this.numOfPages*this.numOfCopies;
+        if (this.pageSize == PageSize.A3) this.squarePrinting = a4Square*2*this.numOfPages*this.numOfCopies;
+        if (this.pageSize == PageSize.A2) this.squarePrinting = a4Square*4*this.numOfPages*this.numOfCopies;
+        if (this.pageSize == PageSize.A1) this.squarePrinting = a4Square*8*this.numOfPages*this.numOfCopies;
+        if (this.pageSize == PageSize.A5) this.squarePrinting = a4Square/2*this.numOfPages*this.numOfCopies;
     }
 }

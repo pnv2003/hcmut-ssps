@@ -41,7 +41,7 @@ public class StudentServiceImpl implements StudentService{
             PrintingLog newLog = checkList.get(i);
             Student findStudent = studentRepository.findStudentById(id);
             Printer findPrinter = printerRepository.findPrinterById(printerID);
-            Integer remainPages = findStudent.getBalance() - newLog.getNumOfPages();
+            Integer remainPages = findStudent.getBalance() - newLog.getNumOfPages()*newLog.getNumOfCopies();
 
             //update số trang còn lại trong tài khoản sinh viên
             studentRepository.updateNumOfPages(remainPages, id); 
@@ -50,7 +50,7 @@ public class StudentServiceImpl implements StudentService{
             //update thgian
             newLog.setStartDate(LocalDateTime.now());//tgian hien tai
             newLog.calculateSquare();
-            LocalDateTime finishTime = LocalDateTime.now().plusSeconds(newLog.getNumOfPages()*5);//tgian in xong (sai logic :'( !! )
+            LocalDateTime finishTime = LocalDateTime.now().plusSeconds(newLog.getNumOfPages()*newLog.getNumOfCopies()*5);//tgian in xong (sai logic :'( !! )
             newLog.setEndDate(finishTime);
             newLog.setStudent(findStudent);
             newLog.setPrinter(findPrinter);
@@ -58,8 +58,8 @@ public class StudentServiceImpl implements StudentService{
 
             //update thong tin may in
             //1% muc in dc 20 trang
-            printerRepository.updateInkAmount(findPrinter.getInkAmount() - newLog.getNumOfPages()/20, printerID);
-            printerRepository.updatePageAmount(findPrinter.getPageAmount() - newLog.getNumOfPages(), printerID); 
+            printerRepository.updateInkAmount(findPrinter.getInkAmount() - newLog.getNumOfPages()*newLog.getNumOfCopies()/20, printerID);
+            printerRepository.updatePageAmount(findPrinter.getPageAmount() - newLog.getNumOfPages()*newLog.getNumOfCopies(), printerID); 
 
             if (findPrinter.getInkAmount() <= 0){
                 printerRepository.updateInkAmount(100, printerID);

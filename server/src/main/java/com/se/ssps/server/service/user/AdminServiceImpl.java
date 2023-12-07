@@ -114,6 +114,7 @@ public class AdminServiceImpl implements AdminService{
                 printerRepository.updateInkAmount(newPrinter.getInkAmount(), newPrinter.getId());
                 printerRepository.updateName(newPrinter.getPrinterName(), newPrinter.getId());
                 printerRepository.updatePageAmount(newPrinter.getPageAmount(), newPrinter.getId());
+                printerRepository.updateStatus(newPrinter.getStatus(), newPrinter.getId());
                 return newMap;
             }
             newMap.put("accepted", false);
@@ -126,6 +127,7 @@ public class AdminServiceImpl implements AdminService{
         printerRepository.updateName(newPrinter.getPrinterName(), newPrinter.getId());
         printerRepository.updatePageAmount(newPrinter.getPageAmount(), newPrinter.getId());
         printerRepository.updateRoom(findRoom, newPrinter.getId());
+        printerRepository.updateStatus(newPrinter.getStatus(), newPrinter.getId());
         newMap.put("accepted", true);
         return newMap;
 
