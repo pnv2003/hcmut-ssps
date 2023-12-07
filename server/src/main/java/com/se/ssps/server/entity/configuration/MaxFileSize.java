@@ -13,5 +13,7 @@ import lombok.*;
 @Table
 public class MaxFileSize {
     @Id
+    private Integer id;
+
     private Double maxFileSize;
 }

@@ -310,25 +310,25 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public MaxFileSize setMaxFileSize(double maxFileSize) {
         if (pageUnitPriceRepo.findAll().isEmpty()){
-            MaxFileSize newPrice = new MaxFileSize(maxFileSize);
+            MaxFileSize newPrice = new MaxFileSize(1,maxFileSize);
             return maxFileSizeRepo.save(newPrice);
         }
         else {
             maxFileSizeRepo.setMaxSize(maxFileSize);
         }
-        return new MaxFileSize(maxFileSize);
+        return new MaxFileSize(1,maxFileSize);
  	}
 
 	@Override
 	public PageUnitPrice setPagePrice(Integer pagePrice) {  
         if (pageUnitPriceRepo.findAll().isEmpty()){
-            PageUnitPrice newPrice = new PageUnitPrice(pagePrice);
+            PageUnitPrice newPrice = new PageUnitPrice(1,pagePrice);
             return pageUnitPriceRepo.save(newPrice);
         }
         else {
             pageUnitPriceRepo.setPrice(pagePrice);
         }
-        return new PageUnitPrice(pagePrice);
+        return new PageUnitPrice(1,pagePrice);
 	}
 //=====================================================================================
 //=====================================================================================

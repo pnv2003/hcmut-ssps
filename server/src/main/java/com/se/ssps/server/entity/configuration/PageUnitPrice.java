@@ -13,5 +13,7 @@ import lombok.*;
 @Table
 public class PageUnitPrice {
     @Id
+    private Integer id;
+
     private Integer price;    
 }
