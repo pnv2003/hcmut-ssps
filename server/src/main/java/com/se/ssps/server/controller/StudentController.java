@@ -1,5 +1,6 @@
 package com.se.ssps.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping("/print")
-    public void printDoc(   @RequestBody List<PrintingLog> printingLog, 
+    public void printDoc(   @RequestBody ArrayList<PrintingLog> printingLog, 
                             @RequestParam(name = "printer-id") Integer printerID,
                             @PathVariable Integer id){
         studentService.addPrintingLog(printingLog,printerID,id);
