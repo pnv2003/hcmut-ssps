@@ -265,10 +265,8 @@ true/false
 ```
 {
     List<FileType>,
-    maxFileSize:{
-        "maxFileSize": double
-    },
-    pageUnitPrice: integer
+    "maxFileSize": double,
+    "pageUnitPrice": integer
 }
 ```
 #### 5.2 Set max file size: `POST`
