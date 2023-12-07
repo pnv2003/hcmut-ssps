@@ -21,6 +21,9 @@ import com.se.ssps.server.entity.configuration.PageAllocation;
 import com.se.ssps.server.entity.configuration.PageUnitPrice;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.service.user.AdminService;
+import com.se.ssps.server.stat.TotalSquare;
+
+import ch.qos.logback.core.joran.sanity.Pair;
 
 @CrossOrigin
 @RestController
@@ -181,7 +184,7 @@ public class AdminController {
 //Thống kê
     //Thống kê số trang theo từng máy in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/pages-by-printer")
-    public Map<String,Double> pageByPrinter(@RequestParam String from,@RequestParam String to){
+    public List<TotalSquare> pageByPrinter(@RequestParam String from,@RequestParam String to){
         return adminService.totalSquare(YearMonth.parse(from), YearMonth.parse(to));
     }
 

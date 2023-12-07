@@ -33,6 +33,7 @@ import com.se.ssps.server.repository.PaymentLogRepository;
 import com.se.ssps.server.repository.PrinterRepository;
 import com.se.ssps.server.repository.PrintingLogRepository;
 import com.se.ssps.server.repository.RoomRepository;
+import com.se.ssps.server.stat.TotalSquare;
 
 import ch.qos.logback.core.util.FileSize;
 
@@ -339,15 +340,19 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public Map<String, Double> totalSquare(YearMonth from, YearMonth to) {
+    public List<TotalSquare> totalSquare(YearMonth from, YearMonth to) {
+        ArrayList<TotalSquare> returnList = new ArrayList<>();
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
         LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
-        HashMap<String, Double> newMap = new HashMap<>();
+        // HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         for (int i = 0 ; i < printerList.size() ; i++){
-            newMap.put(printerList.get(i).getPrinterName(), pagesNum(printerList.get(i).getId(), fromDate, toDate));
+            TotalSquare newValue = new TotalSquare();
+            newValue.setName(printerList.get(i).getPrinterName());
+            newValue.setStat(pagesNum(printerList.get(i).getId(), fromDate, toDate));
+            returnList.add(newValue);
         }
-        return newMap;
+        return returnList;
     }
 
     @Override

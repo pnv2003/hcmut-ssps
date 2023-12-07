@@ -20,6 +20,7 @@ import com.se.ssps.server.entity.configuration.MaxFileSize;
 import com.se.ssps.server.entity.configuration.PageAllocation;
 import com.se.ssps.server.entity.configuration.PageUnitPrice;
 import com.se.ssps.server.entity.configuration.Room;
+import com.se.ssps.server.stat.TotalSquare;
 
 @Service
 public interface AdminService {
@@ -97,7 +98,7 @@ public interface AdminService {
     public Config getAllConfig();
 //================================================================================
 //================================================================================
-    public Map<String, Double> totalSquare (YearMonth from, YearMonth to);
+    public List<TotalSquare> totalSquare (YearMonth from, YearMonth to);
 
     public Map<String, Double> printingRequest(YearMonth from, YearMonth to);
 
