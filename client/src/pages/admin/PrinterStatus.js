@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import AdminLayout from "../../components/AdminLayout";
 import PrinterStatusCard from "../../components/PrinterStatusCard";
-import { sendGetRequest } from "../../helpers/request";
+import sendRequest, { sendGetRequest } from "../../helpers/request";
 import SearchBar from "../../components/SearchBar";
 import "../../styles/printer-status.css";
+import dump from "../../helpers/dump";
 
 export default function PrinterStatus() {
 
@@ -16,6 +17,10 @@ export default function PrinterStatus() {
                 const init = data.map((printer) => {
                     return {
                         id: printer.id,
+                        name: printer.name,
+                        brand: printer.firm,
+                        description: printer.description,
+                        roomId: printer.room.id,
                         room: printer.room.roomName,
                         building: printer.room.building.buildingName,
                         campus: printer.room.building.campus.campusName,
@@ -35,7 +40,26 @@ export default function PrinterStatus() {
     function handleToggle(id) {
         const newPrinterList = printerList.map((printer) => {
             if (printer.id === id) {
-                return {...printer, isActive: !printer.isActive }
+
+                dump(printer.roomId, 'room idddddddddd');
+
+                sendRequest(
+                    'POST',
+                    '/admin/printer?room-id=' + printer.roomId,
+                    {
+                        id: printer.id,
+                        printerName: printer.name,
+                        inkAmount: printer.inkStat,
+                        pageAmount: printer.pageStat,
+                        firm: printer.brand,
+                        description: printer.description,
+                        efficiency: printer.productivity,
+                        status: !printer.isActive
+                    }
+                    ,
+                    'cannot update printer'
+                );
+                return { ...printer, isActive: !printer.isActive }
             }
             return printer;
         });

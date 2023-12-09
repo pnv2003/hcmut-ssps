@@ -16,7 +16,7 @@ export default function PrintDoc() {
     const { getUser } = useAuth();
     const navigate = useNavigate();
 
-    const [printer, setPrinter] = useState('');
+    const [printer, setPrinter] = useState('0');
     const [files, setFiles] = useState([]);
     const [allPrinters, setAllPrinters] = useState([]);
     const [currentFile, setCurrentFile] = useState(null);
@@ -32,7 +32,8 @@ export default function PrintDoc() {
                         id: p.id,
                         room: p.room.roomName,
                         building: p.room.building.buildingName,
-                        campus: p.room.building.campus.campusName
+                        campus: p.room.building.campus.campusName,
+                        isActive: p.status
                     };
                 });
 
@@ -125,6 +126,16 @@ export default function PrintDoc() {
     }
 
     function sendPrintRequest() {
+        if (files.length === 0) {
+            window.alert("Please upload some files");
+            return;
+        }
+
+        if (printer === "0") {
+            window.alert("Please select a printer");
+            return;
+        }
+
         if (pageCount.current > pageBalance) {
             window.alert('Số trang còn lại không đủ');
             return;
@@ -177,10 +188,12 @@ export default function PrintDoc() {
                             onChange={(e) => {
                                 setPrinter(e.target.value);
                             }}>
-                                <option value="null">Chọn máy in</option>
+                                <option value="0">-Chọn máy in-</option>
                             {
                                 getOptions(
-                                    allPrinters.map((p) => {
+                                    allPrinters
+                                        .filter((p) => p.isActive)
+                                        .map((p) => {
                                         return{
                                             name: p.room + p.building + '-' + p.campus,
                                             value: p.id

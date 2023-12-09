@@ -3,6 +3,7 @@ import "./../styles/file-print-properties.css";
 import { useState } from "react";
 import getOptions from "../helpers/option";
 import Button from "./Button";
+import dump, { dumpObject } from "../helpers/dump";
 
 export default function FilePrintProperties(props) {
     const pageSizes = [

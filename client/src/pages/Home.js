@@ -61,8 +61,7 @@ export default function HomePage() {
                     <div className="homepage-main-left">
                         <Title smallText={"Những bản in chất lượng khai phá nên những ý tưởng thiên tài"}/>
                         <Button 
-                            // TODO
-                            link={"#"}
+                            link="#"
                         >
                             Khám phá ngay
                         </Button>

@@ -7,10 +7,25 @@ import dump, { dumpObject } from "../helpers/dump";
 
 export default function LocationRoomAdd(props) {
     const [room, setRoom] = useState('');
-    const [inCampus, setInCampus] = useState('');
-    const [inBuilding, setInBuilding] = useState('');
+    const [inCampus, setInCampus] = useState("0");
+    const [inBuilding, setInBuilding] = useState("0");
 
     function handleAddRoom() {
+        if (inCampus === "0") {
+            window.alert("Please select a campus!");
+            return;
+        }
+
+        if (inBuilding === "0") {
+            window.alert("Please select a building");
+            return;
+        }
+
+        if (room === '') {
+            window.alert("Please enter the room name");
+            return;
+        }
+
         props.addRoom({
             // id: `room-${nanoid()}`,
             name: room,
@@ -51,6 +66,7 @@ export default function LocationRoomAdd(props) {
                         setInCampus(e.target.value);
                         setInBuilding(newBuildingList[0].id);
                     }}>
+                    <option value="0">-Chọn cơ sở-</option>
                     {
                         getOptions(
                             props.campuses.map((c) => {
@@ -70,6 +86,7 @@ export default function LocationRoomAdd(props) {
                     onChange={(e) => {
                         setInBuilding(e.target.value);
                     }}>
+                    <option value="0">-Chọn tòa</option>
                     {
                         getOptions(
                             buildingOptionList.map((b) => {

@@ -32,3 +32,7 @@
     width: 100%;
     text-align: center;
 }
+
+.config-location-form select {
+    /* width: 7rem !important; */
+}
