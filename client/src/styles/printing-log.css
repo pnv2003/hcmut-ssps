@@ -1,0 +1,28 @@
+.printing-log {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.printing-log main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.printing-log .head {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.printing-log :nth-child(1) {
+    margin-right: auto;
+}
+
+.printing-log :nth-child(2) {
+    margin-left: auto;
+}

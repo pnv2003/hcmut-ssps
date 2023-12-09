@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import getOptions from "../helpers/option";
 
 export default function LocationBuildingAdd(props) {
-    // console.log(JSON.stringify(props.campuses) + ' <- got campuses');
+    console.log(JSON.stringify(props.campuses) + ' <- got campuses');
 
     const campusOptions = getOptions(
         props.campuses.map((campus) => {
@@ -17,9 +17,9 @@ export default function LocationBuildingAdd(props) {
     );
 
     const [building, setBuilding] = useState('');
-    const [inCampus, setInCampus] = useState(campusOptions[0]?.id || 0);
+    const [inCampus, setInCampus] = useState(props.campuses[0]?.name);
 
-    // console.log(inCampus + ' <- inCampus init');
+    console.log(inCampus + ' <- inCampus init');
 
     function handleAddBuilding() {
         props.addBuilding({

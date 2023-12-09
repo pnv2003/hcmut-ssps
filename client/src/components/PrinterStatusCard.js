@@ -5,6 +5,11 @@ import { faCircleCheck, faCircleXmark } from "@fortawesome/free-regular-svg-icon
 import "./../styles/printer-status-card.css";
 
 export default function PrinterStatusCard(props) {
+
+    function handleToggle() {
+        props.handleToggle(props.id);
+    }
+
     return (
         <div className="printer-status-card">
             <div className={"head " + (props.active ? "success" : "grey") }>
@@ -24,21 +29,22 @@ export default function PrinterStatusCard(props) {
                     </div>
                     <div>
                         <p>Hiệu suất</p>
-                        <p className="figure">{props.productivity}</p>
+                        <p className="figure">{props.productivity}%</p>
                     </div>
                 </div>
                 <div className="meters">
                     <div>
                         <span>Giấy</span>
-                        <meter min="0" max="10000" low="3300" high="6600" optimum="8000" value={props.pageNum}>at {props.pageNum}/100</meter>
+                        <meter min="0" max="10000" low="3300" high="6600" optimum="8000" value={props.pageStat}>at {props.pageStat}/100</meter>
                     </div>
                     <div>
                         <span>Mực</span>
-                        <meter min="0" max="100" low="33" high="66" optimum="80" value={props.inkAmount}>at {props.inkAmount}/100</meter>
+                        <meter min="0" max="100" low="33" high="66" optimum="80" value={props.inkStat}>at {props.inkStat}/100</meter>
                     </div>
                 </div>
                 <Button 
                     className={ props.active ? "delete" : "success" }
+                    action={handleToggle}
                 >
                     { props.active ? "Tắt" : "Bật" }
                 </Button>

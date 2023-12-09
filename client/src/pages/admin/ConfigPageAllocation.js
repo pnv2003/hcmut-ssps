@@ -4,8 +4,11 @@ import Button from "../../components/Button";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import "./../../styles/table.css";
 import "./../../styles/config-page-allocation.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sendGetRequest } from "../../helpers/request";
+import moment from "moment";
+import SearchBar from "../../components/SearchBar";
+import ButtonIcon from "../../components/ButtonIcon";
 
 export default function ConfigPageAllocation() {
     const headers = [
@@ -17,27 +20,22 @@ export default function ConfigPageAllocation() {
     ];
 
     const [pageAllocs, setPageAllocs] = useState([]);
+    const allPageAllocs = useRef([]);
 
     useEffect(() => {
         sendGetRequest('/admin/page-allocation')
-            .then((response) => {
-                if (response.ok) {
-                    const json = response.json();
-                    json.then((data) => {
-                        const initialPageAllocs = data.map((pgalloc) => {
-                            return {
-                                id: pgalloc.id,
-                                semester: pgalloc.semester,
-                                academicYear: pgalloc.year, // TODO
-                                allocDate: pgalloc.allocatedDate, // TODO: conversion...
-                                pageNum: pgalloc.numOfPage
-                            };
-                        });
-                        setPageAllocs(initialPageAllocs);
-                    });
-                } else {
-                    window.alert('Request failed: cannot get page allocation config list');
-                }
+            .then((data) => {
+                const initialPageAllocs = data.map((pgalloc) => {
+                    return {
+                        id: pgalloc.id,
+                        semester: pgalloc.semester,
+                        academicYear: pgalloc.year, // TODO
+                        allocDate: pgalloc.allocatedDate, // TODO: conversion...
+                        pageNum: pgalloc.numOfPage
+                    };
+                });
+                setPageAllocs(initialPageAllocs);
+                allPageAllocs.current = initialPageAllocs;
             });
     }, []);
 
@@ -46,19 +44,43 @@ export default function ConfigPageAllocation() {
             <tr className={pgalloc.id} key={pgalloc.id}>
                 {/* <td>{pgalloc.id}</td> */}
                 <td>{pgalloc.semester}</td>
-                <td>{pgalloc.academicYear}</td>
+                <td>{pgalloc.academicYear + '-' + (pgalloc.academicYear + 1)}</td>
                 {/* TODO format date */}
-                <td>{pgalloc.allocDate}</td>
+                <td>{moment(pgalloc.allocDate).format('DD/MM/YYYY')}</td>
                 <td>{pgalloc.pageNum}</td>
                 {/* <td>{pgalloc.status}</td> */}
+                {/* <td>
+                    <ButtonIcon
+                        className="delete"
+                        action={handleDelete}
+                    >
+
+                    </ButtonIcon>
+                </td> */}
             </tr>
         );
     });
+
+    // function handleDelete(e) {
+    // }
+
+    function handleSearch(input) {
+        const filteredPageAllocs = allPageAllocs.current.filter((pgalloc) => {
+            return (
+                pgalloc.semester.toString().toLowerCase().includes(input) ||
+                pgalloc.academicYear.toString().toLowerCase().includes(input) ||
+                moment(pgalloc.allocDate).format('DD/MM/YYYY').toLowerCase().includes(input) ||
+                pgalloc.pageNum.toString().toLowerCase().includes(input)
+            );
+        });
+        setPageAllocs(filteredPageAllocs);
+    }
 
     return (
         <AdminLayout>
             <article className="config-page-allocation">
                 <div className="util">
+                    <SearchBar handleSearch={handleSearch} />
                     <Button 
                         link={'/admin/config/pgalloc/add'}
                     >

@@ -46,36 +46,60 @@ export default function PrintDoc() {
                 });
     }, []);
 
+    function countA4Pages(fileList) {
+        let pageCount = 0;
+        for (let index = 0; index < fileList.length; index++) {
+            const file = fileList[index];
+
+            let pageNumA4 = file.config.pageNum;
+            switch (file.pageSize) {
+                case "A1": 
+                    pageNumA4 *= 8;
+                    break;
+                case "A2":
+                    pageNumA4 *= 4;
+                    break;
+                case "A3":
+                    pageNumA4 *= 2;
+                    break;
+                case "A5":
+                    if (pageNumA4 % 2 === 0) {
+                        pageNumA4 /= 2;
+                    } else {
+                        pageNumA4 += 1;
+                        pageNumA4 /= 2;
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            pageCount += pageNumA4 * file.config.numCopies;
+        }
+        return pageCount;
+    }
+
     function addFiles(newFiles) {
         const newFileList = files.concat(newFiles);
 
-        let newPageCount = 0;
-        for (let index = 0; index < newFileList.length; index++) {
-            const file = newFileList[index];
-            newPageCount += file.config.pageNum * file.config.numCopies;
-        }
-        pageCount.current = newPageCount;
-
+        pageCount.current = countA4Pages(newFileList);
         setFiles(newFileList);
     }
 
     function editFileConfig(id, newConfig) {
+
+        // apply all
         if (id === null) {
             const editedFiles = files.map((file) => {
                 return {...file, config: newConfig};
             });
 
-            let newPageCount = 0;
-            for (let index = 0; index < editedFiles.length; index++) {
-                const file = editedFiles[index];
-                newPageCount += file.config.pageNum * file.config.numCopies;
-            }
-            pageCount.current = newPageCount;
-
+            pageCount.current = countA4Pages(editedFiles);
             setFiles(editedFiles);
             return;
         }
 
+        // apply id only
         const editedFiles = files.map((file) => {
             if (id === file.id) {
                 return {...file, config: newConfig };
@@ -83,13 +107,7 @@ export default function PrintDoc() {
             return file;
         });
 
-        let newPageCount = 0;
-        for (let index = 0; index < editedFiles.length; index++) {
-            const file = editedFiles[index];
-            newPageCount += file.config.pageNum * file.config.numCopies;
-        }
-        pageCount.current = newPageCount;
-
+        pageCount.current = countA4Pages(editedFiles);
         setFiles(editedFiles);
     }
 
@@ -97,13 +115,7 @@ export default function PrintDoc() {
         const remainingFiles = 
             files.filter((file) => (id !== file.id));
         
-        let newPageCount = 0;
-        for (let index = 0; index < remainingFiles.length; index++) {
-            const file = remainingFiles[index];
-            newPageCount += file.config.pageNum * file.config.numCopies;
-        }
-        pageCount.current = newPageCount;
-
+        pageCount.current = countA4Pages(remainingFiles);
         setFiles(remainingFiles);
     }
 
@@ -117,24 +129,20 @@ export default function PrintDoc() {
             return;
         }
 
-
-
         sendRequest(
             'POST',
             '/student/' + getUser().id + '/print?printer-id=' + printer, 
-            {
-                printingLog: files.map((file) => {
-                    return {
-                        fileName: file.name,
-                        size: file.size,
-                        numOfPages: file.config.pageNum,
-                        numOfCopies: file.config.numCopies,
-                        isHori: file.config.isLandscape,
-                        isDoubleSided: file.config.isDoubleSided,
-                        pageSize: file.config.pageSize
-                    };
-                })
-            },
+            files.map((file) => {
+                return {
+                    fileName: file.name,
+                    size: file.size,
+                    numOfPages: file.config.pageNum,
+                    numOfCopies: file.config.numCopies,
+                    isHori: file.config.isLandscape,
+                    isDoubleSided: file.config.isDoubleSided,
+                    pageSize: file.config.pageSize
+                };
+            }),
             'cannot send print request'
         );
 

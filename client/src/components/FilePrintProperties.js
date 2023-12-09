@@ -6,6 +6,8 @@ import Button from "./Button";
 
 export default function FilePrintProperties(props) {
     const pageSizes = [
+        { name: 'A1', width: 23.39, height: 33.11 },
+        { name: 'A2', width: 16.54, height: 23.39 },
         { name: 'A3', width: 11.69, height: 16.54 },
         { name: 'A4', width: 8.27, height: 11.69 },
         { name: 'A5', width: 5.83, height: 8.27 }
@@ -20,10 +22,6 @@ export default function FilePrintProperties(props) {
         { name: 'Trang nằm dọc', value: false },
         { name: 'Trang nằm ngang', value: true }
     ]
-
-    // const pageSizeOptions = pageSizes.map((size) => 
-    //     <option key={`size-${nanoid()}`} value={size.name}>{size.name} ({size.width}'' x {size.height}'')</option>
-    // );
 
     const [numCopies, setNumCopies] = useState(props.currentFile?.config.numCopies || 0);
     const [pageSize, setPageSize] = useState(props.currentFile?.config.pageSize || pageSizes[0].name);
@@ -52,8 +50,10 @@ export default function FilePrintProperties(props) {
     }
 
     return (
+        <>
+        <h3 className="file-to-config">Cấu hình file: {props.currentFile?.name || ''}</h3>
         <div className="file-print-properties">
-            <h3>Cấu hình file: {props.currentFile?.name || ''}</h3>
+            
             <div className="field">
                 <label htmlFor="num-copies">Số bản</label>
                 <input 
@@ -123,5 +123,6 @@ export default function FilePrintProperties(props) {
             </div>
             
         </div>
+        </>
     );
 }

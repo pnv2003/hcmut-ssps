@@ -30,6 +30,8 @@ import AdminRoute from './pages/admin/AdminRoute';
 import StudentRoute from './pages/student/StudentRoute';
 import ConfigPageAllocationAdd from './pages/admin/ConfigPageAllocationAdd';
 import Test from './pages/Test';
+import PaymentRequestSent from './pages/student/PaymentRequestSent';
+import LogRoute from './pages/admin/LogRoute';
 
 function App() {
   return (
@@ -47,6 +49,7 @@ function App() {
             <Route path='/student/print' element={<PrintDoc />} />
             <Route path='/student/print/success' element={<PrintRequestSent />} />
             <Route path='/student/buy' element={<BuyPage />} />
+            <Route path='/student/buy/success' element={<PaymentRequestSent />} />
             <Route path='/student/log' element={<PrintingLog />} />
           </Route>
         
@@ -64,8 +67,9 @@ function App() {
             <Route path='/admin/config/pgalloc/add' element={<ConfigPageAllocationAdd />} />
             <Route path='/admin/config/file' element={<ConfigFile />} />
             <Route path='/admin/config/location' element={<ConfigLocation />} />
+            <Route path='/admin/log' element={<LogRoute />} />
             <Route path='/admin/log/print' element={<PrintingLogAll />} />
-            <Route path='/admin/log/pay' element={<PaymentLog />} />
+            <Route path='/admin/log/payment' element={<PaymentLog />} />
             <Route path='/admin/stat' element={<Statistics />} />
           </Route>
         </Route>

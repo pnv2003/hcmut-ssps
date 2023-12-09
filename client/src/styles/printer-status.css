@@ -1,0 +1,39 @@
+.printer-status {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.printer-status .util {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.printer-status input {
+    height: 3rem !important;
+}
+
+.printer-status .grid {
+    display: grid;
+    width: 100%;
+}
+
+@media screen and (min-width: 1520px) {
+    .printer-status .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1519px) {
+    .printer-status .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1199px) {
+    .printer-status .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+

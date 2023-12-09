@@ -4,33 +4,31 @@ import Button from "../../components/Button";
 import sendRequest from "../../helpers/request";
 import "./../../styles/config-page-allocation-add.css";
 import { useNavigate } from "react-router";
+import moment from "moment";
+import { dumpObject } from "../../helpers/dump";
 
 export default function ConfigPageAllocationAdd() {
-    let defaultDate = new Date();
-    defaultDate.setDate(defaultDate.getDate() + 3);
+    // let defaultDate = new Date();
+    // defaultDate.setDate(defaultDate.getDate() + 3);
     
     const navigate = useNavigate();
     const [semester, setSemester] = useState('');
-    const [academicYear, setAcademicYear] = useState('');
-    const [allocDate, setAllocDate] = useState(defaultDate);
+    const [academicYear, setAcademicYear] = useState(moment().year());
+    const [allocDate, setAllocDate] = useState(moment().format('YYYY-MM-DD'));
     const [pageNum, setPageNum] = useState(0);
 
-    function handleAdd() {
+    function handleAdd() {       
         sendRequest(
             'POST',
             '/admin/page-allocation',
             {
                 semester: semester,
-                year: academicYear, // TODO...
-                allocatedDate: allocDate, // TODO conversion
+                year: academicYear, 
+                allocatedDate: allocDate,
                 numOfPage: pageNum
             }
-        ).then((response) => {
-            if (response.ok) {
-                navigate('/admin/config');
-            } else {
-                window.alert('Request failed: cannot add page allocation config');
-            }
+        ).then((data) => {
+            navigate('/admin/config');
         });
     }
 
@@ -47,7 +45,7 @@ export default function ConfigPageAllocationAdd() {
                         }}/>
                 </div>
                 <div className="field">
-                    <label for="academic-year">Năm học</label>
+                    <label for="academic-year">Năm học {(academicYear - 0) + ' - ' + (academicYear + 1)}</label>
                     <input type="text" name="academic-year" id="academic-year" 
                         value={academicYear}
                         onChange={(e) => {
@@ -59,8 +57,10 @@ export default function ConfigPageAllocationAdd() {
                     <input type="date" name="allocdate" id="allocdate" 
                         value={allocDate}
                         onChange={(e) => {
-                            setAllocDate(new Date(e.target.value));
-                        }}/>
+                            const newDate = moment(new Date(e.target.value)).format('YYYY-MM-DD');
+                            setAllocDate(newDate);
+                        }}
+                    />
                 </div>
                 <div className="field">
                     <label for="pagenum">Số trang cấp phát</label>
