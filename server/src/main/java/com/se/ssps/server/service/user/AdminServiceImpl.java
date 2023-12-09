@@ -364,12 +364,12 @@ public class AdminServiceImpl implements AdminService{
         LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
         // HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
-        Double sumOfRequest = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
+        // Double sumOfRequest = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
         for (int i = 0 ; i < printerList.size() ; i++){
             TotalSquare newValue = new TotalSquare();
             Double requestOf = printingLogRepository.countRequestById(printerList.get(i).getId(), fromDate, toDate).doubleValue();
             newValue.setName(printerList.get(i).getPrinterName());
-            newValue.setStat(requestOf/sumOfRequest*100);
+            newValue.setStat(requestOf);
             returnList.add(newValue);
 
         }
@@ -405,7 +405,7 @@ public class AdminServiceImpl implements AdminService{
         HashMap<YearMonth, Integer> newMap = new HashMap<>();
         while (!from.isAfter(to)) {
             LocalDateTime fromDate = from.atDay(1).atStartOfDay();
-            LocalDateTime toDate = from.atEndOfMonth().atTime(23, 59, 59, 59);
+            LocalDateTime toDate = from.atEndOfMonth().atTime(23, 59, 59);
             Integer profitPerMonth = paymentLogRepository.countPageNums(fromDate, toDate) * pageUnitPriceRepo.getValue();
             newMap.put(from, profitPerMonth);
             from = from.plusMonths(1);
