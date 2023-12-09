@@ -368,7 +368,7 @@ public class AdminServiceImpl implements AdminService{
         for (int i = 0 ; i < printerList.size() ; i++){
             TotalSquare newValue = new TotalSquare();
             Double requestOf = printingLogRepository.countRequestById(printerList.get(i).getId(), fromDate, toDate).doubleValue();
-            newValue.setName(printerList.get(i).getPrinterName());
+            newValue.setName(printerList.get(i).getRoom().getRoomName()+printerList.get(i).getRoom().getBuilding().getBuildingName());
             newValue.setStat(requestOf);
             returnList.add(newValue);
 
