@@ -1,6 +1,5 @@
 package com.se.ssps.server.service.user;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.util.ArrayList;
@@ -8,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.antlr.v4.runtime.tree.pattern.TokenTagToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,8 +33,6 @@ import com.se.ssps.server.repository.PrinterRepository;
 import com.se.ssps.server.repository.PrintingLogRepository;
 import com.se.ssps.server.repository.RoomRepository;
 import com.se.ssps.server.stat.ChartValue;
-
-import ch.qos.logback.core.util.FileSize;
 
 @Service
 public class AdminServiceImpl implements AdminService{

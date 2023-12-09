@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.se.ssps.server.entity.Config;
-import com.se.ssps.server.entity.PageSize;
 import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
 import com.se.ssps.server.entity.PrintingLog;
@@ -22,8 +21,6 @@ import com.se.ssps.server.entity.configuration.PageUnitPrice;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.service.user.AdminService;
 import com.se.ssps.server.stat.ChartValue;
-
-import ch.qos.logback.core.joran.sanity.Pair;
 
 @CrossOrigin
 @RestController

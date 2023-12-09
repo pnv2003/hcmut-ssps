@@ -4,8 +4,6 @@ import java.util.List;
 import lombok.*;
 
 import com.se.ssps.server.entity.configuration.FileType;
-import com.se.ssps.server.entity.configuration.MaxFileSize;
-import com.se.ssps.server.entity.configuration.PageUnitPrice;
 
 @Getter
 @Setter
