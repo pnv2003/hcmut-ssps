@@ -349,7 +349,7 @@ public class AdminServiceImpl implements AdminService{
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         for (int i = 0 ; i < printerList.size() ; i++){
             TotalSquare newValue = new TotalSquare();
-            newValue.setName(printerList.get(i).getPrinterName());
+            newValue.setName(printerList.get(i).getRoom().getRoomName()+printerList.get(i).getRoom().getBuilding().getBuildingName());
             newValue.setStat(pagesNum(printerList.get(i).getId(), fromDate, toDate));
             returnList.add(newValue);
         }
