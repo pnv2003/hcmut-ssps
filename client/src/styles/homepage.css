@@ -46,7 +46,7 @@
     background-image: url("../assets/img/printer-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .homepage .about-us h2 {

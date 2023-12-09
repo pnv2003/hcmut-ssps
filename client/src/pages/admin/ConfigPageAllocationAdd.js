@@ -38,14 +38,14 @@ export default function ConfigPageAllocationAdd() {
                 <h3>Thêm lịch cấp phát</h3>
                 <div className="field">
                     <label for="semester">Học kì</label>
-                    <input type="text" name="semester" id="semester"
+                    <input type="number" name="semester" id="semester"
                         value={semester}
                         onChange={(e) => {
                             setSemester(e.target.value);
                         }}/>
                 </div>
                 <div className="field">
-                    <label for="academic-year">Năm học {(academicYear - 0) + ' - ' + (academicYear + 1)}</label>
+                    <label for="academic-year">Năm học {(academicYear - 0) + ' - ' + (academicYear - 0 + 1)}</label>
                     <input type="text" name="academic-year" id="academic-year" 
                         value={academicYear}
                         onChange={(e) => {

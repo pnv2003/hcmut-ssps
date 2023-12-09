@@ -5,10 +5,11 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import "./../../styles/table.css";
 import "./../../styles/config-page-allocation.css";
 import { useEffect, useRef, useState } from "react";
-import { sendGetRequest } from "../../helpers/request";
+import sendRequest, { sendGetRequest } from "../../helpers/request";
 import moment from "moment";
 import SearchBar from "../../components/SearchBar";
 import ButtonIcon from "../../components/ButtonIcon";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 export default function ConfigPageAllocation() {
     const headers = [
@@ -49,20 +50,36 @@ export default function ConfigPageAllocation() {
                 <td>{moment(pgalloc.allocDate).format('DD/MM/YYYY')}</td>
                 <td>{pgalloc.pageNum}</td>
                 {/* <td>{pgalloc.status}</td> */}
-                {/* <td>
+                <td>
                     <ButtonIcon
                         className="delete"
                         action={handleDelete}
                     >
-
+                        <FontAwesomeIcon icon={faTrashCan} color="#fff" />
                     </ButtonIcon>
-                </td> */}
+                </td>
             </tr>
         );
     });
 
-    // function handleDelete(e) {
-    // }
+    function handleDelete(e) {
+        const pgallocId = e.currentTarget.parentNode.parentNode.className;
+        if (window.confirm('Are you sure you want to delete this item?')) {
+            sendRequest(
+                'DELETE',
+                '/admin/page-allocation?id=' + pgallocId,
+                '',
+                'cannot delete page allocation config'
+            ).then((data) => {
+                // if (data.accepted) {
+                    const remaining = pageAllocs.filter((pgalloc) => (pgallocId != pgalloc.id));
+                    setPageAllocs(remaining);
+                // } else {
+                //     window.alert('Cannot delete this one!');
+                // }
+            });
+        }
+    }
 
     function handleSearch(input) {
         const filteredPageAllocs = allPageAllocs.current.filter((pgalloc) => {
