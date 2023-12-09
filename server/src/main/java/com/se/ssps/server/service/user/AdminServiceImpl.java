@@ -34,7 +34,7 @@ import com.se.ssps.server.repository.PaymentLogRepository;
 import com.se.ssps.server.repository.PrinterRepository;
 import com.se.ssps.server.repository.PrintingLogRepository;
 import com.se.ssps.server.repository.RoomRepository;
-import com.se.ssps.server.stat.TotalSquare;
+import com.se.ssps.server.stat.ChartValue;
 
 import ch.qos.logback.core.util.FileSize;
 
@@ -341,14 +341,14 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public List<TotalSquare> totalSquare(YearMonth from, YearMonth to) {
-        ArrayList<TotalSquare> returnList = new ArrayList<>();
+    public List<ChartValue> totalSquare(YearMonth from, YearMonth to) {
+        ArrayList<ChartValue> returnList = new ArrayList<>();
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
         LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
         // HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         for (int i = 0 ; i < printerList.size() ; i++){
-            TotalSquare newValue = new TotalSquare();
+            ChartValue newValue = new ChartValue();
             newValue.setName(printerList.get(i).getRoom().getRoomName()+printerList.get(i).getRoom().getBuilding().getBuildingName());
             newValue.setStat(pagesNum(printerList.get(i).getId(), fromDate, toDate));
             returnList.add(newValue);
@@ -357,18 +357,18 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public List<TotalSquare> printingRequest(YearMonth from, YearMonth to) {
+    public List<ChartValue> printingRequest(YearMonth from, YearMonth to) {
         // TODO Auto-generated method stub
-        ArrayList<TotalSquare> returnList = new ArrayList<>();
+        ArrayList<ChartValue> returnList = new ArrayList<>();
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
         LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
         // HashMap<String, Double> newMap = new HashMap<>();
         ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
         // Double sumOfRequest = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
         for (int i = 0 ; i < printerList.size() ; i++){
-            TotalSquare newValue = new TotalSquare();
+            ChartValue newValue = new ChartValue();
             Double requestOf = printingLogRepository.countRequestById(printerList.get(i).getId(), fromDate, toDate).doubleValue();
-            newValue.setName(printerList.get(i).getPrinterName());
+            newValue.setName(printerList.get(i).getRoom().getRoomName()+printerList.get(i).getRoom().getBuilding().getBuildingName());
             newValue.setStat(requestOf);
             returnList.add(newValue);
 
@@ -378,10 +378,12 @@ public class AdminServiceImpl implements AdminService{
 
     //theo tgian
     @Override
-    public Map<PageSize, Double> pageSizeByMonth(YearMonth from, YearMonth to) {
+    public List<ChartValue> pageSizeByMonth(YearMonth from, YearMonth to) {
+
+        ArrayList<ChartValue> returnList = new ArrayList<>();
         LocalDateTime fromDate = from.atDay(1).atStartOfDay();
         LocalDateTime toDate = to.atEndOfMonth().atTime(23, 59,59);
-        HashMap<PageSize, Double> newMap = new HashMap<>();
+        // HashMap<PageSize, Double> newMap = new HashMap<>();
         Double sumOfPageSize = (printingLogRepository.sumOfRequest(fromDate, toDate)).doubleValue();
 
         Double pageSizeOfA5 = printingLogRepository.countPageSize(PageSize.A5,fromDate,toDate).doubleValue();
@@ -389,28 +391,36 @@ public class AdminServiceImpl implements AdminService{
         Double pageSizeOfA3 = printingLogRepository.countPageSize(PageSize.A3,fromDate,toDate).doubleValue();
         Double pageSizeOfA2 = printingLogRepository.countPageSize(PageSize.A2,fromDate,toDate).doubleValue();
         Double pageSizeOfA1 = printingLogRepository.countPageSize(PageSize.A1,fromDate,toDate).doubleValue();
-       
-        newMap.put(PageSize.A5, pageSizeOfA5/sumOfPageSize*100);
-        newMap.put(PageSize.A4, pageSizeOfA4/sumOfPageSize*100);
-        newMap.put(PageSize.A3, pageSizeOfA3/sumOfPageSize*100);
-        newMap.put(PageSize.A2, pageSizeOfA2/sumOfPageSize*100);
-        newMap.put(PageSize.A1, pageSizeOfA1/sumOfPageSize*100);
+        
+        ChartValue a5Value = new ChartValue(PageSize.A5.toString(), pageSizeOfA5/sumOfPageSize*100);
+        ChartValue a4Value = new ChartValue(PageSize.A4.toString(), pageSizeOfA4/sumOfPageSize*100);
+        ChartValue a3Value = new ChartValue(PageSize.A3.toString(), pageSizeOfA3/sumOfPageSize*100);
+        ChartValue a2Value = new ChartValue(PageSize.A2.toString(), pageSizeOfA2/sumOfPageSize*100);
+        ChartValue a1Value = new ChartValue(PageSize.A1.toString(), pageSizeOfA1/sumOfPageSize*100);
 
-        return newMap;
+        returnList.add(a5Value);
+        returnList.add(a4Value);
+        returnList.add(a3Value);
+        returnList.add(a2Value);
+        returnList.add(a1Value);
+        
+        return returnList;
 
     }
 
     @Override
-    public Map<YearMonth, Integer> profitByMonth(YearMonth from, YearMonth to) {
-        HashMap<YearMonth, Integer> newMap = new HashMap<>();
+    public List<ChartValue> profitByMonth(YearMonth from, YearMonth to) {
+        // HashMap<YearMonth, Integer> newMap = new HashMap<>();
+        ArrayList<ChartValue> returnList = new ArrayList<>();
         while (!from.isAfter(to)) {
             LocalDateTime fromDate = from.atDay(1).atStartOfDay();
             LocalDateTime toDate = from.atEndOfMonth().atTime(23, 59, 59);
-            Integer profitPerMonth = paymentLogRepository.countPageNums(fromDate, toDate) * pageUnitPriceRepo.getValue();
-            newMap.put(from, profitPerMonth);
+            Double profitPerMonth = (double) paymentLogRepository.countPageNums(fromDate, toDate) * pageUnitPriceRepo.getValue();
+            ChartValue newValue = new ChartValue(from.getMonth().toString() + Integer.toString(from.getYear()) , profitPerMonth);
+            returnList.add(newValue);
             from = from.plusMonths(1);
         }
-        return newMap;
+        return returnList;
     }
 
 }

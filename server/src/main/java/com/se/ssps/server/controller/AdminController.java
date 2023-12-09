@@ -21,7 +21,7 @@ import com.se.ssps.server.entity.configuration.PageAllocation;
 import com.se.ssps.server.entity.configuration.PageUnitPrice;
 import com.se.ssps.server.entity.configuration.Room;
 import com.se.ssps.server.service.user.AdminService;
-import com.se.ssps.server.stat.TotalSquare;
+import com.se.ssps.server.stat.ChartValue;
 
 import ch.qos.logback.core.joran.sanity.Pair;
 
@@ -184,25 +184,25 @@ public class AdminController {
 //Thống kê
     //Thống kê số trang theo từng máy in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/pages-by-printer")
-    public List<TotalSquare> pageByPrinter(@RequestParam String from,@RequestParam String to){
+    public List<ChartValue> pageByPrinter(@RequestParam String from,@RequestParam String to){
         return adminService.totalSquare(YearMonth.parse(from), YearMonth.parse(to));
     }
 
     //Thống kê tỉ lệ số yêu cầu theo từng máy in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/request-by-printer")
-    public List<TotalSquare> requestByPrinter(@RequestParam String from,@RequestParam String to){
+    public List<ChartValue> requestByPrinter(@RequestParam String from,@RequestParam String to){
         return adminService.printingRequest(YearMonth.parse(from), YearMonth.parse(to));
     }
 
     //Thống kê tỉ lệ loại kích thước trang được yêu cầu in trong khoảng thời gian (from, to)
     @GetMapping("/statistics/size-by-month")
-    public Map<PageSize, Double> pageSizeByMonth(@RequestParam String from,@RequestParam String to){
+    public List<ChartValue> pageSizeByMonth(@RequestParam String from,@RequestParam String to){
         return adminService.pageSizeByMonth(YearMonth.parse(from), YearMonth.parse(to));
     }
 
     //Thống kê số tiền bán trang in đối với từng tháng trong khoảng thời gian (from, to)
     @GetMapping("/statistics/profit-by-month")
-    public Map<YearMonth, Integer> profitByMonth(@RequestParam String from,@RequestParam String to){
+    public List<ChartValue> profitByMonth(@RequestParam String from,@RequestParam String to){
         return adminService.profitByMonth(YearMonth.parse(from), YearMonth.parse(to));
     }
 }
