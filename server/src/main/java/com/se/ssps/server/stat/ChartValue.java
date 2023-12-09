@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TotalSquare {
+public class ChartValue {
     private String name;
     private Double stat;
 
