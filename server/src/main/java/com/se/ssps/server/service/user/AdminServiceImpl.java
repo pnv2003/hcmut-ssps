@@ -415,7 +415,11 @@ public class AdminServiceImpl implements AdminService{
         while (!from.isAfter(to)) {
             LocalDateTime fromDate = from.atDay(1).atStartOfDay();
             LocalDateTime toDate = from.atEndOfMonth().atTime(23, 59, 59);
-            Double profitPerMonth = (double) paymentLogRepository.countPageNums(fromDate, toDate) * pageUnitPriceRepo.getValue();
+            Integer pageNumeMonth = 0;
+            if (paymentLogRepository.countPageNums(fromDate, toDate) != null){
+                pageNumeMonth= paymentLogRepository.countPageNums(fromDate, toDate);
+            }
+            Double profitPerMonth = (double) (pageNumeMonth * pageUnitPriceRepo.getValue());
             ChartValue newValue = new ChartValue(from.getMonth().toString() + Integer.toString(from.getYear()) , profitPerMonth);
             returnList.add(newValue);
             from = from.plusMonths(1);
