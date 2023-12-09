@@ -5,8 +5,6 @@ import { nanoid } from "nanoid";
 import getOptions from "../helpers/option";
 
 export default function LocationBuildingAdd(props) {
-    // console.log(JSON.stringify(props.campuses) + ' <- got campuses');
-
     const campusOptions = getOptions(
         props.campuses.map((campus) => {
             return {
@@ -17,11 +15,19 @@ export default function LocationBuildingAdd(props) {
     );
 
     const [building, setBuilding] = useState('');
-    const [inCampus, setInCampus] = useState(campusOptions[0]?.id || 0);
-
-    // console.log(inCampus + ' <- inCampus init');
+    const [inCampus, setInCampus] = useState("0");
 
     function handleAddBuilding() {
+        if (inCampus === "0") {
+            window.alert("Please select a campus");
+            return;
+        }
+
+        if (building === "") {
+            window.alert("Please enter the building name");
+            return;
+        }
+
         props.addBuilding({
             // id: `building-${nanoid()}`,
             name: building,
@@ -48,6 +54,7 @@ export default function LocationBuildingAdd(props) {
                         setInCampus(e.target.value);
                         console.log(inCampus + ' <- inCampus now');
                     }}>
+                    <option value="0">-Chọn cơ sở-</option>
                     {campusOptions}
                 </select>
             </div>

@@ -7,6 +7,11 @@ export default function LocationCampusAdd(props) {
     const [campus, setCampus] = useState('');
 
     function handleAddCampus() {
+        if (campus === "") {
+            window.alert("Please enter the campus name");
+            return;
+        }
+
         props.addCampus({
             // id: `campus-${nanoid()}`,
             name: campus

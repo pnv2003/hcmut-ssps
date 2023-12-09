@@ -9,8 +9,8 @@ export default function SearchBar(props) {
             <input type="search" name="search" id="search" placeholder="Tìm kiếm"
                 value={searchTerm} 
                 onChange={(e) => {
-                    setSearchTerm(e.target.value)
-                    props.handleSearch(e.target.value);
+                    setSearchTerm(e.target.value);
+                    props.handleSearch(e.target.value.toLowerCase());
                 }}/>
         </div>
     )

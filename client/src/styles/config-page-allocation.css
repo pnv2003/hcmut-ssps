@@ -8,4 +8,10 @@
 .config-page-allocation .util {
     display: flex;
     align-items: center;
+    margin-left: auto;
+    gap: 2rem;
+}
+
+.config-page-allocation .util input {
+    height: 3rem !important;
 }

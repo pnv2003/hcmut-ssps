@@ -7,7 +7,7 @@
 .search-bar input {
     height: 2rem !important;
     border-radius: 10px !important;
-    min-width: 20rem !important;
+    min-width: 30rem !important;
 }
 
 .search-bar span {

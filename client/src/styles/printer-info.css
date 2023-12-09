@@ -10,7 +10,10 @@
     gap: 1rem;
 }
 
-.printer-info .search-bar,
-.printer-info .filter {
+.printer-info .search-bar {
     flex: 1;
+}
+
+.printer-info input {
+    height: 3rem !important;
 }

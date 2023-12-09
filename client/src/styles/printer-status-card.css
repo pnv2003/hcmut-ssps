@@ -25,6 +25,10 @@
     border-radius: 10px 10px 0 0;
 }
 
+.printer-status-card .head span {
+    font-size: 1.7rem;
+}
+
 .printer-status-card .head.success {
     background-color: #4BD396;
 }
@@ -66,6 +70,7 @@
 
 .printer-status-card .stat .figure {
     font-size: 2rem;
+    text-align: right;
 }
 
 .printer-status-card .meters {
@@ -78,4 +83,8 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.printer-status-card meter {
+    height: 2rem !important;
 }

@@ -5,7 +5,7 @@ import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 export default function FileTypeList(props) {
     const headers = [
-        { name: 'ID', class: 'id'},
+        // { name: 'ID', class: 'id'},
         { name: 'Phần mở rộng', class: 'extension'},
         // { name: 'Loại file', class: 'type' }
     ];

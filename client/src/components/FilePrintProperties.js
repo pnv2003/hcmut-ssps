@@ -3,9 +3,12 @@ import "./../styles/file-print-properties.css";
 import { useState } from "react";
 import getOptions from "../helpers/option";
 import Button from "./Button";
+import dump, { dumpObject } from "../helpers/dump";
 
 export default function FilePrintProperties(props) {
     const pageSizes = [
+        { name: 'A1', width: 23.39, height: 33.11 },
+        { name: 'A2', width: 16.54, height: 23.39 },
         { name: 'A3', width: 11.69, height: 16.54 },
         { name: 'A4', width: 8.27, height: 11.69 },
         { name: 'A5', width: 5.83, height: 8.27 }
@@ -14,19 +17,15 @@ export default function FilePrintProperties(props) {
     const sidedList = [
         { name: 'In một mặt', value: false },
         { name: 'In hai mặt', value: true }
-    ]
+    ];
 
     const isLandscapeOptions = [
         { name: 'Trang nằm dọc', value: false },
         { name: 'Trang nằm ngang', value: true }
-    ]
-
-    // const pageSizeOptions = pageSizes.map((size) => 
-    //     <option key={`size-${nanoid()}`} value={size.name}>{size.name} ({size.width}'' x {size.height}'')</option>
-    // );
+    ];
 
     const [numCopies, setNumCopies] = useState(props.currentFile?.config.numCopies || 0);
-    const [pageSize, setPageSize] = useState(props.currentFile?.config.pageSize || pageSizes[0].name);
+    const [pageSize, setPageSize] = useState(props.currentFile?.config.pageSize || pageSizes[3].name);
     const [isDoubleSided, setIsDoubleSided] = useState(props.currentFile?.config.isDoubleSided || sidedList[0].value);
     const [isLandscape, setIsLandscape] = useState(props.currentFile?.config.isLandscape || false);
     const [pageNum, setPageNum] = useState(props.currentFile?.config.pageNum || 0);
@@ -52,8 +51,10 @@ export default function FilePrintProperties(props) {
     }
 
     return (
+        <>
+        <h3 className="file-to-config">Cấu hình file: {props.currentFile?.name || ''}</h3>
         <div className="file-print-properties">
-            <h3>Cấu hình file: {props.currentFile?.name || ''}</h3>
+            
             <div className="field">
                 <label htmlFor="num-copies">Số bản</label>
                 <input 
@@ -123,5 +124,6 @@ export default function FilePrintProperties(props) {
             </div>
             
         </div>
+        </>
     );
 }

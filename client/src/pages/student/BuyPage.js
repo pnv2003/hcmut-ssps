@@ -5,9 +5,11 @@ import Button from "../../components/Button";
 import sendRequest, { sendGetRequest } from "../../helpers/request";
 import { useAuth } from "../../contexts/AuthContext";
 import { dumpObject } from "../../helpers/dump";
+import { useNavigate } from "react-router-dom";
 
 export default function BuyPage() {
     const { getUser } = useAuth();
+    const navigate = useNavigate();
 
     const [unitPrice, setUnitPrice] = useState(0);
 
@@ -51,6 +53,8 @@ export default function BuyPage() {
                 paymentMethod: paymentMethod
             }
         );
+
+        navigate('/student/buy/success');
     }
 
     const bankForm = (

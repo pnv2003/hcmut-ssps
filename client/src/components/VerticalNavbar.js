@@ -14,9 +14,9 @@ export default function VerticalNavbar(props) {
         { text: 'Cấp phát', link: '/admin/config/pgalloc', icon: <FontAwesomeIcon icon={faCalendar} /> },
         { text: 'Tài liệu', link: '/admin/config/file', icon: <FontAwesomeIcon icon={faFile} /> },
         { text: 'Vị trí', link: '/admin/config/location', icon: <FontAwesomeIcon icon={faLocationDot} /> },
-        { text: 'Thống kê', link: '/admin/stat', icon: <FontAwesomeIcon icon={faChartSimple} /> },
+        // { text: 'Thống kê', link: '/admin/stat', icon: <FontAwesomeIcon icon={faChartSimple} /> },
         { text: 'Lịch sử', link: '/admin/log', icon: <FontAwesomeIcon icon={faClipboard} /> }
-    ]
+    ];
 
     const activeStyle = ({ isActive }) => (
         {
