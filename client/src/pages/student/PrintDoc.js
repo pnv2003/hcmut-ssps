@@ -52,7 +52,8 @@ export default function PrintDoc() {
             const file = fileList[index];
 
             let pageNumA4 = file.config.pageNum;
-            switch (file.pageSize) {
+
+            switch (file.config.pageSize) {
                 case "A1": 
                     pageNumA4 *= 8;
                     break;

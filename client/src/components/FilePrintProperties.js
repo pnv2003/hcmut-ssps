@@ -16,15 +16,15 @@ export default function FilePrintProperties(props) {
     const sidedList = [
         { name: 'In một mặt', value: false },
         { name: 'In hai mặt', value: true }
-    ]
+    ];
 
     const isLandscapeOptions = [
         { name: 'Trang nằm dọc', value: false },
         { name: 'Trang nằm ngang', value: true }
-    ]
+    ];
 
     const [numCopies, setNumCopies] = useState(props.currentFile?.config.numCopies || 0);
-    const [pageSize, setPageSize] = useState(props.currentFile?.config.pageSize || pageSizes[0].name);
+    const [pageSize, setPageSize] = useState(props.currentFile?.config.pageSize || pageSizes[3].name);
     const [isDoubleSided, setIsDoubleSided] = useState(props.currentFile?.config.isDoubleSided || sidedList[0].value);
     const [isLandscape, setIsLandscape] = useState(props.currentFile?.config.isLandscape || false);
     const [pageNum, setPageNum] = useState(props.currentFile?.config.pageNum || 0);
