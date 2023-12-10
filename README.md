@@ -99,9 +99,47 @@
 <a id="prerequisites"></a>
 ### Điều kiện
 
+Trước khi sử dụng ứng dụng, bạn cần cài đặt trước một số phần mềm sau:
+
+- [Node.js](https://nodejs.org/en) (phiên bản LTS)
+- [Apache Maven](https://maven.apache.org/download.cgi) (Link - binary zip archive)
+- [MySQL](https://dev.mysql.com/downloads/installer/) (phiên bản Community)
+
 <a id="installation"></a>
 ### Cài đặt
 
+Vì ứng dụng chưa được triển khai tên miền, bạn có thể sử dụng nó bằng localhost với các bước sau:
+
+1. Truy cập đường dẫn [https://github.com/phuongngo0320/hcmut-ssps/releases](https://github.com/phuongngo0320/hcmut-ssps/releases) và chọn phiên bản của ứng dụng.
+
+2. Tải về source code và giải nén, lưu vào nơi bạn muốn
+
+3. Mở một chương trình shell (Command Prompt, Powershell, Bash...) 
+
+4. Thay đổi đường dẫn tới thư mục của ứng dụng (hcmut-ssps) bằng lệnh `cd <dir>`
+
+5. Chạy các lệnh sau để khởi động chương trình phía client (giao diện ứng dụng sẽ tự động hiển thị sau bước này)
+
+```bash
+cd client
+npm install
+npm start
+```
+
+6. Tại vị trí thư mục gốc của ứng dụng (`hcmut-ssps`), mở file cấu hình ứng dụng tại đường dẫn `server/src/main/resources/application.properties`, thay đổi các dòng sau với username và password của tài khoản MySQL mà bạn muốn sử dụng:
+
+```properties
+spring.datasource.username=...
+spring.datasource.password=...
+```
+
+7. Chạy các lệnh sau để khởi động chương trình phía server
+
+```bash
+cd server
+mvn clean install
+mvn spring-boot:run
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -116,6 +154,48 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+__Lưu ý__: vì ứng dụng vẫn đang trong giai đoạn phát triển nên một số chức năng sẽ không được đầy đủ như mong muốn
+
+### Tạo tài khoản để sử dụng ứng dụng
+
+Vì ứng dụng có tính năng xác thực nhưng chưa có tính năng đăng ký tài khoản, nên bạn cần tạo tài khoản thủ công trong cơ sở dữ liệu với các bước sau:
+
+1. Mở ứng dụng MySQL Workbench (phần mềm đi kèm khi tải MySQL).
+
+2. Đăng nhập vào cơ sở dữ liệu bạn muốn (mặc định: Local Instance MySQL80).
+
+3. Chọn File -> New Query Tab
+
+4. Sao chép các câu lệnh sau vào tab vừa mở, sau đó nhấn Execute (biểu tượng sấm sét)
+
+```sql
+USE cnpm_db;
+INSERT INTO `users` (`id`,`first_name`,`is_admin`,`last_name`,`passw`,`username`) VALUES (1,'Tuan',0,'Kieu','123','tuan');
+INSERT INTO `users` (`id`,`first_name`,`is_admin`,`last_name`,`passw`,`username`) VALUES (2,'Phuong',1,'Ngo','321','phuong');
+INSERT INTO `student` (`id`,`balance`,`mssv`,`user_id`) VALUES (1,2000,2110642,1);
+INSERT INTO `admin` (`admin_id`) VALUES (2);
+```
+
+Các câu lệnh trên tạo hai tài khoản:
+
+- Tài khoản sinh viên:
+
+    - Username: tuan
+    - Password: 123
+
+- Tài khoản nhân viên quản lý:
+
+    - Username: phuong
+    - Password: 321
+
+Tài khoản sinh viên có sẵn số dư page balance là 2000.
+
+### Nhóm chức năng của sinh viên
+
+#### In tài liệu
+
+### Nhóm chức năng của nhân viên quản lý (SPSO)
+
 <!-- CONTACT -->
 <a id="contact"></a>
 
@@ -125,8 +205,6 @@ Thành viên của dự án:
 
 - Ngô Văn Phương - phuong.ngo0320@hcmut.edu.vn
 - Kiều Đặng Quốc Tuấn - tuan.kieudangquoc03@hcmut.edu.vn
-- Trần Hoàng Sơn - son.tranhoang@hcmut.edu.vn
-- Nguyễn Lập Quân - quan.nguyenlap2802@hcmut.edu.vn
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
