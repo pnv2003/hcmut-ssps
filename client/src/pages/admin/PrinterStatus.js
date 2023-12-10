@@ -17,7 +17,7 @@ export default function PrinterStatus() {
                 const init = data.map((printer) => {
                     return {
                         id: printer.id,
-                        name: printer.name,
+                        name: printer.printerName,
                         brand: printer.firm,
                         description: printer.description,
                         roomId: printer.room.id,
@@ -40,9 +40,6 @@ export default function PrinterStatus() {
     function handleToggle(id) {
         const newPrinterList = printerList.map((printer) => {
             if (printer.id === id) {
-
-                dump(printer.roomId, 'room idddddddddd');
-
                 sendRequest(
                     'POST',
                     '/admin/printer?room-id=' + printer.roomId,
