@@ -70,6 +70,11 @@
 
 Ứng dụng này được hiện thực để phục vụ cho môn học Công nghệ phần mềm, thuộc về Trường Đại học Bách khoa, ĐHQG TP.HCM. Dự án hướng đến mục tiêu xây dựng nên một trang web cung cấp dịch vụ in ấn tiện lợi cho sinh viên của trường.
 
+Thành viên phát triển dự án:
+
+- Ngô Văn Phương - phát triển frontend
+- Kiều Đặng Quốc Tuấn - phát triển backend
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -110,7 +115,7 @@ Trước khi sử dụng ứng dụng, bạn cần cài đặt trước một s�
 
 Vì ứng dụng chưa được triển khai tên miền, bạn có thể sử dụng nó bằng localhost với các bước sau:
 
-1. Truy cập đường dẫn [https://github.com/phuongngo0320/hcmut-ssps/releases](https://github.com/phuongngo0320/hcmut-ssps/releases) và chọn phiên bản của ứng dụng.
+1. Truy cập đường dẫn [https://github.com/phuongngo0320/hcmut-ssps/releases](https://github.com/phuongngo0320/hcmut-ssps/releases/tag/v1.0.0).
 
 2. Tải về source code và giải nén, lưu vào nơi bạn muốn
 
@@ -141,6 +146,20 @@ mvn clean install
 mvn spring-boot:run
 ```
 
+8. Sử dụng dữ liệu mẫu trong file `cnpm_db.sql`
+
+- Mở phần mềm MySQL Workbench (đi kèm khi tải MySQL Community)
+
+- Đăng nhập vào cơ sở dữ liệu bạn muốn (mặc định: Local Instance MySQL80).
+
+- Chọn __Server -> Data Import__ 
+
+- Chọn __Import from Self-Contained File__, chọn đường dẫn tới file `cnpm_db.sql`
+
+- Chọn Default Target Schema là `cnpm_db`
+
+- Mở Tab __Import Progress__ và nhấn __Start Import__.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -156,27 +175,9 @@ mvn spring-boot:run
 
 __Lưu ý__: vì ứng dụng vẫn đang trong giai đoạn phát triển nên một số chức năng sẽ không được đầy đủ như mong muốn
 
-### Tạo tài khoản để sử dụng ứng dụng
+### Tài khoản để sử dụng ứng dụng
 
-Vì ứng dụng có tính năng xác thực nhưng chưa có tính năng đăng ký tài khoản, nên bạn cần tạo tài khoản thủ công trong cơ sở dữ liệu với các bước sau:
-
-1. Mở ứng dụng MySQL Workbench (phần mềm đi kèm khi tải MySQL).
-
-2. Đăng nhập vào cơ sở dữ liệu bạn muốn (mặc định: Local Instance MySQL80).
-
-3. Chọn File -> New Query Tab
-
-4. Sao chép các câu lệnh sau vào tab vừa mở, sau đó nhấn Execute (biểu tượng sấm sét)
-
-```sql
-USE cnpm_db;
-INSERT INTO `users` (`id`,`first_name`,`is_admin`,`last_name`,`passw`,`username`) VALUES (1,'Tuan',0,'Kieu','123','tuan');
-INSERT INTO `users` (`id`,`first_name`,`is_admin`,`last_name`,`passw`,`username`) VALUES (2,'Phuong',1,'Ngo','321','phuong');
-INSERT INTO `student` (`id`,`balance`,`mssv`,`user_id`) VALUES (1,2000,2110642,1);
-INSERT INTO `admin` (`admin_id`) VALUES (2);
-```
-
-Các câu lệnh trên tạo hai tài khoản:
+Các tài khoản có sẵn trong dữ liệu mẫu:
 
 - Tài khoản sinh viên:
 
@@ -192,16 +193,133 @@ Tài khoản sinh viên có sẵn số dư page balance là 2000.
 
 ### Nhóm chức năng của sinh viên
 
+__Chú ý__: Đăng nhập với username `tuan` và password `123` để sử dụng nhóm chức năng này
+
 #### In tài liệu
 
+Ở giao diện __In tài liệu__, bạn có thể gửi một yêu cầu in tới server với các bước sau:
+
+1. Đăng tải file (có thể đăng nhiều file một lúc)
+
+    - Các ràng buộc về định dạng và kích thước được hiển thị trên giao diện (có thể cấu hình phía nhân viên), nếu vi phạm thì file sẽ bị xóa
+
+    - Có thể xóa file khi cần
+
+2. Thiết lập cấu hình in
+
+    - Có thể chọn biểu tượng Info để xem cấu hình đang được áp dụng cho từng file
+
+    - Có thể chọn một file và điền vào biểu mẫu để thiết lập cấu hình mới (có 2 lựa chọn: "Lưu" - áp dụng cho file đang chọn, "Áp dụng cho tất cả" - áp dụng cho toàn bộ file đã đăng)
+
+    - Số trang in có thể vượt quá số dư (được hiển thị trên giao diện), nếu vậy thì yêu cầu in sẽ bị từ chối
+
+    - Đơn vị trang in mặc định là A4: 
+
+        - 1 trang A1 = 8 trang A4
+        - 1 trang A2 = 4 trang A4
+        - 1 trang A3 = 2 trang A4
+        - 1 trang A5 = 0.5 trang A4 (số thập phân được làm tròn lên)
+
+3. Chọn vị trí máy in 
+
+    - Lưu ý rằng máy in đang ngưng hoạt động sẽ không được hiển thị
+
+4. Nhấn __Xác nhận yêu cầu__
+
+__Chú ý__: Tính năng tự động đếm số trang, chọn trang cần in hay bản in xem trước chưa được hiện thực.
+
+#### Mua trang in
+
+Ở giao diện __Mua trang in__, bạn có thể gửi một yêu cầu mua trang tới server với các bước sau:
+
+1. Chọn phương thức thanh toán
+
+2. Chọn số trang cần mua
+
+    Hệ thống sẽ tự động tính toán tổng tiền dựa trên đơn giá (có thể được cấu hình phía nhân viên)
+
+3. Xác nhận thanh toán
+
+__Chú ý__: Tính năng liên kết tới hệ thống thanh toán trực tuyến chưa được hiện thực.
+
+#### Lịch sử in
+
+Ở giao diện __Lịch sử in__, bạn có thể xem lại toàn bộ các yêu cầu in đã gửi từ giao diện __In tài liệu__.
+
 ### Nhóm chức năng của nhân viên quản lý (SPSO)
+
+__Chú ý__: Đăng nhập với username `phuong` và password `321` để sử dụng nhóm chức năng này
+
+#### Dashboard
+
+Ở giao diện __Dashboard__, bạn có thể xem các thống kê liên quan tới hệ thống, bao gồm:
+
+- Số trang A4 đã in ứng với từng máy in
+
+- Số yêu cầu in được gửi tới từng máy in
+
+- Phần trăm số trang đã in ứng với từng kích thước trang
+
+- Doanh thu hằng tháng từ giao dịch mua trang in
+
+#### Quản lý máy in
+
+Ở giao diện __Quản lý máy in__, bạn có thể sử dụng các chức năng như:
+
+- Thêm máy in mới
+
+- Xóa máy in
+
+- Chỉnh sửa máy in
+
+- Tìm kiếm máy in
+
+#### Thông số máy in
+
+Ở giao diện __Thông số máy in__, bạn có thể sử dụng các chức năng như:
+
+- Xem các thông số hoạt động của máy in (lượt in, diện tích giấy in, hiệu suất)
+
+- Bật/tắt máy in
+
+#### Cấu hình cấp phát
+
+Ở giao diện __Cấp phát__, bạn có thể sử dụng các chức năng như:
+
+- Thêm lịch cấp phát trang in
+
+- Xóa lịch cấp phát trang in
+
+#### Cấu hình liên quan tới file
+
+Ở giao diện __Cấu hình file__, bạn có thể sử dụng các chức năng như:
+
+- Thêm/xóa định dạng file cho phép
+
+- Chỉnh sửa kích thước file lớn nhất cho phép
+
+- Chỉnh sửa đơn giá trang in
+
+#### Cấu hình vị trí
+
+Ở giao diện __Vị trí__, bạn có thể sử dụng các chức năng như:
+
+- Thêm/xóa cơ sở
+
+- Thêm/xóa tòa tại cơ sở được chọn
+
+- Thêm/xóa phòng tại tòa được chọn
+
+#### Lịch sử in & thanh toán
+
+Ở giao diện __Vị trí__, bạn có thể xem lại toàn bộ các yêu cầu in được thực hiện tại giao diện __In tài liệu__ và yêu cầu thanh toán được thực hiện tại giao diện __Mua trang in__.
 
 <!-- CONTACT -->
 <a id="contact"></a>
 
 ## Liên hệ
 
-Thành viên của dự án:
+Mọi thắc mắc, báo lỗi, đề xuất tính năng cho ứng dụng xin hay liên hệ qua địa chỉ email:
 
 - Ngô Văn Phương - phuong.ngo0320@hcmut.edu.vn
 - Kiều Đặng Quốc Tuấn - tuan.kieudangquoc03@hcmut.edu.vn
