@@ -4,8 +4,10 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.se.ssps.server.dto.PrinterDto;
 import com.se.ssps.server.entity.Config;
 import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
@@ -33,6 +35,8 @@ public interface AdminService {
     public Map<String, Boolean> deletePrinter(Integer id);
 
     public Map<String, Boolean> updatePrinter(Printer newPrinter, Integer roomId);
+
+    public List<PrinterDto> findAllPrinterStat();
 //=====================================================================================
 //================================================================================
 //Thao tác đối với cơ sởx

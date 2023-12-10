@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.se.ssps.server.dto.PrinterDto;
 import com.se.ssps.server.entity.Config;
 import com.se.ssps.server.entity.PaymentLog;
 import com.se.ssps.server.entity.Printer;
@@ -66,6 +67,10 @@ public class AdminController {
         return adminService.findAllPrinter();
     }
 
+    @GetMapping("/printer-stat")
+    public List<PrinterDto> listOfPrinterWithStat(){
+        return adminService.findAllPrinterStat();
+    }
     //Thêm một máy in mới
     @PostMapping("/printer")
     public Printer addPrinter(@RequestParam(name = "room-id") Integer room_id, @RequestBody Printer newPrinter){

@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.se.ssps.server.dto.PrinterDto;
 import com.se.ssps.server.entity.Config;
 import com.se.ssps.server.entity.PageSize;
 import com.se.ssps.server.entity.PaymentLog;
@@ -422,5 +424,18 @@ public class AdminServiceImpl implements AdminService{
         }
         return returnList;
     }
+
+    @Override
+    public List<PrinterDto> findAllPrinterStat() {
+        ArrayList<PrinterDto> returnList = new ArrayList<>();
+        ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
+        for (Printer printer : printerList) {
+            PrinterDto newValue = new PrinterDto(printer);
+            newValue.setSquarePringting(printingLogRepository.totalSquare(printer.getId()));
+            returnList.add(newValue);
+        }
+        return returnList;
+    }
+
 
 }
