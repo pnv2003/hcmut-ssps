@@ -107,6 +107,7 @@ Thành viên phát triển dự án:
 Trước khi sử dụng ứng dụng, bạn cần cài đặt trước một số phần mềm sau:
 
 - [Node.js](https://nodejs.org/en) (phiên bản LTS)
+- [Java](https://www.oracle.com/java/technologies/downloads/) (phiên bản JDK 21)
 - [Apache Maven](https://maven.apache.org/download.cgi) (Link - binary zip archive)
 - [MySQL](https://dev.mysql.com/downloads/installer/) (phiên bản Community)
 
