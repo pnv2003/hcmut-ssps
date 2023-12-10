@@ -124,7 +124,7 @@ Vì ứng dụng chưa được triển khai tên miền, bạn có thể sử d
 
 4. Thay đổi đường dẫn tới thư mục của ứng dụng (hcmut-ssps) bằng lệnh `cd <dir>`
 
-5. Chạy các lệnh sau để khởi động chương trình phía client (giao diện ứng dụng sẽ tự động hiển thị sau bước này)
+5. Tại thư mục gốc, chạy các lệnh sau để khởi động chương trình phía client (giao diện ứng dụng sẽ tự động hiển thị sau bước này)
 
 ```bash
 cd client
@@ -139,7 +139,7 @@ spring.datasource.username=...
 spring.datasource.password=...
 ```
 
-7. Chạy các lệnh sau để khởi động chương trình phía server
+7. Tại thư mục gốc, chạy các lệnh sau để khởi động chương trình phía server
 
 ```bash
 cd server
