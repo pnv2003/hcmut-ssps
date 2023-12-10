@@ -1,0 +1,623 @@
+commit d79480ef9128a69a965560b16dcee79ca5122f3c
+Merge: f7afe38 bb1b6c4
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 9 15:38:40 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit f7afe38ed8eaa6253c1f802e65517dc834807b53
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 9 15:37:05 2023 +0700
+
+    remove unused lib
+
+commit bb1b6c4afc2bd4138e59546657954ac1c6148933
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 9 14:53:19 2023 +0700
+
+    Add charts
+
+commit 65dee6b47cb385a324bdc9091b42199f5dea33ce
+Merge: 2017693 d28211e
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 9 13:49:03 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit d28211e43532711940d107ef6c6a4395a0d48cd4
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 9 13:48:48 2023 +0700
+
+    fix 4th chart
+
+commit 2017693081afc2e909c20da11563eda7eb477781
+Merge: 534df5b 55425f3
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 9 13:27:14 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit 55425f38c3507da2628cb6f9df2470f4a2a4fc05
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 9 13:00:06 2023 +0700
+
+    change return value of 3rd and 4th chart: map -> list
+
+commit ebe0d9c8e2d37f7faa6e11da7ef1960d9602c3d8
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 9 12:38:51 2023 +0700
+
+    change printer name in chart 2nd :D :printer name -> roomName + buildingName
+
+commit 534df5b384e5e41333e3832806faf3004a7fa37a
+Merge: a9a9bfc cba2ab4
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 9 12:37:24 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit cba2ab4e48337d4f8fbe7d9e0b88bb9575323d56
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 9 12:35:32 2023 +0700
+
+    change printer name in chart :printer name -> roomName + buildingName
+
+commit a9a9bfc41e23c15578274128b3214423fb80f3ca
+Merge: df28761 44a2412
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 9 12:09:46 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit 44a2412f4eb56a0c0d6af3eaa4d8aa607ed007bc
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 9 12:09:24 2023 +0700
+
+    change return value of chart3 : %  -> num
+
+commit df28761b42da000186ae2a46f93778af1c0a806c
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 9 11:35:09 2023 +0700
+
+    Fix page size options
+
+commit fdf4a59417b9954d6038e8a3e8079da4c7d1b68d
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 9 11:28:12 2023 +0700
+
+    Fix page count, relative to A4
+
+commit 381a64881b40da06b0956f679a47e58dd6035bcb
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Fri Dec 8 05:36:24 2023 +0700
+
+    change return value for 2 chart
+
+commit 4aab2dbe261c7715c944f2c92f71943f8a48edc2
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Fri Dec 8 05:31:27 2023 +0700
+
+    chang return for chart
+
+commit 347b1f7ee88144d9b6841b7fa12326258edbc5e3
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Fri Dec 8 05:02:42 2023 +0700
+
+    fix stat
+
+commit 05c64fb47670553f3999c0a887692fc3800a5e64
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 22:30:41 2023 +0700
+
+    Reset stat
+
+commit 3592159ca258ac6ecc6657cc9767e0f2c676d44a
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 22:14:52 2023 +0700
+
+    Finish student services
+
+commit a64f4e06e64857bbf2cdadb4aaf741c426d46b4f
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 21:59:25 2023 +0700
+
+    change request type
+
+commit 8b3ea29bee4967c7522c2466b3c269c97d5f9bbf
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 21:58:39 2023 +0700
+
+    chang request type
+
+commit 273e6ee3b029267abb285e3dbbe4ebb4282fa090
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 21:43:04 2023 +0700
+
+    add status for printer and update update printer
+
+commit 718a3f0db374aa31aabbeb2af7ed61e9900ee774
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 10:46:38 2023 +0700
+
+    change jdbc to jpa in some points
+
+commit cfb98d23a7a547ebf61eda1af7cf3a3ba79591e0
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 10:45:42 2023 +0700
+
+    Fix
+
+commit 5afce85a30e7a0759f09ba302d96b5ef8017dd20
+Merge: 49cea08 dcf2760
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 07:52:25 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit dcf2760bd91914799b5d6d304b8fe1c1a82c40e5
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 07:52:05 2023 +0700
+
+    fix set page unit price
+
+commit 49cea08faf52b22c002a8a508839c6b6d8cbee97
+Merge: 9be729c 10812a3
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 07:40:56 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit 10812a35ec3705dfa653da8f5bab3acda66a38f5
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 07:40:06 2023 +0700
+
+    fix return config
+
+commit 9be729c24aeac96bbf608f04295555f22fe51d27
+Merge: 09d320f 075698f
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 07:31:57 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit 075698f228d9ce571a1f7b8d8fd6a4b025942bc2
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 07:31:00 2023 +0700
+
+    fix max file size return
+
+commit 09d320f902a99d0187222087eb31d9390f1863fc
+Merge: fff27f2 d297f67
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 07:18:05 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit d297f673faae6df991252737e847ad166762ac0c
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 07:17:49 2023 +0700
+
+    fix return type
+
+commit fff27f28a49dd6cada1c9babde6f1b3a3da0e143
+Merge: 6f34e7d 7994300
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 07:09:21 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit 7994300b1d8356300f1a0b5847a5a8d5785fa419
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 07:09:07 2023 +0700
+
+    update max file size
+
+commit 6f34e7d212bef278e4db4f14b28f5f13adc013b1
+Merge: 7b4cb98 b01ab98
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 06:33:08 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit b01ab989367b3b692eb50bc3ac9c631a32c2ef2c
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 06:32:30 2023 +0700
+
+    fix config
+
+commit 7b4cb9839d16214d5330bc4e581a169258e35840
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Dec 7 06:17:33 2023 +0700
+
+    Make some UI stuff
+
+commit 2aba5275bdd2053880c052572f0dac5b0466fccd
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 05:36:38 2023 +0700
+
+    fix update Printer
+
+commit bc909970917702b6f20857a9ac5022e1cf8a5331
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 03:59:25 2023 +0700
+
+    update delete printer
+
+commit 207414ddce0df596652f9658ff42d62a8496615d
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 03:52:03 2023 +0700
+
+    fix add printer
+
+commit ed07e016d461661df3f6a1a03272f2f4f13b021c
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 03:45:36 2023 +0700
+
+    fix update room
+
+commit 379ca0a702aeeafac1cf15904f68579929658b39
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 03:29:04 2023 +0700
+
+    add havePrinter to Room entity and update add room, add printer
+
+commit 81db71dc75528111a9b8d992726c8a93f460ea18
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 03:18:44 2023 +0700
+
+    validate add printer
+
+commit 87b0aa00a57da0615c4f4d67c720bf5be23be740
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 03:11:05 2023 +0700
+
+    show printer of room
+
+commit b106878aad4668c2833e6024ffba680a6af01d04
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Dec 7 02:53:08 2023 +0700
+
+    fix update printer
+
+commit ade74052fe00259c1503e15c92cdff6ba4bbbb23
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Wed Dec 6 16:29:38 2023 +0700
+
+    fix chart data and page unit price repository
+
+commit aa63d4374c281f1e7da6401aa9857753716c36a5
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Wed Dec 6 16:16:46 2023 +0700
+
+    update readme server
+
+commit b05ff151062b8ac4df160325edeea46697c57a1a
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Wed Dec 6 13:41:54 2023 +0700
+
+    done 1 more chart and fix the PageUnit... but not test yet...
+
+commit 6ec66ae8da8159099c157c013ea8311b23da9056
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Wed Dec 6 13:24:23 2023 +0700
+
+    done 3 chart, still fixing setPagePrice :'(
+
+commit 9a188983d171c5fb397d95f6ec03c73632505be5
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Tue Dec 5 16:43:26 2023 +0700
+
+    fix add printer
+
+commit 9521d15e06262c432ce76a904c3faa8ff11026ab
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Tue Dec 5 14:57:48 2023 +0700
+
+    nothing :D
+
+commit d9162760749d8b8a87c43787eab46dc5a7b9f46b
+Merge: 792c9f0 2f32d47
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Dec 5 14:37:46 2023 +0700
+
+    Final merge
+
+commit 792c9f0446ddf4dd8ec2255fe351d26225f0e466
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Dec 5 14:35:32 2023 +0700
+
+    Start to merge backend, the last time
+
+commit 2f32d47e82cfd5c9d81359d851284ae83038ec28
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Tue Dec 5 14:32:57 2023 +0700
+
+    ...
+
+commit 60c4f9354fab0ab66a9f2966257d8070fab3067f
+Merge: 8e8616a 8ea79e4
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Dec 5 13:13:57 2023 +0700
+
+    Merge branch 'backend' into develop
+
+commit 8ea79e41fec01895bf0601087cbbb0d5bfe4b549
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Tue Dec 5 13:12:38 2023 +0700
+
+    ...
+
+commit 8e8616a517671ffc58cda1411dcb85ff8876c67b
+Merge: 483a840 60efa23
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Dec 5 13:10:33 2023 +0700
+
+    Fix location config
+
+commit 483a8403c3f2a6b6a17b70db34ce80221ca96cf4
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Dec 5 12:36:03 2023 +0700
+
+    Add location config
+
+commit 60efa238127416ec7309496539a0e7bbe1d56121
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Tue Dec 5 12:34:52 2023 +0700
+
+    test delete Campus 2
+
+commit 87cee887c7a6f1e0d8aa1566bbecae8ed732fd7c
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Tue Dec 5 12:33:36 2023 +0700
+
+    test delete Campus
+
+commit 036ace372195c45fe9f7a97666651b97090ecd04
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Dec 5 10:12:33 2023 +0700
+
+    More admin UIs
+
+commit 55fa8404b40055eea65c5050ec744b1a2425f25e
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Dec 5 10:11:06 2023 +0700
+
+    Add cross-origin annotation
+
+commit 91269f932e96dec88a2f91d2350a0ec8b713f9c9
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Mon Dec 4 19:14:45 2023 +0700
+
+    Refactor the helper functions
+
+commit d694d6002716e45ab1a983fd448ec1a49409b947
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Mon Dec 4 19:13:37 2023 +0700
+
+    One more time fix the buttons
+
+commit 4dff3be2a3cb28db5cc31bf84af66cc319abb28b
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Mon Dec 4 19:12:17 2023 +0700
+
+    Fix the buttons again
+
+commit cd50ce858e6a4af5f5322e8a49be08b3ea8c2cdf
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Mon Dec 4 19:09:28 2023 +0700
+
+    Update button usage
+
+commit c4e476444f17b93f2db3553fb312bd2a29f0bcf5
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Mon Dec 4 19:08:06 2023 +0700
+
+    Add subroutes
+
+commit c097d47819fb5eec1224a98ca0e22ac71d499c17
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Mon Dec 4 19:06:18 2023 +0700
+
+    Fix custom buttons
+
+commit f4b5cc6cd2d22a5a43ef4feb1db22d2588c057e4
+Merge: d40c7c5 5b9fe42
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sun Dec 3 13:45:59 2023 +0700
+
+    Merge branch 'backend' into frontend
+
+commit d40c7c5bb674d796822c876302e55256991dd44d
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sun Dec 3 13:35:15 2023 +0700
+
+    Fix responsive design, add some admin UIs
+
+commit 5b9fe42eefa19551d7f8185cde3183d06e1cbc1c
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sun Dec 3 12:46:21 2023 +0700
+
+    update print doc func for student
+
+commit eac589292424fa3988f7a438c3ba2622df1048c8
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sun Dec 3 10:09:00 2023 +0700
+
+    done fix a big bug ! run ok .... until now....
+
+commit 3888f8ae06012c52325cd5d465d871ecaa66ef53
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Dec 2 18:03:28 2023 +0700
+
+    Add some student UI
+
+commit c44c0d072a67a21536372d9bba4c315136efe408
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Dec 2 18:02:18 2023 +0700
+
+    finish ver1
+
+commit a66b22ea8e0d3addba2e85a8cc0750bcfd49b895
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Nov 30 19:48:55 2023 +0700
+
+    implemnent printer info and location configuration
+
+commit 05f00601c6f9182bb23960c9b52a8795d092f443
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Nov 30 14:39:05 2023 +0700
+
+    Replace auth state by SessionStorage in AuthContext, to persist data on page refresh
+
+commit 36c6c2f1ac78335af5016b69488450609aa36027
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Nov 30 13:20:20 2023 +0700
+
+    Fix bugs in authentication
+
+commit 76de1abb5cf8b448aedd220b535ba1a370b45c57
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Nov 30 02:07:10 2023 +0700
+
+    Add React doc
+
+commit 41f7b84ad394b3912bb8aac0c7bd138a560488a7
+Merge: 1b371cf d6f11e4
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Nov 30 01:43:47 2023 +0700
+
+    Merge branch 'develop' of https://github.com/phuongngo0320/hcmut-ssps into develop
+
+commit 1b371cf6752bb9d155fbb817fa122ce2135ebbed
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Nov 30 01:23:23 2023 +0700
+
+    Implement authentication (session, protected pages, role-based routing)
+
+commit d6f11e413f2c321495175a3ac3463e814ef51882
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Thu Nov 30 01:23:23 2023 +0700
+
+    Implement authentication (session, protected pages, role-based routing)
+
+commit 0188947d75968cb99c941f097e47dba0e790c431
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 25 12:23:11 2023 +0700
+
+    Test login
+
+commit 017288d20773c3b919e25850f30bcba0c9cf44dd
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Nov 25 12:01:02 2023 +0700
+
+    change login_proccess func
+
+commit ec1eab2274a3d1c100f9cafb1db9bc9d6247663e
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Nov 25 12:00:20 2023 +0700
+
+    add login response class
+
+commit 86e20953330115d8fbe1013891fd0ccd44e9ff81
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 25 11:38:33 2023 +0700
+
+    Fix a component name
+
+commit 334de5d0991dcb9646e0803c69a40aab995eaac0
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 25 11:24:35 2023 +0700
+
+    Add React dependency installation notes
+
+commit 764b2f7b72028025411f677eacab96709d0210ea
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Nov 21 21:02:52 2023 +0700
+
+    Implement homepage UI
+
+commit c90982849f4be9fb9a40db6a5859cd2ab5019642
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Tue Nov 21 14:14:59 2023 +0700
+
+    Add Guest UI
+
+commit dad72dc71d162403e678d2398e8521a2a154777e
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 18 19:02:56 2023 +0700
+
+    Add simple student UI
+
+commit a23aa42f444ad6a8e50f8fef144200563fc185e4
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 18 13:12:11 2023 +0700
+
+    Add SSO UI
+
+commit 7c1419ab599e3716bc993100244c2fc712b82b1a
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Sat Nov 18 11:29:04 2023 +0700
+
+    Login func BE
+
+commit 5994c68132b6826f17e22adf6cdb93dbb8859c58
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 18 10:48:25 2023 +0700
+
+    Add form submission
+
+commit 47cbfff27f3595a46664718ecc28566e4dde91ec
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 18 10:16:49 2023 +0700
+
+    Add simple login UI
+
+commit 7f7381d24bf308c9bd7f269f8bcb5303e03ba9f0
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sat Nov 18 09:57:06 2023 +0700
+
+    Initial commit
+
+commit 621a96d3ac2ceb857b27c341b15b28b789313129
+Merge: 14cbfa6 4e7538a
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Fri Nov 17 16:37:12 2023 +0700
+
+    Merge branch 'main' of https://github.com/phuongngo0320/hcmut-ssps
+
+commit 14cbfa6a417defc6c597e702abf8d7575cdbf009
+Merge: 11ce55f 5c93f36
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Fri Nov 17 16:36:58 2023 +0700
+
+    Merge branch 'feature-add-client-server-connection'
+
+commit 4e7538a7eb595872c22b6e778afe54dc5eebad2c
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Fri Nov 17 16:35:36 2023 +0700
+
+    Change java version
+
+commit 11ce55f554f190179ae8fc5f16d565d64a754380
+Author: Tuan <tuan.kieudangquoc03@hcmut.edu.vn>
+Date:   Thu Nov 16 20:04:56 2023 +0700
+
+    Add MySql config and some dependencies
+
+commit 5c93f36f7df1b75f8d2b276dab70cb51d50a27fc
+Author: Wann2802 <nlquan2802@outlook.com>
+Date:   Sun Nov 12 11:36:14 2023 +0700
+
+    Add Connection between client and server
+
+commit a351cab55270dea9506b4b29c1f889f2b1c66718
+Author: Phuong <phuongngovan2003@gmail.com>
+Date:   Sun Nov 12 08:58:35 2023 +0700
+
+    Initial commit
+
+commit 2f98d5867bf9d3c3336614675ecb5d2b43fdbba7
+Author: Phuong Ngo <104999522+phuongngo0320@users.noreply.github.com>
+Date:   Sat Nov 11 14:12:27 2023 +0700
+
+    Initial commit

@@ -1,0 +1,93 @@
+.buy-page {
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+    gap: 2rem;
+}
+
+.buy-page main {
+    display: flex;
+    gap: 3rem;
+}
+
+.buy-page .payment-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.buy-page .payment-info h2,
+.buy-page .num-pages h2 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid black;
+}
+
+.buy-page .payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.buy-page .payment-method {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.buy-page .payment-method li {
+    display: flex;
+    align-items: center;
+}
+
+/*--------*/
+
+.buy-page .num-pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #DFF2FF;
+}
+
+.buy-page table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+.buy-page h2, .buy-page label {
+    color: #0D99FF;
+}
+
+.buy-page .total-cost .figure {
+    font-size: 2rem;
+}
+
+
+@media screen and (max-width: 900px) {
+    .buy-page main {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 901px) {
+    .buy-page main > * {
+        flex: 1;
+    }
+}

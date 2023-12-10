@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    height: 5rem;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .navbar {
+    flex: 1;
+}

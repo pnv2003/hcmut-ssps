@@ -1,0 +1,90 @@
+.printer-status-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid black;
+    border-radius: 10px;
+
+    max-width: 20rem;
+    padding-bottom: 2rem;
+}
+
+.printer-status-card .head {
+    width: 100%;
+}
+
+.printer-status-card .head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    color: white;
+
+    border: 1px solid black;
+    border-radius: 10px 10px 0 0;
+}
+
+.printer-status-card .head span {
+    font-size: 1.7rem;
+}
+
+.printer-status-card .head.success {
+    background-color: #4BD396;
+}
+
+.printer-status-card .head.grey {
+    background-color: #CCCCCC;
+}
+
+.printer-status-card .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.printer-status-card .body > * {
+    width: 100%;
+}
+
+.printer-status-card .status {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.printer-status-card .status-text.success {
+    color: #4BD396;
+}
+
+.printer-status-card .status-text.grey {
+    color: #CCCCCC;
+}
+
+.printer-status-card .stat {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+}
+
+.printer-status-card .stat .figure {
+    font-size: 2rem;
+    text-align: right;
+}
+
+.printer-status-card .meters {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.printer-status-card .meters div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.printer-status-card meter {
+    height: 2rem !important;
+}

@@ -1,0 +1,13 @@
+.admin-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-layout main {
+    display: flex;
+}
+
+.admin-layout article {
+    padding: 2rem;
+    width: 100%;
+}

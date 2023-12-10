@@ -1,0 +1,10 @@
+.student-profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding-right: 0.8rem;
+}
+
+.profile-name {
+    font-size: 1.2rem;
+}

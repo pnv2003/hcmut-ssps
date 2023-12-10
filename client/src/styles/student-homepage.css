@@ -1,0 +1,49 @@
+.student-homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.student-homepage main {
+    flex: 1;
+    gap: 2rem;
+    background-color: white;
+    padding: 0 1rem;
+}
+
+.student-homepage-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-homepage main .poster {
+    width: 30rem;
+}
+
+@media screen and (max-width: 999px) {
+    .student-homepage main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .student-homepage-left {
+        align-items: center;
+    }
+
+    .student-homepage .poster {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .student-homepage main {
+        display: flex;
+        align-items: center;
+    }
+
+    .student-homepage .student-header {
+        height: 5rem;
+    }
+}

@@ -1,0 +1,38 @@
+.config-location {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.config-location > * {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.config-location-form {
+    display: flex; 
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.config-location-form .field {
+    display: flex;
+    gap: 1rem;
+}
+
+.config-location-form h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.config-location-form select {
+    /* width: 7rem !important; */
+}

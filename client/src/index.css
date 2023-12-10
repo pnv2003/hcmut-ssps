@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Inter:wght@500&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,4 +12,42 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* responsive media */
+img,
+picture,
+video {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* global normalizing */
+button,
+label,
+input:not(input[type="radio"], input[type="checkbox"]),
+select,
+progress,
+meter,
+textarea {
+    display: block;
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5px;
+    height: 30px;
+}
+
+/* uniform shadow and rounded corners */
+
+input[type="text"],
+input[type="datetime-local"],
+input[type="color"],
+input[type="email"],
+input[type="password"],
+select {
+    box-shadow: inset 1px 1px 3px #ccc;
+    border-radius: 5px;
 }

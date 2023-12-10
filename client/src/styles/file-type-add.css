@@ -1,0 +1,21 @@
+.file-type-add {
+    display: flex; 
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.file-type-add .field {
+    display: flex;
+    gap: 1rem;
+}
+
+.file-type-add h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+}

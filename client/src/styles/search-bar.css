@@ -1,0 +1,15 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-bar input {
+    height: 2rem !important;
+    border-radius: 10px !important;
+    min-width: 30rem !important;
+}
+
+.search-bar span {
+    font-size: 1.5rem;
+}

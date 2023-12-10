@@ -1,0 +1,121 @@
+.homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.homepage article {
+    padding: 5rem;
+    height: calc(100vh - 5rem);
+}
+
+.homepage-main {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background-color: white;
+}
+
+.homepage-main-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.homepage-main .poster {
+    width: 30rem;
+}
+
+/*************/
+
+.homepage header {
+    position: fixed;
+}
+
+/*************/
+
+.homepage .about-us {
+    display: flex;
+    flex-direction: column;
+    background-image: url("../assets/img/printer-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: 100vw; */
+}
+
+.homepage .about-us h2 {
+    font-size: 4rem;
+}
+
+.homepage .about-us p {
+    font-size: 1.5rem;
+}
+
+.homepage .about-us .foundation {
+    text-align: right;
+}
+
+/*************/
+
+.homepage .services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage .services h2 {
+    font-size: 4rem;
+    font-weight: normal;
+}
+
+.homepage .services .cards {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.homepage .services .icon-card {
+    height: 15rem;
+    width: 15rem;
+}
+
+.homepage .services .icon-card span {
+    font-size: 5rem;
+}
+
+/*************/
+
+.homepage .contact {
+    display: flex;
+    align-items: center;
+    gap: 10rem;
+}
+
+.homepage .contact .poster {
+    width: 25rem;
+}
+
+@media screen and (max-width: 1200px) {
+    .homepage-main-left {
+        align-items: center;
+    }
+
+    .homepage .poster {
+        display: none;
+    }
+
+    .homepage .services .cards {
+        flex-direction: column;
+        margin-bottom: 10rem;
+    }
+
+    .homepage .services {
+        height: 60rem;
+    }
+}

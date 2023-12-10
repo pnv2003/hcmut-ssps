@@ -1,0 +1,16 @@
+.file-print-properties {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.file-print-properties .foot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.file-to-config {
+    text-align: center;
+}

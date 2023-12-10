@@ -1,0 +1,19 @@
+.logo-SSPS {
+    font-family: Finger Paint, Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    background-color: #0D99FF;
+    text-align: center;
+    border-radius: 10px;
+
+    padding: 0.5rem;
+    height: 3rem;
+
+    display: flex;
+    align-items: center;
+    
+}
+
+.logo-SSPS p {
+    font-size: 2rem;
+}
+

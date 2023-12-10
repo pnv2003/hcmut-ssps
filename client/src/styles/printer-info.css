@@ -1,0 +1,19 @@
+.printer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.printer-info .util {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.printer-info .search-bar {
+    flex: 1;
+}
+
+.printer-info input {
+    height: 3rem !important;
+}

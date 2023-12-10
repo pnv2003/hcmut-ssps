@@ -1,0 +1,66 @@
+.file-list {
+    /* display: flex;
+    flex-direction: column; */
+    /* padding: 2rem; */
+}
+
+.file-list ul {
+    padding: 0;
+}
+
+.file-list .list {
+    list-style-type: none;
+    border: 2px solid black;
+    height: 100%;
+    overflow: auto;
+}
+
+.file-list .file-item,
+.file-list .file-item:link,
+.file-list .file-item:focus {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding-right: 1rem;
+}
+
+.file-list .file-item:hover {
+    background-color: #A4D9FF;
+    /* color: white; */
+}
+
+.file-list .file-item:active {
+    background-color: orange;
+}
+
+.file-list .file-item .file-detail {
+    flex: 1;
+}
+
+.file-list .file-item .file-detail .success {
+    color: #4BD396;
+}
+
+.file-list .file-item .file-detail .failed {
+    color: #F5707A;
+}
+
+.file-list .filename {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.file-list .info {
+    display: flex;
+}
+
+.file-list .info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.file-list .info.hidden {
+    display: none;
+}

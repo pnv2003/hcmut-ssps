@@ -1,0 +1,11 @@
+.student-header {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+}
+
+.student-header .logo {
+    display: flex;
+    align-items: center;
+}

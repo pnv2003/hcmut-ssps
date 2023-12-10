@@ -1,0 +1,166 @@
+.navbar {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-item {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+.navbar .nav-item:hover {
+    background-color: #0D99FF;
+    color: white;
+}
+
+.navbar .nav-item:active {
+    background-color: orange;
+}
+
+.navbar .icon {
+    display: none;
+    padding: 1rem;
+}
+
+.navbar.static a:link,
+.navbar.static a:visited,
+.navbar.static a:focus {
+    text-decoration: none;
+    /* color: black; */
+}
+
+.navbar li {
+    list-style: none;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+.navbar .nav-item:hover {
+    background-color: #0D99FF;
+    color: white;
+}
+
+.navbar .nav-item:active {
+    background-color: orange;
+}
+
+.navbar {
+    width: 100%;
+    height: 4rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content:space-between;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 2rem;
+}
+
+.navbar .toggle {
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.navbar .action {
+    display: flex;
+    align-items: center;
+}
+
+.menu {
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: none;
+    padding-bottom: 2rem;
+    border: 0.5px solid black;
+}
+
+.menu ul {
+    padding: 0;
+}
+
+.menu li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu .nav-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.menu .nav-item:hover {
+    background-color: #0D99FF;
+    color: white;
+}
+
+.menu .nav-item:active {
+    background-color: orange;
+    color: white;
+}
+
+.menu .action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 1020px) {
+    .navbar ul,
+    .navbar .action {
+        display: none;
+    }
+
+    .navbar .toggle {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 2rem;
+    }
+
+    .menu .action {
+        flex-direction: column;
+    }
+
+    .menu.opened {
+        /* height: 15rem; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* @media screen and (max-width: 576px) {
+    .menu {
+        left: 2rem;
+        width: unset;
+    }
+} */
+

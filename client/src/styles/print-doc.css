@@ -1,0 +1,54 @@
+.print-doc {
+    display: flex;
+    flex-direction: column;
+}
+
+.print-doc main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.print-doc main > * {
+    width: 100%;
+}
+
+.print-doc main .upper {
+    display: flex;
+    /* align-items: center; */
+    gap: 2rem;
+    justify-content: center;
+}
+
+.print-doc main .upper .left {
+    min-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.print-doc main .lower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem;
+}
+
+.print-doc .send {
+    margin: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+    .print-doc main .upper {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 901px) {
+    .print-doc .file-list {
+        flex: 1;
+    }
+}
+

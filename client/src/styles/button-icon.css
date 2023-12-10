@@ -1,0 +1,35 @@
+.button-icon {
+    background-color: #0D99FF;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.button-icon.view {
+    background-color: #3AC9D6;
+}
+
+.button-icon.success {
+    background-color: #4BD396;
+}
+
+.button-icon.warning {
+    background-color: #FFD966;
+}
+
+.button-icon.neutral {
+    background-color: #CCCCCC;
+}
+
+.button-icon.delete {
+    background-color: #F5707A;
+}
+
+.button-icon:hover {
+    background-color: orange;
+}
+
+.button-icon:active {
+    background-color: red;
+}
