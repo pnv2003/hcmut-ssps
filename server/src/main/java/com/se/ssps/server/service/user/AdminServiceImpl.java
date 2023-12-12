@@ -425,17 +425,17 @@ public class AdminServiceImpl implements AdminService{
         return returnList;
     }
 
-    @Override
-    public List<PrinterDto> findAllPrinterStat() {
-        ArrayList<PrinterDto> returnList = new ArrayList<>();
-        ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
-        for (Printer printer : printerList) {
-            PrinterDto newValue = new PrinterDto(printer);
-            newValue.setSquarePringting(printingLogRepository.totalSquare(printer.getId()));
-            returnList.add(newValue);
-        }
-        return returnList;
-    }
+    // @Override
+    // public List<PrinterDto> findAllPrinterStat() {
+    //     ArrayList<PrinterDto> returnList = new ArrayList<>();
+    //     ArrayList<Printer> printerList = new ArrayList<>(printerRepository.findAll());
+    //     for (Printer printer : printerList) {
+    //         PrinterDto newValue = new PrinterDto(printer);
+    //         newValue.setSquarePringting(printingLogRepository.totalSquare(printer.getId()));
+    //         returnList.add(newValue);
+    //     }
+    //     return returnList;
+    // }
 
 
 }

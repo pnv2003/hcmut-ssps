@@ -15,8 +15,8 @@ public interface PrintingLogRepository extends JpaRepository<PrintingLog,Integer
     // @Modifying
     // @Query("UPDATE PrintingLog p set p.squarePrinting = ?1 where p.id = ?2")
     // public void updateSquarePrinting(double newSquarePrinting, Integer id);
-    @Query("select sum(p.squarePrinting) form PrintingLog p where p.printer.id = ?1")
-    public Double totalSquare (Integer printerId);
+    // @Query("select sum(p.squarePrinting) form PrintingLog p where p.printer.id = ?1")
+    // public Double totalSquare (Integer printerId);
 
 
     @Query("select SUM(p.squarePrinting) from PrintingLog p where p.printer.id =?1 and p.startDate >= ?2 and p.endDate <= ?3 ")

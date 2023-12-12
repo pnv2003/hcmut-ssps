@@ -67,10 +67,10 @@ public class AdminController {
         return adminService.findAllPrinter();
     }
 
-    @GetMapping("/printer-stat")
-    public List<PrinterDto> listOfPrinterWithStat(){
-        return adminService.findAllPrinterStat();
-    }
+    // @GetMapping("/printer-stat")
+    // public List<PrinterDto> listOfPrinterWithStat(){
+    //     return adminService.findAllPrinterStat();
+    // }
     //Thêm một máy in mới
     @PostMapping("/printer")
     public Printer addPrinter(@RequestParam(name = "room-id") Integer room_id, @RequestBody Printer newPrinter){

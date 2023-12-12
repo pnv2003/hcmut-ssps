@@ -36,7 +36,7 @@ public interface AdminService {
 
     public Map<String, Boolean> updatePrinter(Printer newPrinter, Integer roomId);
 
-    public List<PrinterDto> findAllPrinterStat();
+    // public List<PrinterDto> findAllPrinterStat();
 //=====================================================================================
 //================================================================================
 //Thao tác đối với cơ sởx
