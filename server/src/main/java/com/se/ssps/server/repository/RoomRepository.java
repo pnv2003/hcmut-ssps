@@ -14,8 +14,8 @@ import jakarta.transaction.Transactional;
 public interface RoomRepository extends JpaRepository<Room, Integer> {
     @Modifying
     @Transactional
-    @Query("update Room r set r.printer.id = ?1, r.havePrinter = true where r.id = ?2")
-    public void savePrinter(Integer newPrinter, Integer id);
+    @Query("update Room r set r.printer = ?1, r.havePrinter = true where r.id = ?2")
+    public void savePrinter(Printer newPrinter, Integer id);
 
 
     @Query("SELECT r FROM Room r where r.id = ?1")

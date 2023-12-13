@@ -81,10 +81,9 @@ public class AdminServiceImpl implements AdminService{
     public Printer addPrinter(Integer room_id, Printer newPrinter) {
         newPrinter.setRoom(roomRepository.findRoomById(room_id));
         // roomRepository.findRoomById(room_id).setPrinter(newPrinter);
-        Printer returnPrinter = printerRepository.save(newPrinter);
-        roomRepository.savePrinter(returnPrinter.getId(),room_id);
+        roomRepository.savePrinter(newPrinter,room_id);
         // roomRepository.roomHavePrinter(room_id);
-        return returnPrinter;
+        return printerRepository.save(newPrinter);
     }
 
     @Override
@@ -419,7 +418,7 @@ public class AdminServiceImpl implements AdminService{
                 pageNumeMonth= paymentLogRepository.countPageNums(fromDate, toDate);
             }
             Double profitPerMonth = (double) (pageNumeMonth * pageUnitPriceRepo.getValue());
-            ChartValue newValue = new ChartValue(Integer.toString(from.getMonth().getValue())+ "/" + Integer.toString(from.getYear()) , profitPerMonth);
+            ChartValue newValue = new ChartValue(Integer.toString(from.getMonth().getValue()) + "/" + Integer.toString(from.getYear()) , profitPerMonth);
             returnList.add(newValue);
             from = from.plusMonths(1);
         }
