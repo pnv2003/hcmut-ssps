@@ -81,9 +81,10 @@ public class AdminServiceImpl implements AdminService{
     public Printer addPrinter(Integer room_id, Printer newPrinter) {
         newPrinter.setRoom(roomRepository.findRoomById(room_id));
         // roomRepository.findRoomById(room_id).setPrinter(newPrinter);
-        roomRepository.savePrinter(newPrinter,room_id);
+        Printer returnPrinter = printerRepository.save(newPrinter);
+        roomRepository.savePrinter(returnPrinter.getId(),room_id);
         // roomRepository.roomHavePrinter(room_id);
-        return printerRepository.save(newPrinter);
+        return returnPrinter;
     }
 
     @Override
