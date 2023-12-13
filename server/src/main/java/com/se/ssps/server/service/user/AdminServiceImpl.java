@@ -419,7 +419,7 @@ public class AdminServiceImpl implements AdminService{
                 pageNumeMonth= paymentLogRepository.countPageNums(fromDate, toDate);
             }
             Double profitPerMonth = (double) (pageNumeMonth * pageUnitPriceRepo.getValue());
-            ChartValue newValue = new ChartValue(from.getMonth().toString() + Integer.toString(from.getYear()) , profitPerMonth);
+            ChartValue newValue = new ChartValue(Integer.toString(from.getMonth().getValue())+ "/" + Integer.toString(from.getYear()) , profitPerMonth);
             returnList.add(newValue);
             from = from.plusMonths(1);
         }
